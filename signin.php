@@ -1,3 +1,43 @@
+<?php
+
+session_start();
+
+  include("classes/connect.php");
+  include('classes/login.php');
+
+  $email = "";
+  $password = ""; 
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST')
+   {
+    
+        $login = new Login();
+        $result = $login->evaluate($_POST);
+     
+    if($result != "")
+        {
+
+            echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
+            echo "<br>The following errors occured:<br><br>";
+            echo $result;
+            echo "</div>";
+
+        }else
+        {
+
+            header("Location: index.php");
+            die;
+
+        }
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+       
+   }
+  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +93,10 @@
                             </a>
                             <h3>Sign In</h3>
                         </div>
-                        <div class="form-floating mb-3">
+
+
+                        
+                        <!-- <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
                         </div>
@@ -69,7 +112,7 @@
                             <a href="">Forgot Password</a>
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
-                        <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p>
+                        <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p> -->
                     </div>
                 </div>
             </div>
