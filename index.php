@@ -3,9 +3,9 @@
     include("classes/autoload.php");
 
   $login = new Login();
-  $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
+  $_SESSION['das_userid'] = isset($_SESSION['das_userid']) ? $_SESSION['das_userid'] : 0;
   
-  $user_data = $login->check_login($_SESSION['star_userid'],false);
+  $user_data = $login->check_login($_SESSION['das_userid'],false);
   
   $USER = $user_data;
 
@@ -23,21 +23,16 @@
   if($_SERVER['REQUEST_METHOD'] == "POST")
   {      
       include("change_image.php");
-      
-     if(isset($_POST['first_name'])){
-          
-          $settings_class = new Settings();
-          $settings_class->save_settings($_POST,$_SESSION['star_userid']);
-          
+         
     }else{
           
       $post = new Post();
-      $id = $_SESSION['star_userid'];
-      $result = $post->create_post($id, $_POST,$_FILES);
+      $id = $_SESSION['das_userid'];
+      $result = $post->create_post($id,$_FILES);
       
         if($result == "")
          {
-            header("Location: profile.php");
+            header("Location: index.php");
             die;
          }else
          {
