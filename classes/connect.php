@@ -6,7 +6,7 @@ class Database
 	private $host = "localhost";
 	private $username = "root";
 	private $password = "";
-	private $db = "star_db1";
+	private $db = "";
  
 	function connect()
 	{
