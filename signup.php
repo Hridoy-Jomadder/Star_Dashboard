@@ -112,9 +112,8 @@
                 
                             <input value="<?php echo $email ?>" name="email" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $password ?>" name="password" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
-                            <input value="<?php echo $password ?>" name="password2" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;"><br><br><br>
-                            <br><br>
-                            <input type="submit" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $password ?>" name="password2" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;">
+                            <input type="submit" id="button" value="Sign Up" style="font-family: times new roman;">
                         </form>
 
                         <!-- <div class="form-floating mb-3">
