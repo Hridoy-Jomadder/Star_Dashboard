@@ -1,19 +1,13 @@
 <?php 
+    include("classes/autoload.php");
 
-session_start();
-
-  include("classes/connect.php");
-  include('classes/login.php');
-  include('classes/image.php');
-  include('classes/profile.php');
-  include('classes/signup.php');
-  include('classes/user.php');
-
-
-  $login = new Login();
-  
-  $USER = $user_data;
-
+    $login = new Login();
+    $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
+    
+    $user_data = $login->check_login($_SESSION['star_userid'],false);
+    
+    $USER = $user_data;
+    
   if(isset($_GET['id']) && is_numeric($_GET['id'])){
   
       $profile = new Profile();
