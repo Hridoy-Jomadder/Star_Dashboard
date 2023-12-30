@@ -1,13 +1,13 @@
 <?php 
-
     include("classes/autoload.php");
 
-  $login = new Login();
-  $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
-  
-  $user_data = $login->check_login($_SESSION['star_userid'],false);
-  
-  $USER = $user_data;
+    $login = new Login();
+    
+    $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
+    
+    $user_data = $login->check_login($_SESSION['star_userid'],false);
+    
+    $USER = $user_data;
 
   if(isset($_GET['id']) && is_numeric($_GET['id'])){
   
@@ -26,15 +26,9 @@
       
      if(isset($_POST['first_name'])){
           
-          $settings_class = new Settings();
-          $settings_class->save_settings($_POST,$_SESSION['star_userid']);
           
     }else{
           
-      $post = new Post();
-      $id = $_SESSION['star_userid'];
-      $result = $post->create_post($id, $_POST,$_FILES);
-      
         if($result == "")
          {
             header("Location: profile.php");
@@ -48,18 +42,6 @@
          }
     }
   }
-  
-	//collect posts
-	// $post = new Post();
-	// $id = $user_data['userid'];
-	
-	// $posts = $post->get_posts($id);
-
-
-	$image_class = new Image();
-
-
-
 ?>
 
 
@@ -232,8 +214,7 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <!-- <img class="rounded-circle me-lg-2" src="" alt="" style="width: 40px; height: 40px;"> -->
-                            <?php echo $image ?>
+                            <img class="rounded-circle me-lg-2" src="<?php echo $image ?>" alt="" style="width: 40px; height: 40px;">
                             <!-- <span class="d-none d-lg-inline-flex">Star</span> -->
                             <a href="profile.php?id=<?php echo $user_data['userid'] ?>" style="text-decoration: none;">
                         <?php echo $user_data['first_name'] . " " . $user_data['last_name']?>
