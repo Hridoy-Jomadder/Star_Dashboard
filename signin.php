@@ -93,9 +93,16 @@ session_start();
                             </a>
                             <h3>Sign In</h3>
                         </div>
-
-
                         
+                        <form action="" method="POST">
+            <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
+            <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br><br>
+            <!--            <input type="checkbox" required>Remember Me<br><br>-->
+
+            <input type="submit" id="button" value="Log in" style="font-family: times new roman;"><br><br>
+        </form>
+
+
                         <!-- <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
