@@ -25,10 +25,6 @@
       include("change_image.php");
          
     }else{
-          
-      $post = new Post();
-      $id = $_SESSION['das_userid'];
-      $result = $post->create_post($id,$_FILES);
       
         if($result == "")
          {
