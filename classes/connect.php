@@ -6,7 +6,7 @@ class Database
 	private $host = "localhost";
 	private $username = "root";
 	private $password = "";
-	private $db = "";
+	private $db = "das_db";
  
 	function connect()
 	{
