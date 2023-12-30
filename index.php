@@ -1,13 +1,13 @@
 <?php 
+
     include("classes/autoload.php");
 
-    $login = new Login();
-    
-    $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
-    
-    $user_data = $login->check_login($_SESSION['star_userid'],false);
-    
-    $USER = $user_data;
+  $login = new Login();
+  $_SESSION['star_userid'] = isset($_SESSION['star_userid']) ? $_SESSION['star_userid'] : 0;
+  
+  $user_data = $login->check_login($_SESSION['star_userid'],false);
+  
+  $USER = $user_data;
 
   if(isset($_GET['id']) && is_numeric($_GET['id'])){
   
@@ -26,9 +26,15 @@
       
      if(isset($_POST['first_name'])){
           
+          $settings_class = new Settings();
+          $settings_class->save_settings($_POST,$_SESSION['star_userid']);
           
     }else{
           
+      $post = new Post();
+      $id = $_SESSION['star_userid'];
+      $result = $post->create_post($id, $_POST,$_FILES);
+      
         if($result == "")
          {
             header("Location: profile.php");
@@ -42,6 +48,18 @@
          }
     }
   }
+  
+	//collect posts
+	$post = new Post();
+	$id = $user_data['userid'];
+	
+	$posts = $post->get_posts($id);
+
+
+	$image_class = new Image();
+
+
+
 ?>
 
 
