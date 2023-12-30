@@ -7,6 +7,8 @@ session_start();
   include('classes/image.php');
   include('classes/profile.php');
   include('classes/signup.php');
+  include('classes/user.php');
+
 
   $login = new Login();
   
