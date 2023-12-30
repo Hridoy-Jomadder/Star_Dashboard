@@ -1,3 +1,53 @@
+<?php 
+
+session_start();
+
+  include("classes/connect.php");
+  include('classes/login.php');
+  include('classes/image.php');
+  include('classes/profile.php');
+  include('classes/signup.php');
+
+  $login = new Login();
+  
+  $USER = $user_data;
+
+  if(isset($_GET['id']) && is_numeric($_GET['id'])){
+  
+      $profile = new Profile();
+      $profile_data = $profile->get_profile($_GET['id']);
+
+     if(is_array($profile_data)){
+        $user_data = $profile_data[0];
+     }
+  }
+
+  //posting stars here
+  if($_SERVER['REQUEST_METHOD'] == "POST")
+  {      
+      include("change_image.php");
+      
+     if(isset($_POST['first_name'])){
+          
+          
+    }else{
+          
+        if($result == "")
+         {
+            header("Location: profile.php");
+            die;
+         }else
+         {
+            echo "<div style='display:none;position:absolute; text-align:center;font-size:12px;color:white;background:red;'>";
+            echo "<br>The following errors occured:<br><br>";
+            echo $result;
+            echo "</div>";
+         }
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
