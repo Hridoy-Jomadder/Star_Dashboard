@@ -469,8 +469,8 @@
                                 <input class="form-check-input m-0" type="checkbox">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span id="taskList"><button class="btn btn-sm"><i class="fa fa-times"></i></button></span>
-                                        
+                                        <div id="taskList"></div>
+                                        <button class="btn btn-sm"><i class="fa fa-times" id="taskremove"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -569,7 +569,7 @@
         
         function removeTask(button) {
             const li = button.parentElement;
-            const taskList = document.getElementById("taskList");
+            const taskList = document.getElementById("taskremove");
             taskList.removeChild(li);
         }</script>
 </body>
