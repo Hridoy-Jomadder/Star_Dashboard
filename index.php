@@ -50,10 +50,10 @@
   }
   
 	//collect posts
-	$post = new Post();
-	$id = $user_data['userid'];
+	// $post = new Post();
+	// $id = $user_data['userid'];
 	
-	$posts = $post->get_posts($id);
+	// $posts = $post->get_posts($id);
 
 
 	$image_class = new Image();
