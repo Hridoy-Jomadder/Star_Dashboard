@@ -260,6 +260,26 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>// Single Line Chart
+var lineChartData = {
+    // Provide your data here
+};
+
+var lineChartOptions = {
+    // Provide your options here
+};
+
+var lineChart = new Chart(document.getElementById('line-chart'), {
+    type: 'line',
+    data: lineChartData,
+    options: lineChartOptions
+});
+
+// Repeat similar code for other charts
+</script>
 </body>
 
 </html>
