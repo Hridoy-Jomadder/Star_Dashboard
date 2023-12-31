@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
     include("classes/autoload.php");
 
     $login = new Login();
@@ -42,7 +42,7 @@
          }
     }
   }
-?>
+?> -->
 
 
 <!DOCTYPE html>
