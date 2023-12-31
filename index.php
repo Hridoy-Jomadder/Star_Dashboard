@@ -216,7 +216,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Star</span>
+                            <span class="d-none d-lg-inline-flex">Hridoy Jomadder</span>
                             <!-- <a href="profile.php?id=<?php echo $user_data['userid'] ?>" style="text-decoration: none;">
                         <?php echo $user_data['first_name'] . " " . $user_data['last_name']?>
                                 <br>
