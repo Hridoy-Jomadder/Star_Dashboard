@@ -265,11 +265,31 @@
 
     <script>// Single Line Chart
 var lineChartData = {
-    // Provide your data here
+    labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'], // Replace with your labels
+    datasets: [
+        {
+            label: 'Data Set 1',
+            data: [10, 20, 15, 25, 30], // Replace with your data
+            borderColor: 'rgba(75, 192, 192, 1)', // Replace with your desired color
+            borderWidth: 2,
+            fill: false
+        }
+        // Add more datasets if needed
+    ]
 };
 
 var lineChartOptions = {
-    // Provide your options here
+    scales: {
+        x: {
+            type: 'linear', // Change the type if your x-axis is not numeric
+            position: 'bottom'
+        },
+        y: {
+            type: 'linear', // Change the type if your y-axis is not numeric
+            position: 'left'
+        }
+    }
+    // Add more options as needed
 };
 
 var lineChart = new Chart(document.getElementById('line-chart'), {
@@ -279,6 +299,7 @@ var lineChart = new Chart(document.getElementById('line-chart'), {
 });
 
 // Repeat similar code for other charts
+
 </script>
 </body>
 
