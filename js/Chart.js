@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>// Single Line Chart
+    // Single Line Chart
 var lineChartData = {
 labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'], // Replace with your labels
 datasets: [
@@ -37,9 +37,7 @@ options: lineChartOptions
 
 // Repeat similar code for other charts
 
-</script>
-
-<script>// Single Line Chart Data
+    // Single Line Chart Data
 var lineChartData = {
 labels: ['January', 'February', 'March', 'April', 'May'], // Labels for X-axis
 datasets: [{
@@ -88,4 +86,4 @@ type: 'line',
 data: lineChartData,
 options: lineChartOptions
 });
-</script>
+
