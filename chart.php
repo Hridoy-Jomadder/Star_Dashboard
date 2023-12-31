@@ -301,6 +301,57 @@ var lineChart = new Chart(document.getElementById('line-chart'), {
 // Repeat similar code for other charts
 
 </script>
+
+<script>// Single Line Chart Data
+var lineChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May'], // Labels for X-axis
+    datasets: [{
+        label: 'Sales',
+        data: [120, 150, 170, 200, 180], // Data points for Y-axis
+        borderColor: 'rgb(75, 192, 192)', // Border color for the line
+        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill color under the line
+        tension: 0.4 // Line tension (curvature)
+    }]
+};
+
+// Single Line Chart Options
+var lineChartOptions = {
+    responsive: true,
+    plugins: {
+        title: {
+            display: true,
+            text: 'Sales Performance'
+        },
+        legend: {
+            display: true,
+            position: 'top'
+        }
+    },
+    scales: {
+        x: {
+            display: true,
+            title: {
+                display: true,
+                text: 'Months'
+            }
+        },
+        y: {
+            display: true,
+            title: {
+                display: true,
+                text: 'Sales Amount'
+            }
+        }
+    }
+};
+
+// Creating the Single Line Chart
+var lineChart = new Chart(document.getElementById('line-chart'), {
+    type: 'line',
+    data: lineChartData,
+    options: lineChartOptions
+});
+</script>
 </body>
 
 </html>
