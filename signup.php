@@ -106,8 +106,7 @@
                             <input value="<?php echo $last_name ?>" name="last_name" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $title ?>" name="title" type="text" id="text" placeholder="Title" style="font-family: times new roman;"><br><br>
                             <span>Gender<br></span>
-                            <select id="text" name="gender" style="font-family: times new roman;">
-                                <option <?php echo $gender ?>>Male</option>
+                            <select id="text" name="gender" style="font-family: times new roman;"><option <?php echo $gender ?>>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select><br><br>
