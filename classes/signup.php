@@ -57,16 +57,16 @@ class Signup
         $DB = new Database();
 
 		//check tag name
-		$data['title_name'] = strtolower($data['first_name'] . $data['last_name']);
+		// $data['title_name'] = strtolower($data['first_name'] . $data['last_name']);
 
-		$sql = "select id from users where title_name = '$data[title_name]' limit 1";
-		$check = $DB->read($sql);
-		while(is_array($check)){
+		// $sql = "select id from users where title_name = '$data[title_name]' limit 1";
+		// $check = $DB->read($sql);
+		// while(is_array($check)){
 
-			$data['title_name'] = strtolower($data['first_name'] . $data['last_name']) . rand(0,9999);
-			$sql = "select id from users where title_name = '$data[title_name]' limit 1";
-			$check = $DB->read($sql);
-		}
+		// 	$data['title_name'] = strtolower($data['first_name'] . $data['last_name']) . rand(0,9999);
+		// 	$sql = "select id from users where title_name = '$data[title_name]' limit 1";
+		// 	$check = $DB->read($sql);
+		// }
 
 		$data['userid'] = $this->create_userid();
 		//check userid
@@ -111,7 +111,7 @@ class Signup
 		$url_address = strtolower($first_name) . "." . strtolower($last_name);
 		$userid =  $this->create_userid();
 		
-		$query = "insert into users (userid,first_name,last_name,gender,email,password,url_address)values ('$userid','$first_name','$last_name','$gender','$email','$password','$url_address')";
+		$query = "insert into users (userid,first_name,last_name,gender,email,password,profile_image,date)values ('$userid','$first_name','$last_name','$gender','$email','$password','$profile_image','$date')";
 
 		$DB = new Database();
 		$DB->save($query);
