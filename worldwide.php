@@ -241,6 +241,114 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    // Template Javascript
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sample data
+        var countries = ['UK', 'US', 'Australia'];
+        var data = [150, 200, 100];
+
+        // Get the canvas element
+        var ctxWorldwideCountry = document.getElementById('worldwide-country').getContext('2d');
+
+        // Create the bar chart for Worldwide - Country
+        var worldwideCountryChart = new Chart(ctxWorldwideCountry, {
+            type: 'bar',
+            data: {
+                labels: countries,
+                datasets: [{
+                    label: 'Number of Users',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Countries'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Users'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sample data
+        var categories = ['Category 1', 'Category 2', 'Category 3'];
+        var activeData = [10, 15, 8];
+        var offlineData = [5, 8, 12];
+
+        // Get the canvas element
+        var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
+
+        // Create the line chart for Active & Offline
+        var activeOfflineChart = new Chart(ctxActiveOffline, {
+            type: 'line',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Active',
+                    data: activeData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }, {
+                    label: 'Offline',
+                    data: offlineData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Categories'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>
