@@ -178,15 +178,31 @@
             <!-- Navbar End -->
 
 
-            <!-- Blank Start -->
+            <!-- Chart Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <h3>This is blank page</h3>
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Worldwide</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="worldwide-country"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Active & Offline</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="active-offline"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Blank End -->
+            <!-- Chart End -->
+
 
 
             <!-- Footer Start -->
