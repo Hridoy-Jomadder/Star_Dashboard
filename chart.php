@@ -261,8 +261,9 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <!-- Template Javascript -->
-<script src="js/main.js"></script>
+<!-- JavaScript Libraries -->
+<script src="lib/chart/chart.min.js"></script>
+
 
 <!-- Custom Chart Script -->
 <script>
