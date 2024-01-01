@@ -25,7 +25,7 @@ class Login
 			{
 
 				//create session data
-				$_SESSION['star_userid'] = $row['userid'];
+				$_SESSION['das_userid'] = $row['userid'];
 
 			}else
 			{
@@ -61,7 +61,7 @@ class Login
                    die;
                  }else{
                      
-                  $_SESSION['star_userid'] = 0;
+                  $_SESSION['das_userid'] = 0;
                      
                  }
                }   
@@ -73,7 +73,7 @@ class Login
                 die;
                  }else{
              
-                 $_SESSION['star_userid'] = 0;
+                 $_SESSION['das_userid'] = 0;
              
                  }
         }
