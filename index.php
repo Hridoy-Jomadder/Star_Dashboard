@@ -311,7 +311,7 @@
                                 <h6 class="mb-0">Worldwide</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="worldwide-country"></canvas>
+                            <canvas id="worldwide-sales"></canvas>
                         </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
