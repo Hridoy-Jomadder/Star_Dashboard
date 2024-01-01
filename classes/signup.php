@@ -111,7 +111,7 @@ class Signup
 		$url_address = strtolower($first_name) . "." . strtolower($last_name);
 		$userid =  $this->create_userid();
 		
-		$query = "insert into users (userid,first_name,last_name,gender,email,password,profile_image,date)values ('$userid','$first_name','$last_name','$gender','$email','$password','$profile_image','$date')";
+		$query = "insert into users (userid,first_name,last_name,gender,email,password)values ('$userid','$first_name','$last_name','$gender','$email','$password')";
 
 		$DB = new Database();
 		$DB->save($query);
