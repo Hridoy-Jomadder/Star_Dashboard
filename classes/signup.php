@@ -106,6 +106,8 @@ class Signup
 		$gender = $data['gender'];
 		$email = $data['email'];
 		$password = $data['password'];
+		$profile_image = $data['profile_image'];
+		$date = $data['date'];
             
         //create these
 		$url_address = strtolower($first_name) . "." . strtolower($last_name);
