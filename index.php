@@ -320,7 +320,7 @@
                                 <h6 class="mb-0">Active & Offline</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="salse-revenue"></canvas>
+                            <canvas id="active-offline"></canvas>
                         </div>
                     </div>
                 </div>
@@ -579,6 +579,58 @@
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sample data
+        var categories = ['Category 1', 'Category 2', 'Category 3'];
+        var activeData = [10, 15, 8];
+        var offlineData = [5, 8, 12];
+
+        // Get the canvas element
+        var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
+
+        // Create the line chart for Active & Offline
+        var activeOfflineChart = new Chart(ctxActiveOffline, {
+            type: 'line',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Active',
+                    data: activeData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }, {
+                    label: 'Offline',
+                    data: offlineData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Categories'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        }
                     }
                 }
             }
