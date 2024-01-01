@@ -311,7 +311,7 @@
                                 <h6 class="mb-0">Worldwide</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="worldwide-sales"></canvas>
+                            <canvas id="worldwide-country"></canvas>
                         </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
@@ -548,19 +548,19 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var countries = ['UK', 'US', 'AU'];
-        var data = [10, 20, 15];
+        var countries = ['UK', 'US', 'Australia'];
+        var data = [150, 200, 100];
 
         // Get the canvas element
-        var ctx = document.getElementById('worldwide-sales').getContext('2d');
+        var ctxWorldwideCountry = document.getElementById('worldwide-country').getContext('2d');
 
-        // Create the bar chart
-        var myChart = new Chart(ctx, {
+        // Create the bar chart for Worldwide - Country
+        var worldwideCountryChart = new Chart(ctxWorldwideCountry, {
             type: 'bar',
             data: {
                 labels: countries,
                 datasets: [{
-                    label: 'Sales Data',
+                    label: 'Number of Users',
                     data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -577,8 +577,19 @@
             },
             options: {
                 scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Countries'
+                        }
+                    },
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Users'
+                        }
                     }
                 }
             }
