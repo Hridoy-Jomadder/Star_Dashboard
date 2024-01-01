@@ -89,15 +89,14 @@ session_start();
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                                <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                             </a>
-                            <h3>Sign In</h3>
                         </div>
 
                         <form action="" method="POST">
                         <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
                         <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br><br>
-                        <!--            <input type="checkbox" required>Remember Me<br><br>-->
+                                   <input type="checkbox" required>Remember Me<br><br>
                         <input type="submit" id="button" value="Log in" style="font-family: times new roman;"><br><br>
                         </form>
 
