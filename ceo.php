@@ -225,7 +225,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <img src="img/photo.png" style="height:300px;width: 300px;">
-                            <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
+                            <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
                             <title>CEO</title>
                             <h6 class="mb-4">File Input</h6>
                             <div class="mb-3">
