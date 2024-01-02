@@ -17,7 +17,13 @@
     if($result)
     {
         //retrieve user data;
-        echo "everything is fine";
+        $user = new User();
+        $user_data = $user->get_data($id);
+
+        if(!$user_data){
+            header("Location: login.php");
+            die;
+        }
 
     }else{
         header("Location: login.php");
