@@ -171,7 +171,7 @@ function getprofile_image($userId) {
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
                                 <?php
-                                    echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="30" height="30">';
+                                    echo '<img src="uploads/' . $profile_image . '" width="30px" height="30px">';
                                     ?>
                                     <!-- <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;"> -->
                                     <div class="ms-2">
