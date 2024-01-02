@@ -41,7 +41,7 @@ function updateProfilePhoto($userId, $newFileName) {
     }
 
     // Update the user's profile photo in the database
-    $sql = "UPDATE users SET profile_photo = '$newFileName' WHERE id = $userId";
+    $sql = "UPDATE users SET profile_image = '$newFileName' WHERE id = $userId";
 
     if ($conn->query($sql) === TRUE) {
         // Profile photo updated successfully
