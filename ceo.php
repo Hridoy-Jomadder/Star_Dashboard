@@ -34,8 +34,7 @@
     die;
  }
 
- ?>
- <?php
+
 // Retrieve the user's profile photo from the database
 $userId = 1; // Replace with the actual user ID
 $profilePhoto = getProfilePhoto($userId);
@@ -60,9 +59,9 @@ function getProfilePhoto($userId) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        //return $row["profile_image"];
+        return $row["profile_image"];
     } else {
-        return "photo.png"; // Replace with a default photo
+        return "default_profile_photo.jpg"; // Replace with a default photo
     }
 
     // Close the connection
