@@ -268,8 +268,8 @@ function getprofile_image($userId) {
                             <div class="mb-3">
                                 <!-- <label for="formFile" class="form-label">Default file input example</label> -->
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
-                                    <label for="file">Choose a new profile photo:</label><input type="file" name="file" id="file" accept="image/*">
-                                    <br>
+                                    <label for="file">Choose a new profile photo:</label>
+                                    <input type="file" name="file" id="file" accept="image/*">
                                     <input type="submit" value="Upload">
                                 </form>
                             </div>
