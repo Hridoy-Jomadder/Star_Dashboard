@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if(isset($_SESSION['das_userid']))
 {
     $_SESSION['das_userid'] = NULL;
