@@ -33,7 +33,7 @@
     header("Location: login.php");
     die;
  }
-print_r($user_data);
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
