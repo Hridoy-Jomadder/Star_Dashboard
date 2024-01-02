@@ -41,10 +41,10 @@ $userId = 1; // Replace with the actual user ID
 $profilePhoto = getProfilePhoto($userId);
 
 function getProfilePhoto($userId) {
-    $servername = "your_database_server";
-    $username = "your_database_username";
-    $password = "your_database_password";
-    $dbname = "your_database_name";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "das_db";
 
     // Create a connection
     $conn = new mysqli($servername, $username, $password, $dbname);
