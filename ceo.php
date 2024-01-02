@@ -1,4 +1,42 @@
-<!DOCTYPE html>
+<?php 
+
+ session_start();
+
+ include("classes/connect.php");
+ include("classes/login.php");
+ include("classes/user.php");
+
+ //check if user is logged in
+ if(isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid']))
+ {
+    $id = $_SESSION['das_userid'];
+    $login = new Login();
+
+    $result = $login->check_login($id);
+
+    if($result)
+    {
+        //retrieve user data;
+        $user = new User();
+        $user_data = $user->get_data($id);
+
+        if(!$user_data){
+            header("Location: login.php");
+            die;
+        }
+
+    }else{
+        header("Location: login.php");
+        die;
+    }
+ }else{
+    header("Location: login.php");
+    die;
+ }
+
+ ?>
+ 
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -187,7 +225,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <img src="img/photo.png" style="height:300px;width: 300px;">
-                            <h2>Hridoy Jomadder</h2>
+                            <span><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
                             <title>CEO</title>
                             <h6 class="mb-4">File Input</h6>
                             <div class="mb-3">
