@@ -229,7 +229,12 @@
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
                             <div class="mb-3">
                                 <!-- <label for="formFile" class="form-label">Default file input example</label> -->
-                                <input class="form-control" type="file" id="formFile">
+                                <form action="upload.php" method="post" enctype="multipart/form-data">
+                                    <label for="file">Choose a new profile photo:</label>
+                                    <input type="file" name="file" id="file" accept="image/*">
+                                    <br>
+                                    <input type="submit" value="Upload">
+                                </form>
                             </div>
                         </div>
                     </div>
