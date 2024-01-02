@@ -64,8 +64,15 @@ function getprofile_image($userId) {
         return "img/photo.png"; // Replace with a default photo
     }
 
-    // Close the connection
-    $conn->close();
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        if(isset($_POST['first_name'])){
+          
+        $settings_class = new Settings();
+        $settings_class->save_settings($_POST,$_SESSION['das_userid']);
+        
+  }
+}
 }
 ?>
 
@@ -272,6 +279,39 @@ function getprofile_image($userId) {
                                     <input type="file" name="file" id="file" accept="image/*">
                                     <input type="submit" value="Upload">
                                 </form>
+
+                                <form method="post" enctype="multipart/form-data">
+         <?php
+         
+        $settings_class = new Settings();
+         
+         $settings = $settings_class->get_settings($_SESSION['star_userid']);
+            
+           if(is_array($settings)){ 
+               
+             echo "<input type='text' id='textbox' name='first_name' value='".htmlspecialchars($settings['first_name'])."' placeholder='First Name' />";
+             echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/>";
+
+             echo "<input type='text' id='textbox' name='title' value='".htmlspecialchars($settings['title'])."' placeholder='Title'/>";
+
+             echo "<select id='textbox' name='email' style='height:30px;'>
+
+             <option>".htmlspecialchars($settings['gender'])."</option>
+             <option>Female</option>
+             <option>Other</option>
+             </select>";
+
+             echo "<input type='text' id='textbox' name='email' value='".htmlspecialchars($settings['email'])."' placeholder='E-mail Address' />";
+             echo "<input type='password' id='textbox' name='Password' value='".htmlspecialchars($settings['password'])."' placeholder='Password'    />";
+             echo "<input type='password' id='textbox' name='password2'  value='".htmlspecialchars($settings['password'])."' placeholder='Re-type password' />";
+             echo "<br> About Me: <br>
+             <textarea id='textbox' style='height:200px;' name='about'>".htmlspecialchars($settings['about'])."</textarea> ";
+               
+               echo '<input id="post_button" type="submit" value="Save">';
+
+           }
+          ?>
+          </form>
                             </div>
                         </div>
                     </div>
