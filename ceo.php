@@ -258,10 +258,9 @@ function getprofile_image($userId) {
                     <div class="col-md-6 text-center">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
-                            <img src="<?php echo $profile_image ?>" style="height:300px;width: 300px;">
                             <?php
                             // Display the user's profile photo
-                            echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="150" height="150">';
+                            echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="300" height="300">';
                             ?>
 
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
