@@ -1,3 +1,5 @@
 <?php
 
-$_SESSION['das_userid'])
+unset($_SESSION['das_userid']);
+
+header("Location: login.php");
