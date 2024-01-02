@@ -5,6 +5,7 @@
  include("classes/connect.php");
  include("classes/login.php");
  include("classes/user.php");
+ include("classes/settings.php");
 
  //check if user is logged in
  if(isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid']))
