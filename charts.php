@@ -186,7 +186,7 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Single Line Chart</h6>
-                            <!-- <canvas id="line-chart"  height="200"></canvas> -->
+                            <canvas id="line-chart"  height="200"></canvas>
                             
                         </div>
                     </div>
@@ -267,7 +267,7 @@
 
 
 <!-- Custom Chart Script -->
-<script>
+<!-- <script>
     // Wait for the DOM to be ready
     document.addEventListener("DOMContentLoaded", function () {
         // Get the canvas element
@@ -315,7 +315,7 @@
         });
     });
 </script>
-
+ -->
 
 
 </body>
