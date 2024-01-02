@@ -193,7 +193,6 @@
                             </div>
                         </div>
                     </div>
-                        <h3>This is blank page</h3>
                     </div>
                 </div>
             </div>
