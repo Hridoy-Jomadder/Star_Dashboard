@@ -119,7 +119,9 @@ function getprofile_image($userId) {
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <img class="rounded-circle" src="<?php echo '<img src="uploads/' . $profile_image . '"'; ?>">
+                    <img class="rounded-circle" src="<?php
+                            echo '<img src="uploads/' . $profile_image . '" width="30px" height="30px">';
+                            ?>">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
@@ -232,8 +234,8 @@ function getprofile_image($userId) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <?php
-                                    echo '<img src="uploads/' . $profile_image . '" width="30px" height="30px">';
-                                    ?>
+                            echo '<img src="uploads/' . $profile_image . '" width="30px" height="30px">';
+                            ?>
                             <span class="d-none d-lg-inline-flex"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
