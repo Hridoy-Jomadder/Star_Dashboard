@@ -61,7 +61,7 @@ function getProfilePhoto($userId) {
         $row = $result->fetch_assoc();
         return $row["profile_image"];
     } else {
-        return "default_profile_photo.jpg"; // Replace with a default photo
+        return "img/photo.png"; // Replace with a default photo
     }
 
     // Close the connection
@@ -259,9 +259,6 @@ function getProfilePhoto($userId) {
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <img src="img/photo.png" style="height:300px;width: 300px;">
-                            
-                            <h1>User Profile</h1>
-
                             <?php
                             // Display the user's profile photo
                             echo '<img src="uploads/' . $profilePhoto . '" alt="Profile Photo" width="150" height="150">';
