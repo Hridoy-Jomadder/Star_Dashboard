@@ -34,6 +34,39 @@
     die;
  }
 
+ // Retrieve the user's profile photo from the database
+$userId = 1; // Replace with the actual user ID
+$profile_image = getprofile_image($userId);
+
+function getprofile_image($userId) {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "das_db";
+
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve the user's profile photo from the database
+    $sql = "SELECT profile_image FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["profile_image"];
+    } else {
+        return "img/photo.png"; // Replace with a default photo
+    }
+
+    // Close the connection
+    $conn->close();
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
