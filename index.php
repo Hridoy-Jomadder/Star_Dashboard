@@ -60,7 +60,7 @@ function getprofile_image($userId) {
         $row = $result->fetch_assoc();
         return $row["profile_image"];
     } else {
-        return "img/photo.png"; // Replace with a default photo
+        return "img/photo.png"; 
     }
 }
 
