@@ -37,9 +37,9 @@
 
 // Retrieve the user's profile photo from the database
 $userId = 1; // Replace with the actual user ID
-$profilePhoto = getProfilePhoto($userId);
+$profile_image = getprofile_image($userId);
 
-function getProfilePhoto($userId) {
+function getprofile_image($userId) {
     $servername = "localhost";
     $username = "root";
     $password = "";
