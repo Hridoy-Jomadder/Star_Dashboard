@@ -258,16 +258,16 @@ function getprofile_image($userId) {
                     <div class="col-md-6 text-center">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
-                            <img src="
-                            <?php
+                        
                             // Display the user's profile photo
-                            echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="150" height="150">';
+                            <img src="
+                            <?php echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="150" height="150">';
                             ?>
                              " style="height:300px;width: 300px;">
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
+
                             <div class="mb-3">
-                                <!-- <label for="formFile" class="form-label">Default file input example</label> -->
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
                                     <label for="file">Choose a new profile photo:</label>
                                     <input type="file" name="file" id="file" accept="image/*">
@@ -275,6 +275,7 @@ function getprofile_image($userId) {
                                     <input type="submit" value="Upload">
                                 </form>
                             </div>
+
                         </div>
                     </div>
                     </div>
