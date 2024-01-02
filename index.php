@@ -62,9 +62,6 @@ function getprofile_image($userId) {
     } else {
         return "img/photo.png"; // Replace with a default photo
     }
-
-    // Close the connection
-    $conn->close();
 }
 
  ?>
