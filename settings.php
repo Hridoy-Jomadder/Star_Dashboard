@@ -260,7 +260,7 @@ function getprofile_image($userId) {
                         <div class="bg-light rounded h-100 p-4">
                             <?php
                             // Display the user's profile photo
-                            echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="300" height="300">';
+                            echo '<img src="uploads/' . $profile_image . '" width="300" height="300" class="rounded-circle">';
                             ?>
 
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
