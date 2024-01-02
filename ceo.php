@@ -55,14 +55,14 @@ function getProfilePhoto($userId) {
     }
 
     // Retrieve the user's profile photo from the database
-    $sql = "SELECT profile_photo FROM users WHERE id = $userId";
+    $sql = "SELECT profile_image FROM users WHERE id = $userId";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        return $row["profile_photo"];
+        return $row["profile_image"];
     } else {
-        return "default_profile_photo.jpg"; // Replace with a default photo
+        return "photo.png"; // Replace with a default photo
     }
 
     // Close the connection
