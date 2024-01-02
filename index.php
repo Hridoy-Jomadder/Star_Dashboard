@@ -93,7 +93,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                        <span> <?php echo $title ?> </span>
+                        <span> <?php echo $user_data['title'] ?> </span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
