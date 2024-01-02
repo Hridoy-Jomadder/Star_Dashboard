@@ -16,7 +16,7 @@
     if($result)
     {
         //retrieve user data;
-        echo "<div style='color:red;'>everything is fine.</div>";
+        echo "everything is fine";
 
     }else{
         header("Location: login.php");
