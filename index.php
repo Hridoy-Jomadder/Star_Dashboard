@@ -1,7 +1,7 @@
 <?php 
 
  session_start();
- 
+
  include("classes/connect.php");
  include("classes/login.php");
 
@@ -15,6 +15,8 @@
 
     if($result)
     {
+        //retrieve user data;
+        echo "everything is fine.";
 
     }else{
         header("Location: login.php");
