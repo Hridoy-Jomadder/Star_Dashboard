@@ -35,6 +35,41 @@
  }
 
  ?>
+ <?php
+// Retrieve the user's profile photo from the database
+$userId = 1; // Replace with the actual user ID
+$profilePhoto = getProfilePhoto($userId);
+
+function getProfilePhoto($userId) {
+    $servername = "your_database_server";
+    $username = "your_database_username";
+    $password = "your_database_password";
+    $dbname = "your_database_name";
+
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve the user's profile photo from the database
+    $sql = "SELECT profile_photo FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["profile_photo"];
+    } else {
+        return "default_profile_photo.jpg"; // Replace with a default photo
+    }
+
+    // Close the connection
+    $conn->close();
+}
+?>
+
  
  <!DOCTYPE html>
 <html lang="en">
@@ -225,6 +260,14 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <img src="img/photo.png" style="height:300px;width: 300px;">
+                            
+                            <h1>User Profile</h1>
+
+                            <?php
+                            // Display the user's profile photo
+                            echo '<img src="uploads/' . $profilePhoto . '" alt="Profile Photo" width="150" height="150">';
+                            ?>
+
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
                             <div class="mb-3">
