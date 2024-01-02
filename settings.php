@@ -286,7 +286,7 @@ function getprofile_image($userId) {
          
         $settings_class = new Settings();
          
-         $settings = $settings_class->get_settings($_SESSION['star_userid']);
+         $settings = $settings_class->get_settings($_SESSION['das_userid']);
             
            if(is_array($settings)){ 
                
