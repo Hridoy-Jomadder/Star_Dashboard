@@ -63,9 +63,6 @@ function getprofile_image($userId) {
     } else {
         return "img/photo.png"; // Replace with a default photo
     }
-
-    // Close the connection
-    $conn->close();
 }
 ?>
 
@@ -262,11 +259,6 @@ function getprofile_image($userId) {
                             // Display the user's profile photo
                             echo '<img src="uploads/' . $profile_image . '" alt="Profile Photo" width="300" height="300">';
                             ?>
-
-<?php
-                                    echo '<img src="uploads/' . $profile_image . '" width="30px" height="30px">';
-                                    ?>
-
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
                         </div>
