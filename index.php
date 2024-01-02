@@ -121,7 +121,7 @@ function getprofile_image($userId) {
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <img class="rounded-circle" src="<?php echo '<img src="uploads/' . $profile_image . '">'; ?>">
+                    <img class="rounded-circle" src="<?php echo '<img src="uploads/' . $profile_image . '"'; ?>">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
