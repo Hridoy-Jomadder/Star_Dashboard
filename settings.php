@@ -301,7 +301,7 @@ function getprofile_image($userId) {
             //  echo "<br> About Me: <br>
             //  <textarea id='textbox' style='height:200px;' name='about'>".htmlspecialchars($settings['about'])."</textarea> ";
                
-               echo '<input id="post_button" type="submit" value="Save">';
+               echo '<br/><input id="post_button" type="submit" value="Save">';
 
            }
           ?>
