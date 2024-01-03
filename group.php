@@ -127,7 +127,7 @@ function getprofile_image($userId) {
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -137,7 +137,7 @@ function getprofile_image($userId) {
                         </div>
                     </div>
                     <a href="message.php" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Message</a>
-                    <a href="group.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Group</a>
+                    <a href="group.php" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Group</a>
                     <a href="power.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Power</a>
                     <a href="worldwide.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Worldwide</a>
                     <a href="charts.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
