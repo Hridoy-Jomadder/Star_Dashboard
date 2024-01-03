@@ -36,7 +36,7 @@
 
 
 // Retrieve the user's profile photo from the database
-$userId = 1; // Replace with the actual user ID
+$userId = 370505172149; // Replace with the actual user ID
 $profile_image = getprofile_image($userId);
 
 function getprofile_image($userId) {
