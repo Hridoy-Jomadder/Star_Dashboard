@@ -127,13 +127,13 @@ function getprofile_image($userId) {
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="ceo.php" class="dropdown-item">CEO</a>
                             <a href="co-ceo.php" class="dropdown-item">Co-CEO</a>
-                            <a href="star_member.php" class="dropdown-item">Star Member</a>
+                            <a href="star_member.php" class="dropdown-item active">Star Member</a>
                         </div>
                     </div>
                     <a href="message.php" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Message</a>
