@@ -248,7 +248,6 @@ function getprofile_image($userId) {
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Worldwide</h6>
-                                <a href="">Show All</a>
                             </div>
                             <canvas id="worldwide-country"></canvas>
                         </div>
@@ -257,7 +256,6 @@ function getprofile_image($userId) {
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Active & Offline</h6>
-                                <a href="">Show All</a>
                             </div>
                             <canvas id="active-offline"></canvas>
                         </div>
