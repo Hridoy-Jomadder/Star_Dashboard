@@ -96,7 +96,7 @@ session_start();
                         <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
                                    <!-- <input type="checkbox" required>Remember Me<br><br> -->
                         <input type="submit" id="button" value="Log in" style="font-family: times new roman;"><br><br>
-                        </form>
+                        
 
 
                         <div class="form-floating mb-3">
@@ -116,6 +116,7 @@ session_start();
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4" value="Log in">Login In</button>
                         <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
