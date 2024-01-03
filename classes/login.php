@@ -1,61 +1,81 @@
+<?php
+
 class Login
 {
 
-    private $error = "";
+	private $error = "";
  
-    public function evaluate($data)
-    {
-        $email = addslashes($data['email']);
-        $password = addslashes($data['password']);
+	public function evaluate($data)
+	{
 
-        $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1 ";
+		$email = addslashes($data['email']);
+		$password = addslashes($data['password']);
 
-        $DB = new Database();
-        $result = $DB->read($query);
+		$query = "select * from users where email = '$email' limit 1 ";
+
+		$DB = new Database();
+		$result = $DB->read($query);
   
-        if ($result) {
-            $row = $result[0];
+		if($result)
+		{
 
-            if ($password == $row['password']) {
-                // Create session data
-                $_SESSION['das_userid'] = $row['userid'];
-                $_SESSION['das_user_role'] = $row['role'];
-            } else {
-                $this->error .= "Wrong email or password<br>";
-            }
-        } else {
-            $this->error .= "No such email was found.<br>";
-        }
+			$row = $result[0];
 
-        return $this->error;
-    }
+			if($password == $row['password'])
+			{
+
+				//create session data
+				$_SESSION['das_userid'] = $row['userid'];
+
+			}else
+			{
+				$this->error .= "wrong email or password<br>";
+			}
+		}else
+		{
+
+			$this->error .= "No Such email was found.<br>";
+		}
+
+		return $this->error;
+		
+	}
     
-    public function check_login($id, $redirect = true)
+    public function check_login($id,$redirect = true)
     {
-        if (is_numeric($id)) {
-            $query = "SELECT * FROM users WHERE userid = '$id' LIMIT 1 ";
+        if (is_numeric($id))
+           {
+                $query = "select * from users where userid = '$id' limit 1 ";
 
-            $DB = new Database();
-            $result = $DB->read($query);
+                $DB = new Database();
+                $result = $DB->read($query);
 
-            if ($result) {
-                $user_data = $result[0];
-                return $user_data;
-            } else {
-                if ($redirect) {
-                    header("Location: login.php");
-                    die;
-                } else {
-                    $_SESSION['das_userid'] = 0;
-                }
-            }
-        } else {
-            if ($redirect) {
+                if($result)
+                {
+                    $user_data = $result[0];
+                    return $user_data;
+                }else
+                {
+                 if($redirect){
+                   header("Location: login.php");
+                   die;
+                 }else{
+                     
+                  $_SESSION['das_userid'] = 0;
+                     
+                 }
+               }   
+         }else
+         {
+
+         if($redirect){
                 header("Location: login.php");
                 die;
-            } else {
-                $_SESSION['das_userid'] = 0;
-            }
+                 }else{
+             
+                 $_SESSION['das_userid'] = 0;
+             
+                 }
         }
-    }
+   }
 }
