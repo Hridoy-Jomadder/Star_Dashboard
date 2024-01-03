@@ -101,13 +101,13 @@ session_start();
                             <input type="password" value="<?php echo $password ?>" class="form-control" id="text" placeholder="Password" >
                             <label for="text">Password</label>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        <!-- <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
                             <!-- <a href="">Forgot Password</a> -->
-                        </div>
+                        </div> -->
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4" value="Log in" id="button">Login In</button>
                         <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
                         </form>
