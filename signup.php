@@ -136,20 +136,19 @@
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
-                            <label for="text">First Name</label>
-</div>
+                            </div>
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
-                            <label for="text">First Name</label>
+                            <label for="text">Email Address or Phone Number</label>
 </div>
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $password ?>" name="password" class="form-control" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
-                            <label for="text">First Name</label>
+                            <label for="text">Password</label>
 </div>
                             
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;">
-                            <label for="text">First Name</label>
+                            <label for="text">Retype Password</label>
 </div>
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;">
                         </form>
