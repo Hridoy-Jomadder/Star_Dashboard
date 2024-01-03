@@ -33,8 +33,39 @@
     header("Location: login.php");
     die;
  }
- 
+
+
+// Retrieve the user's profile photo from the database
+$userId = 1; // Replace with the actual user ID
+$profile_image = getprofile_image($userId);
+
+function getprofile_image($userId) {
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "das_db";
+
+    // Create a connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve the user's profile photo from the database
+    $sql = "SELECT profile_image FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["profile_image"];
+    } else {
+        return "img/photo.png"; // Replace with a default photo
+    }
+}
 ?>
+
  
  <!DOCTYPE html>
 <html lang="en">
@@ -211,7 +242,7 @@
             <!-- Navbar End -->
 
 
-            <!-- Start -->
+            <!--  Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
@@ -229,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End -->
+            <!--  End -->
 
 
              <!-- Footer Start -->
