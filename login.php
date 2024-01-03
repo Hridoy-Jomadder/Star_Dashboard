@@ -88,16 +88,16 @@ session_start();
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                                <h3 class="text-primary"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
+                                <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
                         <form action="" method="POST">
                         <div class="form-floating mb-3">
-                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address"><br><br>
+                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;"><br><br>
                         <label for="text">Email address</label>
                     </div>
                         <div class="form-floating mb-4">
-                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password"><br><br>
+                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
                         <label for="text">Password</label>
                     </div>
                         <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
