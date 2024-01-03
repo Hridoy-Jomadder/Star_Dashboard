@@ -286,20 +286,20 @@ function getprofile_image($userId) {
              echo "<input type='text' id='textbox' name='first_name' value='".htmlspecialchars($settings['first_name'])."' placeholder='First Name' />";
              echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/>";
 
-             echo "<input type='text' id='textbox' name='title' value='".htmlspecialchars($settings['title'])."' placeholder='Title'/>";
+            //  echo "<input type='text' id='textbox' name='title' value='".htmlspecialchars($settings['title'])."' placeholder='Title'/>";
 
-             echo "<select id='textbox' name='email' style='height:30px;'>
+            //  echo "<select id='textbox' name='email' style='height:30px;'>
 
-             <option>".htmlspecialchars($settings['gender'])."</option>
-             <option>Female</option>
-             <option>Other</option>
-             </select>";
+            //  <option>".htmlspecialchars($settings['gender'])."</option>
+            //  <option>Female</option>
+            //  <option>Other</option>
+            //  </select>";
 
-             echo "<input type='text' id='textbox' name='email' value='".htmlspecialchars($settings['email'])."' placeholder='E-mail Address' />";
-             echo "<input type='password' id='textbox' name='Password' value='".htmlspecialchars($settings['password'])."' placeholder='Password'    />";
-             echo "<input type='password' id='textbox' name='password2'  value='".htmlspecialchars($settings['password'])."' placeholder='Re-type password' />";
-             echo "<br> About Me: <br>
-             <textarea id='textbox' style='height:200px;' name='about'>".htmlspecialchars($settings['about'])."</textarea> ";
+            //  echo "<input type='text' id='textbox' name='email' value='".htmlspecialchars($settings['email'])."' placeholder='E-mail Address' />";
+            //  echo "<input type='password' id='textbox' name='Password' value='".htmlspecialchars($settings['password'])."' placeholder='Password'    />";
+            //  echo "<input type='password' id='textbox' name='password2'  value='".htmlspecialchars($settings['password'])."' placeholder='Re-type password' />";
+            //  echo "<br> About Me: <br>
+            //  <textarea id='textbox' style='height:200px;' name='about'>".htmlspecialchars($settings['about'])."</textarea> ";
                
                echo '<input id="post_button" type="submit" value="Save">';
 
