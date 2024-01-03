@@ -100,7 +100,21 @@
                             <a href="index.html" class="">
                                 <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                             </a>
-                        </div>
+                        </div>                  
+                          <!-- <form action="" method="POST">
+
+<div class="form-floating mb-3">
+<input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;"><br><br>
+<label for="text">Email address</label>
+</div>
+
+<div class="form-floating mb-4">
+<input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
+<label for="text">Password</label>
+</div>
+
+<input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
+</form> -->
                         <form method="post" action="">   
                             <input value="<?php echo $first_name ?>" name="first_name" type="text" id="text" placeholder="First Name" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $last_name ?>" name="last_name" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;"><br><br>
@@ -115,7 +129,7 @@
                             <input value="<?php echo $email ?>" name="email" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $password ?>" name="password" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $password ?>" name="password2" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;"><br><br><br>
-                            <input type="submit" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
+                            <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
                         </form>
 
                         <!-- <div class="form-floating mb-3">
