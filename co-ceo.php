@@ -241,15 +241,25 @@ function getprofile_image($userId) {
             <!-- Navbar End -->
 
 
-            <!-- Blank Start -->
+            <!-- Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
-                        <h3>This is blank page</h3>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <?php
+                            // Display the user's profile photo
+                            echo '<img src="uploads/' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                            ?>
+                            <br><br>
+                            <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
+                            <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-            <!-- Blank End -->
+            <!-- End -->
 
 
              <!-- Footer Start -->
