@@ -119,14 +119,15 @@
                         <div class="form-floating mb-3">  
                             <input value="<?php echo $first_name ?>" name="first_name" class="form-control" type="text" id="text" placeholder="First Name" style="font-family: times new roman;">
                             <label for="text">First Name</label>
-</div>
-<div class="form-floating mb-3"> 
+                        </div>
+                        <div class="form-floating mb-3"> 
                             <input value="<?php echo $last_name ?>" name="last_name" class="form-control" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;">
-                            
+                            <label for="text">Last Name</label>
+                             </div>
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $title ?>" name="title" class="form-control" type="text" id="text" placeholder="Title" style="font-family: times new roman;">
-                            <label for="text">First Name</label>
-</div>
+                            <label for="text">Title</label>
+                           </div>
                             
                             <div class="form-floating mb-3"> 
                             <span>Gender<br></span>
@@ -137,7 +138,6 @@
                             </select>
                             <label for="text">First Name</label>
 </div>
-                
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
                             <label for="text">First Name</label>
