@@ -92,13 +92,19 @@ session_start();
                         </div>
 
                         <form action="" method="POST">
-                            
+                        <!-- <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;width: 300px;"><br><br>
+                        <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
+                                   <!-- <input type="checkbox" required>Remember Me<br><br> -->
+                        <input type="submit" id="button" value="Log in" style="font-family: times new roman;"><br><br>
+                         -->
+
+
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="text" placeholder="Email Address" value="<?php echo $email ?>">
+                            <input type="email" value="<?php echo $email ?>" class="form-control" id="text" placeholder="Email Address" >
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="text" placeholder="Password" value="<?php echo $password ?>">
+                            <input type="password" value="<?php echo $password ?>" class="form-control" id="text" placeholder="Password" >
                             <label for="floatingPassword">Password</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -106,9 +112,9 @@ session_start();
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
-                            <a href="">Forgot Password</a>
+                            <!-- <a href="">Forgot Password</a> -->
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4" value="Log in" id="button">Login In</button>
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4" value="Log in" id="button"></button>
                         <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
                         </form>
                     </div>
