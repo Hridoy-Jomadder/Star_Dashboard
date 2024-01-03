@@ -37,6 +37,10 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
     die;
 }
 
+// Retrieve the user's profile photo from the database
+$userId = 1; // Replace with the actual user ID
+$profile_image = getprofile_image($userId);
+
 function getprofile_image($userId)
 {
     $servername = "localhost";
