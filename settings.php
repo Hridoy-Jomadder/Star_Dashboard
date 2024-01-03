@@ -273,7 +273,7 @@ function getprofile_image($userId) {
                                     <input type="file" name="file" id="file" accept="image/*">
                                     <input type="submit" value="Upload">
                                 </form>
-                                <br/><br/>
+                                <br/>
                                 <form method="post" enctype="multipart/form-data">
          <?php
          
@@ -283,8 +283,9 @@ function getprofile_image($userId) {
             
            if(is_array($settings)){ 
                
-             echo "<input type='text' id='textbox' name='first_name' value='".htmlspecialchars($settings['first_name'])."' placeholder='First Name' /> <br/>";
-             echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/> <br/>";
+             echo "<input type='text' id='textbox' name='first_name' value='".htmlspecialchars($settings['first_name'])."' placeholder='First Name' />";
+             echo "<br/>";
+             echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/>";
 
             //  echo "<input type='text' id='textbox' name='title' value='".htmlspecialchars($settings['title'])."' placeholder='Title'/>";
 
