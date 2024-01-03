@@ -549,7 +549,7 @@ function getprofile_image($userId) {
             taskList.removeChild(li);
         }</script>
 
-// Template Javascript
+<!-- Template Javascript -->
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
