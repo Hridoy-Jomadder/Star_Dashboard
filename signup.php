@@ -103,7 +103,7 @@
                         </div>                  
                           <!-- <form action="" method="POST">
 
-<div class="form-floating mb-3">
+
 <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;"><br><br>
 <label for="text">Email address</label>
 </div>
@@ -115,8 +115,11 @@
 
 <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
 </form> -->
-                        <form method="post" action="">   
+                        <form method="post" action=""> 
+                        <div class="form-floating mb-3">  
                             <input value="<?php echo $first_name ?>" name="first_name" type="text" id="text" placeholder="First Name" style="font-family: times new roman;"><br><br>
+                            <label for="text">First Name</label>
+</div>
                             <input value="<?php echo $last_name ?>" name="last_name" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;"><br><br>
                             <input value="<?php echo $title ?>" name="title" type="text" id="text" placeholder="Title" style="font-family: times new roman;"><br><br>
                             <span>Gender<br></span>
