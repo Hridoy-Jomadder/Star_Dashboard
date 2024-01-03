@@ -34,7 +34,9 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
 } else {
     header("Location: login.php");
     die;
+}
 ?>
+
 
 
 
