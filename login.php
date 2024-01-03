@@ -93,10 +93,10 @@ session_start();
 
                         <form action="" method="POST">
                         <div class="form-floating mb-3">
-                        <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address " style="font-family: times new roman;width: 300px;"><br><br>
+                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address " style="font-family: times new roman;width: 300px;"><br><br>
                         </div>
                         <div class="form-floating mb-4">
-                        <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
+                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
                         </div>
                         <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
                         </form>
