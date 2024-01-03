@@ -1,4 +1,13 @@
+<?php 
 
+ session_start();
+
+ include("classes/connect.php");
+ include("classes/login.php");
+ include("classes/user.php");
+ include("classes/header.php");
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
