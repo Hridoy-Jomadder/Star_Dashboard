@@ -117,21 +117,21 @@
 </form> -->
                         <form method="post" action=""> 
                         <div class="form-floating mb-3">  
-                            <input value="<?php echo $first_name ?>" name="first_name" type="text" id="text" placeholder="First Name" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $first_name ?>" name="first_name" class="form-control" type="text" id="text" placeholder="First Name" style="font-family: times new roman;"><br><br>
                             <label for="text">First Name</label>
 </div>
-                            <input value="<?php echo $last_name ?>" name="last_name" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;"><br><br>
-                            <input value="<?php echo $title ?>" name="title" type="text" id="text" placeholder="Title" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $last_name ?>" name="last_name" class="form-control" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $title ?>" name="title" class="form-control" type="text" id="text" placeholder="Title" style="font-family: times new roman;"><br><br>
                             <span>Gender<br></span>
-                            <select id="text" name="gender" style="font-family: times new roman;">
+                            <select id="text" name="gender" class="form-control" style="font-family: times new roman;">
                                 <option <?php echo $gender ?>>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select><br><br>
                 
-                            <input value="<?php echo $email ?>" name="email" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
-                            <input value="<?php echo $password ?>" name="password" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
-                            <input value="<?php echo $password ?>" name="password2" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;"><br><br><br>
+                            <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $password ?>" name="password" class="form-control" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
+                            <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;"><br><br><br>
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
                         </form>
 
