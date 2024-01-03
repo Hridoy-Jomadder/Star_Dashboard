@@ -50,11 +50,11 @@ class Login
                 $DB = new Database();
                 $result = $DB->read($query);
 
-                if($result)
-                {
-                    $user_data = $result[0];
-                    return $user_data;
-                }else
+                // Add this code in the check_login function after verifying credentials
+                if ($result) {
+                  $_SESSION['das_user_role'] = $user_data['role'];
+                }
+                else
                 {
                  if($redirect){
                    header("Location: login.php");
