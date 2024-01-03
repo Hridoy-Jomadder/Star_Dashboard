@@ -244,7 +244,7 @@ function getprofile_image($userId) {
             <!-- Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
+                    <div class="col-sm-12 col-xl-12">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Worldwide</h6>
@@ -253,7 +253,7 @@ function getprofile_image($userId) {
                             <canvas id="worldwide-country"></canvas>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-6">
+                    <div class="col-sm-12 col-xl-12">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Active & Offline</h6>
