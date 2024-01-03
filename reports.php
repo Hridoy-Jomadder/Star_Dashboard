@@ -250,6 +250,7 @@ function getprofile_image($userId) {
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
+                                    <th scope="col"></th>
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Last Post</th>
