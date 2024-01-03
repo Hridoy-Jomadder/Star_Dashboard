@@ -94,8 +94,8 @@ session_start();
                         </div>
 
                         <form action="" method="POST">
-                        <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address " style="font-family: times new roman;"><br><br>
-                        <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
+                        <input name="email" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address " style="font-family: times new roman;width: 300px;"><br><br>
+                        <input name="password" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
                                    <!-- <input type="checkbox" required>Remember Me<br><br> -->
                         <input type="submit" id="button" value="Log in" style="font-family: times new roman;"><br><br>
                         </form>
