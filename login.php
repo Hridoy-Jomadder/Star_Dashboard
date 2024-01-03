@@ -98,9 +98,11 @@ session_start();
                     </div>
                         <div class="form-floating mb-4">
                         <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;width: 300px;"><br><br>
-                        </div>
+                        <label for="text">Password</label>
+                    </div>
                         <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
-                        </form>
+                        <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
+                    </form>
 
 
                         <!-- <div class="form-floating mb-3">
