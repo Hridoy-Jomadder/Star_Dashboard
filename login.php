@@ -94,12 +94,11 @@ session_start();
                     <form action="" method="POST">
 
                         <div class="form-floating mb-3">
-                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;"><br><br>
+                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
                         <label for="text">Email address</label>
                         </div>
-
                         <div class="form-floating mb-4">
-                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
+                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
                         <label for="text">Password</label>
                         </div>
 
