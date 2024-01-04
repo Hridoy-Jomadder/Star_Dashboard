@@ -250,8 +250,9 @@ function getprofile_image($userId) {
                             <div class="owl-carousel testimonial-carousel">
                                 <div class="testimonial-item text-center">
                                     <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
-                                    <h5 class="mb-1">Client Name</h5>
-                                    <p>Profession</p>
+                                    <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
+                                    <h5 class="mb-1"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h5>
+                                    <p><small><?php echo $user_data['title'] ?></small></p>
                                     <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
                                 </div>
                                 <div class="testimonial-item text-center">
