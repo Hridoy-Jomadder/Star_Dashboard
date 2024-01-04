@@ -124,7 +124,7 @@ function getprofile_image($userId) {
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                        <small><?php echo $user_data['title'] ?></small>
+                        <small><?php echo $user_data['title']?></small>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
