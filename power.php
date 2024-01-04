@@ -249,7 +249,8 @@ function getprofile_image($userId) {
                             <h6 class="mb-4">Testimonial</h6>
                             <div class="owl-carousel testimonial-carousel">
                                 <div class="testimonial-item text-center">
-                                    <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px">'; ?>
+                                    <!-- <img  src="img/testimonial-1.jpg" style="width: 100px; height: 100px;"> -->
+                                    <?php echo '<img src="uploads/' . $profile_image . '" width="100px" height="100px" class="img-fluid rounded-circle mx-auto mb-4">'; ?>
                                     <h5 class="mb-1"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h5>
                                     <p><small><?php echo $user_data['title'] ?></small></p>
                                     <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
@@ -263,7 +264,8 @@ function getprofile_image($userId) {
                             </div>
                         </div>
                     </div>
-             </div>
+                            </div>
+                    </div>
 
 
             <!-- Footer Start -->
