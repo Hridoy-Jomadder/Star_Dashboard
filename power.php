@@ -244,7 +244,7 @@ function getprofile_image($userId) {
             <!-- Testimonial -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
-            <div class="col-sm-12 col-xl-6">
+            <div class="col-sm-12 col-xl-12">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Testimonial</h6>
                             <div class="owl-carousel testimonial-carousel">
