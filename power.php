@@ -263,8 +263,7 @@ function getprofile_image($userId) {
                             </div>
                         </div>
                     </div>
-                            </div>
-                    </div>
+             </div>
 
 
             <!-- Footer Start -->
