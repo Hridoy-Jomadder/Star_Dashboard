@@ -272,8 +272,7 @@ if (!function_exists('getprofile_image')) {
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
 
                         <?php  // Output the user data and profile image for debugging
-var_dump($user_data);
-var_dump($profile_image);
+
  echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
                             <span class="d-none d-lg-inline-flex"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
                         </a>
