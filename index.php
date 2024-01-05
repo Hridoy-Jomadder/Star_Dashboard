@@ -130,7 +130,7 @@ function getprofile_image($userId) {
                             $profile_image = $user_data['profile_image'];
                         } else {
                             // Set a default image or handle the case where profile_image is not set
-                            $profile_image = 'default_profile_image.jpg';
+                            $profile_image = 'img/default_profile_image.jpg';
                         }
 
                         // Now you can use $profile_image in your HTML code
