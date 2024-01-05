@@ -7,4 +7,5 @@ session_start();
   include("classes/user.php");
   include("classes/image.php");
   include("classes/profile.php");
+  include("classes/function.php");
  

@@ -4,6 +4,7 @@ session_start();
 include("classes/connect.php");
 include("classes/login.php");
 include("classes/user.php");
+include("classes/function.php");
 
 // Check if the user is logged in
 if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
@@ -96,8 +97,6 @@ $profile_image = $user_data['profile_image'];
                     <div class="position-relative">
                     <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // Assuming $profile_image is a variable containing the path to the CEO's profile image
 $profile_image = $user_data['profile_image'];
