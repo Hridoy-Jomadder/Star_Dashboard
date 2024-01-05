@@ -94,6 +94,8 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                     <?php // Assuming $user_data contains the user's data including the profile image path
+                    var_dump($user_data);
+
                         if(isset($user_data['profile_image'])){
                             $profile_image = $user_data['profile_image'];
                         } else {
