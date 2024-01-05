@@ -123,7 +123,7 @@
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
-                           
+                           <br>
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
                             <label for="text">Email Address or Phone Number</label>
