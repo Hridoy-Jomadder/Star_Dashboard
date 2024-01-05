@@ -93,7 +93,12 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
+                    <?php // Assuming you have retrieved the user's profile image path in your user data
+$profile_image = $user_data['profile_image'];
+
+// Now you can use $profile_image in your HTML code
+echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">';
+ ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
