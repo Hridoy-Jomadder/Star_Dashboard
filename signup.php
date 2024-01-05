@@ -116,14 +116,14 @@
                             <label for="text">Title</label>
                            </div>
                             
-                            <div class="form-floating mb-3"> 
+                            
                             <span>Gender<br></span>
                             <select id="text" name="gender" class="form-control" style="font-family: times new roman;">
                                 <option <?php echo $gender ?>>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
                             </select>
-                            </div>
+                           
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
                             <label for="text">Email Address or Phone Number</label>
