@@ -5,6 +5,31 @@ include("classes/connect.php");
 include("classes/login.php");
 include("classes/user.php");
 
+// Define the function getprofile_image
+function getprofile_image($userId)
+{
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "das_db";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT profile_image, role FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row["profile_image"];
+    } else {
+        return "img/photo.png";
+    }
+}
+
 // Check if user is logged in
 if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
     $id = $_SESSION['das_userid'];
@@ -36,6 +61,11 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
     header("Location: login.php");
     die;
 }
+
+// Retrieve the user's profile photo from the database
+$userId = 1; // Replace with the actual user ID
+$profile_image = getprofile_image($userId);
+
 
 // Check if the function is not already declared
 if (!function_exists('getprofile_image')) {
