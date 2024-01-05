@@ -72,6 +72,7 @@ if (!function_exists('getprofile_image')) {
             return "img/default_profile_image.jpg"; // Replace with your default image path
         }
 }
+}
 
 // Rest of your code...
 ?>
