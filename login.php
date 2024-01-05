@@ -92,7 +92,6 @@ session_start();
                         </div>
 
                     <form action="" method="POST">
-
                         <div class="form-floating mb-3">
                         <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
                         <label for="text">Email address</label>

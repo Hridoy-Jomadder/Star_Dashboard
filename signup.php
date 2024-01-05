@@ -98,7 +98,7 @@
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
+                               <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                             </a>
                         </div>                 
 
@@ -139,7 +139,7 @@
                             </div>
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;">
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
