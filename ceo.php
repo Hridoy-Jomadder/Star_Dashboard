@@ -1,69 +1,44 @@
-<?php 
+<?php
+session_start();
 
- session_start();
+include("classes/connect.php");
+include("classes/login.php");
+include("classes/user.php");
 
- include("classes/connect.php");
- include("classes/login.php");
- include("classes/user.php");
-
- //check if user is logged in
- if(isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid']))
- {
+// Check if the user is logged in
+if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
     $id = $_SESSION['das_userid'];
     $login = new Login();
-
     $result = $login->check_login($id);
 
-    if($result)
-    {
-        //retrieve user data;
+    if ($result) {
+        // Retrieve user data
         $user = new User();
         $user_data = $user->get_data($id);
 
-        if(!$user_data){
+        if (!$user_data) {
             header("Location: login.php");
             die;
         }
 
-    }else{
+        // Check user role and restrict access if necessary
+        $allowed_roles = ['CEO', 'Co-CEO', 'Star Member'];
+        if (!in_array($user_data['role'], $allowed_roles)) {
+            header("Location: unauthorized.php"); // Redirect to unauthorized page
+            die;
+        }
+    } else {
         header("Location: login.php");
         die;
     }
- }else{
+} else {
     header("Location: login.php");
     die;
- }
-
-
-// Retrieve the user's profile photo from the database
-$userId = 1; // Replace with the actual user ID
-$profile_image = getprofile_image($userId);
-
-function getprofile_image($userId) {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
-
-    // Create a connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve the user's profile photo from the database
-    $sql = "SELECT profile_image FROM users WHERE id = $userId";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["profile_image"];
-    } else {
-        return "img/photo.png"; // Replace with a default photo
-    }
 }
+
+// Assuming $profile_image is a variable containing the path to the CEO's profile image
+$profile_image = $user_data['profile_image'];
+
 ?>
 
  
@@ -243,24 +218,28 @@ function getprofile_image($userId) {
 
 
             <!--  Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
+       <!-- CEO Profile Section -->
+       <div class="container-fluid pt-4 px-4">
+            <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                <div class="col-md-6 text-center">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
+                            <!-- Display CEO's profile information -->
                             <?php
-                            // Display the user's profile photo
-                            echo '<img src="uploads/' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                            echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
                             ?>
                             <br><br>
-                            <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
+                            <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name'] ?></h6>
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
+
+                            <!-- Add any additional CEO-specific content here -->
+                            <p>CEO-specific content goes here.</p>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
-            <!--  End -->
+        </div>
+        <!-- CEO Profile Section End -->
 
 
              <!-- Footer Start -->
