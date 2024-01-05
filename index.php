@@ -123,20 +123,14 @@ function getprofile_image($userId) {
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <?php // Assuming $user_data contains the user's data including the profile image path
-                    var_dump($user_data);
+                <?php if(isset($user_data['profile_image'])){
+                        $profile_image = $user_data['profile_image'];
+                    } else {
+                        // Set a default image or handle the case where profile_image is not set
+                        $profile_image = 'default_profile_image.jpg';
+                    }
 
-                        if(isset($user_data['profile_image'])){
-                            $profile_image = $user_data['profile_image'];
-                        } else {
-                            // Set a default image or handle the case where profile_image is not set
-                            $profile_image = 'img/default_profile_image.jpg';
-                        }
-
-                        // Now you can use $profile_image in your HTML code
-                        echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">';
-
-                        ?>
+                ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
