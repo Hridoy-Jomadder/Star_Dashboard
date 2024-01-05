@@ -37,65 +37,45 @@ if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
     die;
 }
 
-// Retrieve the user's profile photo from the database
-$userId = 1; // Replace with the actual user ID
-$profile_image = getprofile_image($userId);
+// Check if the function is not already declared
+if (!function_exists('getprofile_image')) {
+    // Retrieve the user's profile photo from the database
+    $userId = 1; // Replace with the actual user ID
+    $profile_image = getprofile_image($userId);
 
-function getprofile_image($userId)
-{
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT profile_image, role FROM users WHERE id = $userId";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["profile_image"];
-    } else {
-        return "img/photo.png";
-    }
-}
-function getprofile_image($userId)
-{
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT profile_image, role FROM users WHERE id = $userId";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Check if profile_image is not empty
-        if (!empty($row["profile_image"])) {
-            return $row["profile_image"];
+    function getprofile_image($userId)
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "das_db";
+    
+        $conn = new mysqli($servername, $username, $password, $dbname);
+    
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+    
+        $sql = "SELECT profile_image, role FROM users WHERE id = $userId";
+        $result = $conn->query($sql);
+    
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+    
+            // Check if profile_image is not empty
+            if (!empty($row["profile_image"])) {
+                return $row["profile_image"];
+            } else {
+                return "img/default_profile_image.jpg"; // Replace with your default image path
+            }
         } else {
             return "img/default_profile_image.jpg"; // Replace with your default image path
         }
-    } else {
-        return "img/default_profile_image.jpg"; // Replace with your default image path
-    }
 }
 
-
+// Rest of your code...
 ?>
+
 
 
 <!DOCTYPE html>
