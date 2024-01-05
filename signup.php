@@ -100,21 +100,8 @@
                             <a href="index.html" class="">
                                 <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                             </a>
-                        </div>                  
-                          <!-- <form action="" method="POST">
+                        </div>                 
 
-
-<input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;"><br><br>
-<label for="text">Email address</label>
-</div>
-
-<div class="form-floating mb-4">
-<input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;"><br><br>
-<label for="text">Password</label>
-</div>
-
-<input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
-</form> -->
                         <form method="post" action=""> 
                         <div class="form-floating mb-3">  
                             <input value="<?php echo $first_name ?>" name="first_name" class="form-control" type="text" id="text" placeholder="First Name" style="font-family: times new roman;">
@@ -140,40 +127,19 @@
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
                             <label for="text">Email Address or Phone Number</label>
-</div>
+                            </div>
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $password ?>" name="password" class="form-control" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
                             <label for="text">Password</label>
-</div>
+                            </div>
                             
                             <div class="form-floating mb-3"> 
                             <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;">
                             <label for="text">Retype Password</label>
-</div>
+                            </div>
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;">
                         </form>
-
-                        <!-- <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingText" placeholder="jhondoe">
-                            <label for="floatingText">Username</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <a href="">Forgot Password</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
-                        <p class="text-center mb-0">Already have an Account? <a href="">Sign In</a></p> -->
+                        
                     </div>
                 </div>
             </div>
