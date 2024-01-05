@@ -95,12 +95,13 @@ $profile_image = $user_data['profile_image'];
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                     <?php
-// Assuming $profile_image is a variable containing the path to the CEO's profile image
-$profile_image = $user_data['profile_image'];
-
 // Display CEO's profile information
 echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle" alt="Profile Image">';
+
+// Output the image path for debugging
+echo '<p>Image Path: ' . $profile_image . '</p>';
 ?>
+
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
