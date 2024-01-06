@@ -24,6 +24,10 @@ class Signup
         $password = $DB->escape_string($data['password']);
         $email = $DB->escape_string($data['email']);  // Expects 'email' key
 
+        // Check if 'role' key exists and assign a default value if not set
+        $role = isset($data['role']) ? $DB->escape_string($data['role']) : 'default_role';
+
+
         // Use prepared statements
         $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, ?)";
         $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email, $data['role']];
