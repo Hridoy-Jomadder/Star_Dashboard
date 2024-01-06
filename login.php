@@ -1,7 +1,6 @@
 <?php
-include("classes/connect.php"); // Include the database connection file
-include("classes/user.php"); 
-include_once("classes/user.php");
+include_once("classes/connect.php");
+include_once("classes/user.php"); // Include_once should be sufficient
 
 $email = "";
 $password = "";
