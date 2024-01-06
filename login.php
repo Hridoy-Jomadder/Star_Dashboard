@@ -1,5 +1,6 @@
 <?php
 include("classes/connect.php"); // Include the database connection file
+include("classes/user.php"); 
 
 $email = "";
 $password = "";
