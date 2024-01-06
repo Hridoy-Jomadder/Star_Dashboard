@@ -17,6 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($error_message)) {
         // Redirect to a dashboard or home page after successful login
+        
+        // Fetch user information from the database based on the email
+        $user = fetchUserByEmail($email);
+
+        // Set session variables
+        $_SESSION['das_userid'] = $user['userid'];
+        $_SESSION['das_user_role'] = $user['role'];
+
         header("Location: dashboard.php");
         exit();
     } else {
