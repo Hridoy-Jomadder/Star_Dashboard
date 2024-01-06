@@ -9,6 +9,8 @@ if (!isset($_SESSION['das_userid'])) {
 // Fetch user role from the session
 $role = $_SESSION['das_user_role'];
 
+var_dump($row);
+
 // Set session variables after successful login
 $_SESSION['das_userid'] = $row['userid'];
 $_SESSION['das_user_role'] = $row['role'];
@@ -26,10 +28,6 @@ if ($role === 'CEO') {
 } else {
     // Default or unauthorized user content
     echo "<h1>Welcome User!</h1>";
-}
-function get_user_role($username) {
-    // Implement the logic to fetch user role from the database based on the username
-    // Make sure to return the user role from this function
 }
 ?>
 <!DOCTYPE html>
