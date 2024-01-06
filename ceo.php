@@ -83,8 +83,7 @@ if ($role === 'CEO') {
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <!-- <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                        <small><?php echo $user_data['title'] ?></small> -->
+                        <!-- profile name -->
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -188,9 +187,7 @@ if ($role === 'CEO') {
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <!-- <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
-                        </a> -->
+                        <!-- profile name -->
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
                             <a href="settings.php" class="dropdown-item">Settings</a>
