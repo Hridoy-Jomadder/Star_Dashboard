@@ -11,6 +11,12 @@ class Signup
 
     public function evaluate($data)
     {
+        // Validation (you may need to customize this)
+        if (empty($data['username']) || empty($data['password']) || empty($data['email'])) {
+            $this->error = "All fields are required.";
+            return false;
+        }
+
         $DB = new Database();
 
         // Sanitize input
@@ -19,8 +25,8 @@ class Signup
         $email = $DB->escape_string($data['email']);  // Expects 'email' key
 
         // Use prepared statements
-        $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'StarMember')";
-        $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email];
+        $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, ?)";
+        $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email, $data['role']];
 
         $result = $DB->execute($query, $params);
 
@@ -33,5 +39,11 @@ class Signup
             return false;
         }
     }
+
+    public function getError()
+    {
+        return $this->error;
+    }
 }
+
 ?>
