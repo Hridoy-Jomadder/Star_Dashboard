@@ -1,47 +1,44 @@
-<?php class Database
+<?php
+
+class Database
 {
-    private $conn; // Add this line to declare the $conn property
+    private $conn;
+    public $error;
 
     public function __construct()
     {
         $this->conn = new mysqli("localhost", "root", "", "das_db");
 
-        // Check the connection
         if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+            $this->error = $this->conn->connect_error;
         }
     }
 
-    // ... other methods and properties ...
+    public function escape_string($value)
+    {
+        return $this->conn->real_escape_string($value);
+    }
 
-    public function execute($query, $params)
+    public function execute($query, $params = [])
     {
         $stmt = $this->conn->prepare($query);
 
-        if ($stmt === false) {
-            // Handle prepare error
+        if ($stmt) {
+            if (!empty($params)) {
+                $types = str_repeat('s', count($params));
+                $stmt->bind_param($types, ...$params);
+            }
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+
+            return $result;
+        } else {
             $this->error = $this->conn->error;
             return false;
         }
-
-        // Bind parameters
-        if (!empty($params)) {
-            $types = str_repeat('s', count($params)); // Assuming all parameters are strings
-            $stmt->bind_param($types, ...$params);
-        }
-
-        // Execute the statement
-        $result = $stmt->execute();
-
-        if ($result === false) {
-            // Handle execute error
-            $this->error = $stmt->error;
-        }
-
-        $stmt->close();
-
-        return $result; // Return true or false based on success
     }
-
-    // ... other methods ...
 }
+
+?>
