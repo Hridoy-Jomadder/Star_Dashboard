@@ -1,45 +1,28 @@
 <?php
 session_start();
 
-include("classes/connect.php");
-include("classes/login.php");
-include("classes/user.php");
-include("classes/function.php");
-
-// Check if the user is logged in
-if (isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid'])) {
-    $id = $_SESSION['das_userid'];
-    $login = new Login();
-    $result = $login->check_login($id);
-
-    if ($result) {
-        // Retrieve user data
-        $user = new User();
-        $user_data = $user->get_data($id);
-
-        if (!$user_data) {
-            header("Location: login.php");
-            die;
-        }
-
-        // Check user role and restrict access if necessary
-        $allowed_roles = ['CEO', 'Co-CEO', 'Star Member'];
-        if (!in_array($user_data['role'], $allowed_roles)) {
-            header("Location: unauthorized.php"); // Redirect to unauthorized page
-            die;
-        }
-    } else {
-        header("Location: login.php");
-        die;
-    }
-} else {
+if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
-    die;
+    exit();
 }
 
-// Assuming $profile_image is a variable containing the path to the CEO's profile image
-$profile_image = $user_data['profile_image'];
+// Fetch user role from the session
+$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 
+// Check if $role is not null before displaying the welcome message
+if ($role === 'CEO') {
+    $welcomeMessage = "Welcome CEO!";
+    $dashboardContent = "<p>This is the CEO dashboard. Special content for CEOs goes here.</p>";
+} elseif ($role === 'Co-CEO') {
+    $welcomeMessage = "Welcome Co-CEO!";
+    $dashboardContent = "<p>This is the Co-CEO dashboard. Special content for Co-CEOs goes here.</p>";
+} elseif ($role === 'StarMember') {
+    $welcomeMessage = "Welcome Star Member!";
+    $dashboardContent = "<p>This is the Star Member dashboard. Special content for Star Members goes here.</p>";
+} else {
+    $welcomeMessage = "Welcome User!";
+    $dashboardContent = "<p>This is the default dashboard. Content for regular users goes here.</p>";
+}
 ?>
 
  
@@ -95,14 +78,8 @@ $profile_image = $user_data['profile_image'];
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <?php
-                            // Assuming $profile_image is a variable containing the path to the CEO's profile image
-                            $profile_image = $user_data['profile_image'];
-
-                            // Display CEO's profile information
-                            echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle" alt="Profile Image">';
-                            ?>
-                            
+                    <h1><?php echo $welcomeMessage; ?></h1>
+                      <?php echo $dashboardContent; ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
