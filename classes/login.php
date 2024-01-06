@@ -12,10 +12,8 @@ class Login
 
     public function evaluate($data)
     {
-        $DB = new Database();
-
-        $email = $DB->escape_string($data['email']);
-        $password = $DB->escape_string($data['password']);
+        $email = $this->DB->escape_string($data['email']);
+        $password = $this->DB->escape_string($data['password']);
 
         // Fetch user information from the database based on the email
         $user = $this->fetchUserByEmail($email);
@@ -37,6 +35,7 @@ class Login
             return $this->error;
         }
     }
+
 
     private function fetchUserByEmail($email)
     {
