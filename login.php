@@ -27,11 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    // After successful login
-$_SESSION['das_userid'] = $row['userid'];
-$_SESSION['das_user_role'] = $row['role'];
-
 }
 ?>
 
