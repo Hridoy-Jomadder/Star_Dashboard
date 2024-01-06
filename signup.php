@@ -85,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form method="post" action="signup.php">
                             <!-- ... other form fields ... -->
                             <input name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="Username" style="font-family: times new roman;">
+                            <input name="password" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="password" style="font-family: times new roman;">
                             <!-- ... other form fields ... -->
 
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
