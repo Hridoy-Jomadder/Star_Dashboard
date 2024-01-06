@@ -17,6 +17,12 @@
      $signup = new Signup();
      $result = $signup->evaluate($_POST);
 
+     $password2 = $_POST['password2'];
+    
+     if ($password !== $password2) {
+         $result .= "Passwords do not match.<br>";
+     
+
     if($result != "")
     {
             
@@ -100,7 +106,7 @@
                                <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>                 
 
-                        <form method="post" action=""> 
+                        <form method="post" action="signup.php"> 
                         <div class="form-floating mb-3">  
                             <input value="<?php echo $first_name ?>" name="first_name" class="form-control" type="text" id="text" placeholder="First Name" style="font-family: times new roman;">
                             <label for="text">First Name</label>
@@ -132,8 +138,8 @@
                             </div>
                             
                             <div class="form-floating mb-3"> 
-                            <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="text" placeholder="Retype Password" style="font-family: times new roman;">
-                            <label for="text">Retype Password</label>
+                            <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="password2" placeholder="Retype Password" style="font-family: times new roman;">
+                            <label for="password2">Retype Password</label>
                             </div>
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;">
                         </form>
