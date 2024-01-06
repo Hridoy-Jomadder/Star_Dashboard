@@ -1,6 +1,29 @@
+<?php
+session_start();
 
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
 
+// Fetch user role from the session
+$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 
+// Check if $role is not null before displaying the welcome message
+if ($role === 'CEO') {
+    $welcomeMessage = "Welcome CEO!";
+    $dashboardContent = "<p>Welcome Ceo</p>";
+} elseif ($role === 'Co-CEO') {
+    $welcomeMessage = "Welcome Co-CEO!";
+    $dashboardContent = "<p>This is the Co-CEO dashboard. Special content for Co-CEOs goes here.</p>";
+} elseif ($role === 'StarMember') {
+    $welcomeMessage = "Welcome Star Member!";
+    $dashboardContent = "<p>This is the Star Member dashboard. Special content for Star Members goes here.</p>";
+} else {
+    $welcomeMessage = "Welcome User!";
+    $dashboardContent = "<p>This is the default dashboard. Content for regular users goes here.</p>";
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
