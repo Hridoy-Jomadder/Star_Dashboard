@@ -216,7 +216,7 @@ if ($role === 'CEO') {
         echo "<h1>Welcome Co-CEO!</h1>";
     } elseif ($role === 'StarMember') {
         // Star Member dashboard content
-        echo "<h1>Welcome Star Member!</h1>";
+        echo "<h6>Welcome Star Member!</h6>";
     } else {
         // Default or unauthorized user content
         echo "<h1>Welcome User!</h1>";
