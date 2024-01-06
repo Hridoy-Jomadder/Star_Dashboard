@@ -210,13 +210,13 @@ if ($role === 'CEO') {
     // Check user role and display accordingly
     if ($role === 'CEO') {
         // CEO dashboard content
-        echo "<h1>Welcome CEO!</h1>";
+        echo "<h3>Welcome CEO!</h3>";
     } elseif ($role === 'Co-CEO') {
         // Co-CEO dashboard content
-        echo "<h1>Welcome Co-CEO!</h1>";
+        echo "<h3>Welcome Co-CEO!</h3>";
     } elseif ($role === 'StarMember') {
         // Star Member dashboard content
-        echo "<h6>Welcome Star Member!</h6>";
+        echo "<h3>Welcome Star Member!</h3>";
     } else {
         // Default or unauthorized user content
         echo "<h1>Welcome User!</h1>";
