@@ -43,6 +43,7 @@ class Login
 
     return $this->error;
 }
+}
 
 
 ?>
