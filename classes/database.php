@@ -39,6 +39,38 @@ class Database
             return false;
         }
     }
+
+    public function readWithParams($query, $params) {
+        $stmt = $this->conn->prepare($query);
+        
+        if ($stmt) {
+            // Bind parameters
+            if (!empty($params)) {
+                $types = str_repeat('s', count($params)); // Assuming all parameters are strings, adjust as needed
+                $stmt->bind_param($types, ...$params);
+            }
+
+            // Execute the query
+            $stmt->execute();
+
+            // Get result set
+            $result = $stmt->get_result();
+
+            // Fetch the results
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+
+            // Close statement
+            $stmt->close();
+
+            return $data;
+        } else {
+            // Handle statement preparation failure
+            return false;
+        }
+    }
 }
 
 ?>
