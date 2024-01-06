@@ -12,14 +12,19 @@ $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 // Check if $role is not null before displaying the welcome message
 if ($role === 'CEO') {
     $welcomeMessage = "Welcome CEO!";
+    $dashboardContent = "<p>Welcome Ceo</p>";
 } elseif ($role === 'Co-CEO') {
     $welcomeMessage = "Welcome Co-CEO!";
+    $dashboardContent = "<p>This is the Co-CEO dashboard.</p>";
 } elseif ($role === 'StarMember') {
     $welcomeMessage = "Welcome Star Member!";
+    $dashboardContent = "<p>This is the Star Member dashboard.</p>";
 } else {
     $welcomeMessage = "Welcome User!";
+    $dashboardContent = "<p>This is the default dashboard.</p>";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
