@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php if (isset($error_message)) echo "<p>$error_message</p>"; ?>
     <form method="post" action="login.php">
                                 <div class="form-floating mb-3">
-                        <input name="username" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
+                        <input name="username" class="form-control" value="<?php echo $username ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
                         <label for="text">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
