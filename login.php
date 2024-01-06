@@ -81,21 +81,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
-                        <?php if (!empty($error_message)) echo "<p style='color:red;'>$error_message</p>"; ?>
-
                         <form method="post" action="login.php">
-                            <div class="form-floating mb-3">
-                                <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
-                                <label for="text">Email Address</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
-                                <label for="text">Password</label>
-                            </div>
+                        <div class="form-floating mb-3">
+                            <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
+                            <label for="text">Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
+                            <label for="text">Password</label>
+                        </div>
 
-                            <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
-                            <p class="text-center mb-0">Don't have an Account? <a href="signup.php" style="font-family: times new roman;">Sign Up</a></p>
-                        </form>
+                        <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
+                        <p class="text-center mb-0">Don't have an Account? <a href="signup.php" style="font-family: times new roman;">Sign Up</a></p>
+                    </form>
+
                     </div>
                 </div>
             </div>
