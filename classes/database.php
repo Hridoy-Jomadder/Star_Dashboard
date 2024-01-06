@@ -41,27 +41,30 @@ class Database
     }
 
     public function readWithParams($query, $params)
-    {
-        $statement = $this->connection->prepare($query);
+{
+    $statement = $this->connection->prepare($query);
 
-        if ($statement === false) {
-            die("Error preparing query: " . $this->connection->error);
-        }
+    if ($statement === false) {
+        die("Error preparing query: " . $this->connection->error);
+    }
 
+    if (!empty($params)) {
         $types = str_repeat('s', count($params));
         $statement->bind_param($types, ...$params);
-
-        if ($statement->execute() === false) {
-            die("Error executing query: " . $statement->error);
-        }
-
-        $result = $statement->get_result();
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-        $statement->close();
-
-        return $rows;
     }
+
+    if ($statement->execute() === false) {
+        die("Error executing query: " . $statement->error);
+    }
+
+    $result = $statement->get_result();
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+    $statement->close();
+
+    return $rows;
+}
+
 
     public function escape_string($value)
     {
