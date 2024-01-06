@@ -12,8 +12,10 @@ class Login
 
     public function evaluate($data)
     {
-        $email = $this->DB->escape_string($data['email']);
-        $password = $this->DB->escape_string($data['password']);
+        $DB = new Database();
+
+        $email = $DB->escape_string($data['email']);
+        $password = $DB->escape_string($data['password']);
 
         // Fetch user information from the database based on the email
         $user = $this->fetchUserByEmail($email);
@@ -23,6 +25,10 @@ class Login
             // Login successful
             $_SESSION['das_userid'] = $user['userid'];
             $_SESSION['das_user_role'] = $user['role'];
+
+            // Set $row for dashboard.php
+            $row = $user;
+
             header("Location: dashboard.php");
             exit();
         } else {
