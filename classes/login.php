@@ -1,4 +1,5 @@
 <?php
+
 class Login
 {
     private $error = "";
@@ -36,13 +37,13 @@ class Login
     {
         $DB = new Database();
         $email = $DB->escape_string($email);
-    
+
         // Query to fetch user information by email
-        $query = "SELECT id, role, password FROM users WHERE email = ?";
+        $query = "SELECT id, userid, role, password FROM users WHERE email = ?";
         $params = [$email];
-    
+
         $result = $DB->readWithParams($query, $params);
-    
+
         // Check if a user was found
         if (!empty($result)) {
             return $result[0];
@@ -50,6 +51,5 @@ class Login
             return null; // User not found
         }
     }
-    
 }
 ?>
