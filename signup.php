@@ -1,22 +1,21 @@
 <?php
-session_start(); // Ensure that session_start() is called at the beginning
+session_start();
 
 include_once("classes/connect.php");
-include_once("classes/login.php");
-include_once("classes/database.php");
 include_once("classes/signup.php");
 
-$email = "";
+$username = "";
 $password = "";
+$email = "";
 $error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $signup = new Signup();
-    $error_message = $signup->registerUser($_POST); // Change this line
+    $error_message = $signup->evaluate($_POST);
 
-    if (empty($error_message)) {
-        // Redirect to a success page or login page
-        header("Location: login.php");
+    if ($error_message === true) {
+        // Redirect to a dashboard or home page after successful registration
+        header("Location: dashboard.php");
         exit();
     } else {
         echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
@@ -24,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "</div>";
     }
 
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
+    $email = $_POST['email'];
 }
 ?>
 
