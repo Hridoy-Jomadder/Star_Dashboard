@@ -183,16 +183,16 @@
                             <div class="bg-light rounded h-100 p-4">
                                 <!-- Display Star Member's profile information -->
                                 <?php
-                                echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                                echo '<img src="' . $star_member_profile_image . '" width="300" height="300" class="rounded-circle">';
                                 ?>
                                 <br><br>
-                                <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name'] ?></h6>
-                                <h6 class="mb-2"><?php echo $user_data['title'] ?></h5>
+                                <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
+                                <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
 
                                 <!-- Additional Star Member-specific content -->
-                                <p><strong>Email:</strong> <?php echo $user_data['email'] ?></p>
+                                <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
                                 <p><strong>Membership Type:</strong> Star Member</p>
-                                <p><strong>Joined:</strong> <?php echo $user_data['join_date'] ?></p>
+                                <p><strong>Joined:</strong> <?php echo $star_member_data['join_date'] ?></p>
 
                                 <!-- Add any other Star Member-specific content here -->
                                 <p>This is a sample Star Member profile. You can add more details and customize as needed.</p>
@@ -202,6 +202,7 @@
                 </div>
             </div>
             <!-- Star Member Profile Section End -->
+
 
 
             <!-- Footer Start -->
