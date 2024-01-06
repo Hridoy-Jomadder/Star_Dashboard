@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="text">Email Address</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
+                            <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="password" placeholder="Password" style="font-family: times new roman;">
                             <label for="text">Password</label>
                         </div>
 
