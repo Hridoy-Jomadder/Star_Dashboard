@@ -4,7 +4,7 @@
 
     public function __construct()
     {
-        $this->conn = new mysqli("your_host", "your_username", "your_password", "your_database");
+        $this->conn = new mysqli("localhost", "root", "", "das_db");
 
         // Check the connection
         if ($this->conn->connect_error) {
