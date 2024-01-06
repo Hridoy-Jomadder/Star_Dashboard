@@ -203,28 +203,34 @@ if ($role === 'CEO') {
 
 
             <!--  Start -->
-       <!-- CEO Profile Section -->
-       <div class="container-fluid pt-4 px-4">
-            <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                <div class="col-md-6 text-center">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <!-- Display CEO's profile information -->
-                            <?php
-                            echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                            ?>
-                            <br><br>
-                            <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name'] ?></h6>
-                            <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
+<!-- CEO Profile Section -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <!-- Display CEO's profile information -->
+                    <?php
+                    echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                    ?>
+                    <br><br>
+                    <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name'] ?></h6>
+                    <h6 class="mb-2"><?php echo $user_data['title'] ?></h5>
 
-                            <!-- Add any additional CEO-specific content here -->
-                            <p>CEO-specific content goes here.</p>
-                        </div>
-                    </div>
+                    <!-- Additional CEO-specific content -->
+                    <p><strong>Email:</strong> <?php echo $user_data['email'] ?></p>
+                    <p><strong>Company Role:</strong> CEO</p>
+                    <p><strong>Joined:</strong> <?php echo $user_data['join_date'] ?></p>
+
+                    <!-- Add any other CEO-specific content here -->
+                    <p>This is a sample CEO profile. You can add more details and customize as needed.</p>
                 </div>
             </div>
         </div>
-        <!-- CEO Profile Section End -->
+    </div>
+</div>
+<!-- CEO Profile Section End -->
+
 
 
              <!-- Footer Start -->
