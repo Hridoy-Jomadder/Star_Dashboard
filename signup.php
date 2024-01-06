@@ -1,56 +1,32 @@
 <?php
+session_start(); // Ensure that session_start() is called at the beginning
 
-  include("classes/connect.php");
-  include("classes/signup.php");
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/signup.php");
 
-  $first_name = "";
-  $last_name = "";
-  $gender = ""; 
-  $email = "";
-  $password = ""; 
-  $password = ""; 
-  $title = "";
+$email = "";
+$password = "";
+$error_message = "";
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST')
-   {
-    
-     $signup = new Signup();
-     $result = $signup->evaluate($_POST);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $signup = new Signup();
+    $error_message = $signup->registerUser($_POST); // Change this line
 
-     $password2 = $_POST['password2'];
-    
-     if ($password !== $password2) {
-         $result .= "Passwords do not match.<br>";
-     
-
-    if($result != "")
-    {
-            
-        echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-        echo "<br>The following errors occured:<br><br>";
-        echo $result;
-        echo "</div>";
-            
-    }
-      else
-    {
-          
+    if (empty($error_message)) {
+        // Redirect to a success page or login page
         header("Location: login.php");
-        die;
-    
+        exit();
+    } else {
+        echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
+        echo $error_message;
+        echo "</div>";
     }
 
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $title = $_POST['title'];
-        $gender = $_POST['gender'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $password = $_POST['password'];
-            
-   }
-  
-   }
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+}
 ?>
 
 <!DOCTYPE html>
