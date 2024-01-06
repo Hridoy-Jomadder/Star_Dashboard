@@ -6,20 +6,20 @@ include_once("classes/login.php"); // Include_once should be sufficient
 include_once("classes/database.php");
 include_once("classes/signup.php");
 
-
 $email = "";
 $password = "";
 $error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $login = new Login();
+    $DB = new Database();
+    $login = new Login($DB); // Pass an instance of the Database class to Login
     $error_message = $login->evaluate($_POST);
 
     if (empty($error_message)) {
         // Redirect to a dashboard or home page after successful login
         
         // Fetch user information from the database based on the email
-        $user = fetchUserByEmail($email);
+        $user = $login->fetchUserByEmail($email);
 
         // Set session variables
         $_SESSION['das_userid'] = $user['userid'];
