@@ -52,7 +52,7 @@ class Database
         $statement->bind_param($types, ...$params);
 
         if ($statement->execute() === false) {
-            die("Error executing query: " . $this->connection->error);
+            die("Error executing query: " . $statement->error);
         }
 
         $result = $statement->get_result();
