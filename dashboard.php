@@ -60,7 +60,6 @@ if ($row && is_array($row)) {
         echo "<h1>Welcome User!</h1>";
     }
     ?>
-
 </body>
 
 </html>
