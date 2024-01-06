@@ -6,33 +6,33 @@ class Signup
 
     public function __construct()
     {
-        include_once("classes/database.php");
+        // Database connection is not instantiated here; it might be done elsewhere
+        // include_once("classes/database.php");
     }
 
     public function evaluate($data)
-{
-    $DB = new Database();
+    {
+        $DB = new Database();
 
-    // Sanitize input
-    $username = $DB->escape_string($data['username']);
-    $password = $DB->escape_string($data['password']);
-    $email = $DB->escape_string($data['email']);  // Expects 'email' key
+        // Sanitize input
+        $username = $DB->escape_string($data['username']);
+        $password = $DB->escape_string($data['password']);
+        $email = $DB->escape_string($data['email']);  // Expects 'email' key
 
-    // Use prepared statements
-    $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'StarMember')";
-    $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email];
+        // Use prepared statements
+        $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'StarMember')";
+        $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email];
 
-    $result = $DB->execute($query, $params);
+        // Execute the query and handle errors
+        $result = $DB->execute($query, $params);
 
-    if ($result) {
-        // Registration successful
-        return true;
-    } else {
-        $this->error = "Error registering user";
-        return $this->error;
+        if ($result) {
+            // Registration successful
+            return true;
+        } else {
+            // Get the specific error message from the Database class
+            $this->error = $DB->get_error();
+            return $this->error;
+        }
     }
 }
-
-}
-
-?>
