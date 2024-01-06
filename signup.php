@@ -73,53 +73,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Spinner End -->
 
 
-        <!-- Sign Up Start -->
-        <div class="container-fluid">
+  <!-- Sign Up Start -->
+  <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                               <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
+                            <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>                 
 
-                        <form method="post" action="signup.php"> 
-                        <div class="form-floating mb-3">  
-                            <input value="<?php echo $first_name ?>" name="first_name" class="form-control" type="text" id="text" placeholder="First Name" style="font-family: times new roman;">
-                            <label for="text">First Name</label>
-                        </div>
-                        <div class="form-floating mb-3"> 
-                            <input value="<?php echo $last_name ?>" name="last_name" class="form-control" type="text" id="text" placeholder="Last Name" style="font-family: times new roman;">
-                            <label for="text">Last Name</label>
-                             </div>
-                            <div class="form-floating mb-3"> 
-                            <input value="<?php echo $title ?>" name="title" class="form-control" type="text" id="text" placeholder="Title" style="font-family: times new roman;">
-                            <label for="text">Title</label>
-                           </div>
-                            
-                            
-                            <span>Gender<br></span>
-                            <select id="text" name="gender" class="form-control" style="font-family: times new roman;">
-                                <option <?php echo $gender ?>>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
-                           <br>
-                            <div class="form-floating mb-3"> 
-                            <input value="<?php echo $email ?>" name="email" class="form-control" type="text" id="text" placeholder="Email Address or Phone Number" style="font-family: times new roman;">
-                            <label for="text">Email Address or Phone Number</label>
-                            </div>
-                            <div class="form-floating mb-3"> 
-                            <input value="<?php echo $password ?>" name="password" class="form-control" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
-                            <label for="text">Password</label>
-                            </div>
-                            
-                            <div class="form-floating mb-3"> 
-                            <input value="<?php echo $password ?>" name="password2" class="form-control" type="password" id="password2" placeholder="Retype Password" style="font-family: times new roman;">
-                            <label for="password2">Retype Password</label>
-                            </div>
-                            <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;">
-                        </form>
+                        <form method="post" action="signup.php">
+                            <!-- ... other form fields ... -->
+                            <input name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="Username" style="font-family: times new roman;">
+                            <!-- ... other form fields ... -->
 
+                            <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
+                            <p class="text-center mb-0">Already have an account? <a href="login.php" style="font-family: times new roman;">Log In</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
