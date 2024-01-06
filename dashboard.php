@@ -1,13 +1,17 @@
 <?php
 session_start();
-require_once('auth.php');
 
-if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
     exit();
 }
 
+// Fetch user role from the database based on the username
 $role = get_user_role($_SESSION['username']);
+
+// Set session variables after successful login
+$_SESSION['das_userid'] = $row['userid'];
+$_SESSION['das_user_role'] = $row['role'];
 
 // Check user role and redirect accordingly
 if ($role === 'CEO') {
@@ -21,5 +25,6 @@ if ($role === 'CEO') {
 }
 
 function get_user_role($username) {
-    // Fetch user role from the database based on the username
+    // Implement the logic to fetch user role from the database based on the username
+    // Make sure to return the user role from this function
 }
