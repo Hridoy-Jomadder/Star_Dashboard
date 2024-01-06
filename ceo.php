@@ -15,13 +15,13 @@ if ($role === 'CEO') {
     $dashboardContent = "<p>Welcome Ceo</p>";
 } elseif ($role === 'Co-CEO') {
     $welcomeMessage = "Welcome Co-CEO!";
-    $dashboardContent = "<p>This is the Co-CEO dashboard. Special content for Co-CEOs goes here.</p>";
+    $dashboardContent = "<p>This is the Co-CEO dashboard.</p>";
 } elseif ($role === 'StarMember') {
     $welcomeMessage = "Welcome Star Member!";
-    $dashboardContent = "<p>This is the Star Member dashboard. Special content for Star Members goes here.</p>";
+    $dashboardContent = "<p>This is the Star Member dashboard.</p>";
 } else {
     $welcomeMessage = "Welcome User!";
-    $dashboardContent = "<p>This is the default dashboard. Content for regular users goes here.</p>";
+    $dashboardContent = "<p>This is the default dashboard.</p>";
 }
 ?>
 
