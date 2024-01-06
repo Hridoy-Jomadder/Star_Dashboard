@@ -1,12 +1,16 @@
 <?php
-session_start(); // Ensure that session_start() is called at the beginning
+session_start();
 
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
     exit();
 }
+
+// Fetch user role from the session
+$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+
 // Check if $row is not null before accessing its values
-if ($row && is_array($row)) {
+if (isset($row) && is_array($row)) {
     // Set session variables after successful login
     $_SESSION['das_userid'] = $row['userid'];
     $_SESSION['das_user_role'] = $row['role'];
@@ -32,7 +36,6 @@ if ($row && is_array($row)) {
     // Handle the case where user information is not available
     echo "<h1>Error: User information not available</h1>";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
