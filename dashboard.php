@@ -18,7 +18,7 @@ if ($role === 'CEO') {
     $dashboardContent = "<p>This is the Co-CEO dashboard.</p>";
 } elseif ($role === 'StarMember') {
     $welcomeMessage = "Welcome Star Member!";
-    $dashboardContent = "<p>This is the Star Member dashboard.</p>";
+    $dashboardContent = "<h6>This is the Star Member dashboard.</h6>";
 } else {
     $welcomeMessage = "Welcome User!";
     $dashboardContent = "<p>This is the default dashboard.</p>";
