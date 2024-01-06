@@ -10,28 +10,29 @@ class Signup
     }
 
     public function evaluate($data)
-    {
-        $DB = new Database();
+{
+    $DB = new Database();
 
-        // Sanitize input
-        $username = $DB->escape_string($data['username']);
-        $password = $DB->escape_string($data['password']);
-        $email = $DB->escape_string($data['email']);
+    // Sanitize input
+    $username = $DB->escape_string($data['username']);
+    $password = $DB->escape_string($data['password']);
+    $email = $DB->escape_string($data['email']);  // Expects 'email' key
 
-        // Use prepared statements
-        $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'StarMember')";
-        $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email];
+    // Use prepared statements
+    $query = "INSERT INTO users (username, password, email, role) VALUES (?, ?, ?, 'StarMember')";
+    $params = [$username, password_hash($password, PASSWORD_DEFAULT), $email];
 
-        $result = $DB->execute($query, $params);
+    $result = $DB->execute($query, $params);
 
-        if ($result) {
-            // Registration successful
-            return true;
-        } else {
-            $this->error = "Error registering user";
-            return $this->error;
-        }
+    if ($result) {
+        // Registration successful
+        return true;
+    } else {
+        $this->error = "Error registering user";
+        return $this->error;
     }
+}
+
 }
 
 ?>
