@@ -1,90 +1,47 @@
-<?php 
-class Database
+<?php class Database
 {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $database = "das_db";
-    private $connection;
+    private $conn; // Add this line to declare the $conn property
 
     public function __construct()
     {
-        $this->connection = $this->connect();
+        $this->conn = new mysqli("your_host", "your_username", "your_password", "your_database");
+
+        // Check the connection
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
     }
 
-    private function connect()
-    {
-        $connection = new mysqli($this->host, $this->username, $this->password, $this->database);
+    // ... other methods and properties ...
 
-        if ($connection->connect_error) {
-            die("Connection failed: " . $connection->connect_error);
+    public function execute($query, $params)
+    {
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt === false) {
+            // Handle prepare error
+            $this->error = $this->conn->error;
+            return false;
         }
 
-        return $connection;
-    }
+        // Bind parameters
+        if (!empty($params)) {
+            $types = str_repeat('s', count($params)); // Assuming all parameters are strings
+            $stmt->bind_param($types, ...$params);
+        }
 
-    public function read($query)
-    {
-        $result = $this->connection->query($query);
+        // Execute the statement
+        $result = $stmt->execute();
 
         if ($result === false) {
-            die("Error executing query: " . $this->connection->error);
+            // Handle execute error
+            $this->error = $stmt->error;
         }
 
-        $rows = array();
-        while ($row = $result->fetch_assoc()) {
-            $rows[] = $row;
-        }
+        $stmt->close();
 
-        return $rows;
+        return $result; // Return true or false based on success
     }
 
-    public function readWithParams($query, $params)
-    {
-        $statement = $this->connection->prepare($query);
-
-        if ($statement === false) {
-            die("Error preparing query: " . $this->connection->error);
-        }
-
-        if (!empty($params)) {
-            $types = str_repeat('s', count($params));
-            $statement->bind_param($types, ...$params);
-        }
-
-        if ($statement->execute() === false) {
-            die("Error executing query: " . $statement->error);
-        }
-
-        $result = $statement->get_result();
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-
-        $statement->close();
-
-        return $rows;
-    }
-
-    public function execute($query, $params = [])
-    {
-        $statement = $this->connection->prepare($query);
-
-        if ($statement === false) {
-            die("Error preparing query: " . $this->connection->error);
-        }
-
-        if (!empty($params)) {
-            $types = str_repeat('s', count($params));
-            $statement->bind_param($types, ...$params);
-        }
-
-        $result = $statement->execute();
-        $statement->close();
-
-        return $result;
-    }
-
-    public function escape_string($value)
-    {
-        return $this->connection->real_escape_string($value);
-    }
+    // ... other methods ...
 }
