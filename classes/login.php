@@ -3,18 +3,17 @@
 class Login
 {
     private $error = "";
+    private $DB;
 
-    public function __construct()
+    public function __construct(Database $DB)
     {
-        include_once("classes/database.php");
+        $this->DB = $DB;
     }
 
     public function evaluate($data)
     {
-        $DB = new Database();
-
-        $email = $DB->escape_string($data['email']);
-        $password = $DB->escape_string($data['password']);
+        $email = $this->DB->escape_string($data['email']);
+        $password = $this->DB->escape_string($data['password']);
 
         // Fetch user information from the database based on the email
         $user = $this->fetchUserByEmail($email);
@@ -35,14 +34,11 @@ class Login
 
     private function fetchUserByEmail($email)
     {
-        $DB = new Database();
-        $email = $DB->escape_string($email);
-
         // Query to fetch user information by email
-        $query = "SELECT id, userid, role, password FROM users WHERE email = ?";
+        $query = "SELECT userid, role, password FROM users WHERE email = ?";
         $params = [$email];
 
-        $result = $DB->readWithParams($query, $params);
+        $result = $this->DB->readWithParams($query, $params);
 
         // Check if a user was found
         if (!empty($result)) {
