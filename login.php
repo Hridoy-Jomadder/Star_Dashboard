@@ -1,18 +1,29 @@
 <?php
-session_start();
-require_once('auth.php');
+include("classes/connect.php"); // Include the database connection file
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+$email = "";
+$password = "";
 
-    if (authenticate($username, $password)) {
-        header('Location: dashboard.php');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // Assuming you have a User class with a login method
+    $user = new User();
+    $result = $user->login($_POST['email'], $_POST['password']);
+
+    if ($result === true) {
+        // Redirect to a dashboard or home page after successful login
+        header("Location: dashboard.php");
         exit();
     } else {
-        $error_message = "Invalid username or password";
+        echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
+        echo "Login failed. Please check your credentials.<br>";
+        echo "</div>";
     }
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 }
+
 ?>
 
 <!DOCTYPE html>
