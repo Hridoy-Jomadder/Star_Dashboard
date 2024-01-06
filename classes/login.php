@@ -4,20 +4,26 @@ class Login
 {
     private $error = "";
 
+    public function __construct()
+    {
+        include_once("classes/database.php");
+    }
+
     public function evaluate($data)
     {
         $DB = new Database();
-
+    
         // Sanitize input
         $email = $DB->escape_string($data['email']);
         $password = $DB->escape_string($data['password']);
-
-        $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
-        $result = $DB->read($query);
-
+    
+        // Use prepared statements
+        $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        $result = $DB->readWithParams($query, [$email]);
+    
         if ($result) {
             $row = $result[0];
-
+    
             if (password_verify($password, $row['password'])) {
                 // Create session data
                 $_SESSION['das_userid'] = $row['userid'];
@@ -28,9 +34,10 @@ class Login
         } else {
             $this->error .= "No such email was found.<br>";
         }
-
+    
         return $this->error;
     }
+    
 
     public function check_login($id, $redirect = true)
     {

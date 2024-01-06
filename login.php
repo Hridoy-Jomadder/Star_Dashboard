@@ -3,6 +3,7 @@ session_start(); // Ensure that session_start() is called at the beginning
 
 include_once("classes/connect.php");
 include_once("classes/login.php"); // Include_once should be sufficient
+include_once("classes/database.php");
 
 $email = "";
 $password = "";
