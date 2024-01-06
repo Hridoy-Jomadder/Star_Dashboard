@@ -1,5 +1,4 @@
 <?php
-
 class Login
 {
     private $error = "";
@@ -12,38 +11,44 @@ class Login
     public function evaluate($data)
     {
         $DB = new Database();
-    
-        // Check if 'email' key is set in $_POST
-        if (isset($data['email'])) {
-            // Sanitize input
-            $email = $DB->escape_string($data['email']);
-            $password = $DB->escape_string($data['password']);
-        
-            // Use prepared statements
-            $query = "SELECT * FROM users WHERE email = ? LIMIT 1";
-            $result = $DB->readWithParams($query, [$email]);
-        
-            if ($result) {
-                $row = $result[0];
-        
-                if (password_verify($password, $row['password'])) {
-                    // Create session data
-                    $_SESSION['das_userid'] = $row['userid'];
-                    $_SESSION['das_user_role'] = $row['role'];
-                } else {
-                    $this->error .= "Wrong email or password<br>";
-                }
-            } else {
-                $this->error .= "No such email was found.<br>";
-            }
+
+        $email = $DB->escape_string($data['email']);
+        $password = $DB->escape_string($data['password']);
+
+        // Fetch user information from the database based on the email
+        $user = $this->fetchUserByEmail($email);
+
+        // Check if the user exists
+        if ($user && password_verify($password, $user['password'])) {
+            // Login successful
+            $_SESSION['das_userid'] = $user['userid'];
+            $_SESSION['das_user_role'] = $user['role'];
+            header("Location: dashboard.php");
+            exit();
         } else {
-            $this->error .= "Email not provided.<br>";
+            // Login failed
+            $this->error = "Invalid email or password";
+            return $this->error;
         }
-    
-        return $this->error;
     }
 
-    // ... rest of your class ...
-}
+    private function fetchUserByEmail($email)
+    {
+        $DB = new Database();
+        $email = $DB->escape_string($email);
 
+        // Query to fetch user information by email
+        $query = "SELECT userid, role, password FROM users WHERE email = ?";
+        $params = [$email];
+
+        $result = $DB->readWithParams($query, $params);
+
+        // Check if a user was found
+        if (!empty($result)) {
+            return $result[0];
+        } else {
+            return null; // User not found
+        }
+    }
+}
 ?>
