@@ -1,40 +1,18 @@
 <?php
-
 session_start();
+require_once('auth.php');
 
-  include("classes/connect.php");
-  include('classes/login.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-  $email = "";
-  $password = ""; 
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST')
-   {
-    
-        $login = new Login();
-        $result = $login->evaluate($_POST);
-     
-    if($result != "")
-        {
-
-            echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-            echo "<br>The following errors occured:<br><br>";
-            echo $result;
-            echo "</div>";
-
-        }else
-        {
-
-            header("Location: index.php");
-            die;
-
-        }
-
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-       
-   }
-
+    if (authenticate($username, $password)) {
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        $error_message = "Invalid username or password";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -91,9 +69,10 @@ session_start();
                                 <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
-                    <form action="" method="POST">
-                        <div class="form-floating mb-3">
-                        <input name="email" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
+                        <?php if (isset($error_message)) echo "<p>$error_message</p>"; ?>
+    <form method="post" action="login.php">
+                                <div class="form-floating mb-3">
+                        <input name="username" class="form-control" value="<?php echo $email ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
                         <label for="text">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
