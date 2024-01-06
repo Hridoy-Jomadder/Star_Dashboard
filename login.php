@@ -1,30 +1,30 @@
 <?php
+session_start(); // Ensure that session_start() is called at the beginning
+
 include_once("classes/connect.php");
-include_once("classes/user.php"); // Include_once should be sufficient
+include_once("classes/login.php"); // Include_once should be sufficient
 
 $email = "";
 $password = "";
+$error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $login = new Login();
+    $error_message = $login->evaluate($_POST);
 
-    // Assuming you have a User class with a login method
-    $user = new User();
-    $result = $user->login($_POST['email'], $_POST['password']);
-
-    if ($result === true) {
+    if (empty($error_message)) {
         // Redirect to a dashboard or home page after successful login
         header("Location: dashboard.php");
         exit();
     } else {
         echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-        echo "Login failed. Please check your credentials.<br>";
+        echo $error_message;
         echo "</div>";
     }
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <meta content="Hridoy Jomadder"name="auther">
+    <meta content="Hridoy Jomadder" name="author">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -71,34 +71,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <!-- Spinner End -->
 
-
         <!-- Sign In Start -->
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                                <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
+                            <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
-                        <?php if (isset($error_message)) echo "<p>$error_message</p>"; ?>
-    <form method="post" action="login.php">
-    <input name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
-<input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
+                        <?php if (!empty($error_message)) echo "<p style='color:red;'>$error_message</p>"; ?>
 
-                                <!-- <div class="form-floating mb-3">
-                        <input name="username" class="form-control" value="<?php echo $username ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
-                        <label for="text">Email address</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                        <input name="password" class="form-control" value="<?php echo $password ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
-                        <label for="text">Password</label>
-                        </div> -->
+                        <form method="post" action="login.php">
+                            <div class="form-floating mb-3">
+                                <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
+                                <label for="text">Email Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="text" placeholder="Password" style="font-family: times new roman;">
+                                <label for="text">Password</label>
+                            </div>
 
-                        <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
-                        <p class="text-center mb-0">Don't have an Account? <a href="signup.php" style="font-family: times new roman;">Sign Up</a></p>
-                    </form>
-
+                            <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Log in" style="font-family: times new roman;"><br><br>
+                            <p class="text-center mb-0">Don't have an Account? <a href="signup.php" style="font-family: times new roman;">Sign Up</a></p>
+                        </form>
                     </div>
                 </div>
             </div>
