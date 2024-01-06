@@ -1,21 +1,20 @@
-<?php 
+<?php
 
-class Database
-{
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "das_db";
 
-	private $host = "localhost";
-	private $username = "root";
-	private $password = "";
-	private $db = "das_db";
- 
-	function connect()
-	{
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-		$connection = mysqli_connect($this->host,$this->username,$this->password,$this->db);
-		return $connection;
-	}
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-	function read($query)
+?>
+
+
+	<!-- function read($query)
 	{
 		$conn = $this->connect();
 		$result = mysqli_query($conn,$query);
@@ -53,4 +52,4 @@ class Database
 	}
 
 }
-
+ -->
