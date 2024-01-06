@@ -16,14 +16,17 @@ $_SESSION['das_user_role'] = $row['role'];
 // Check user role and redirect accordingly
 if ($role === 'CEO') {
     // CEO dashboard content
+    echo "<h1>Welcome CEO!</h1>";
 } elseif ($role === 'Co-CEO') {
     // Co-CEO dashboard content
+    echo "<h1>Welcome Co-CEO!</h1>";
 } elseif ($role === 'StarMember') {
     // Star Member dashboard content
+    echo "<h1>Welcome Star Member!</h1>";
 } else {
     // Default or unauthorized user content
+    echo "<h1>Welcome User!</h1>";
 }
-
 function get_user_role($username) {
     // Implement the logic to fetch user role from the database based on the username
     // Make sure to return the user role from this function
