@@ -21,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Fetch user information from the database based on the email
         $user = $login->fetchUserByEmail($email);
 
+        // Assuming $user contains the user information fetched from the database
+        $row = $user;
+
         // Set session variables
         $_SESSION['das_userid'] = $user['userid'];
         $_SESSION['das_user_role'] = $user['role'];
