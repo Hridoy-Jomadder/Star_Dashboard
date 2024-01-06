@@ -32,10 +32,7 @@ if (isset($row) && is_array($row)) {
         // Default or unauthorized user content
         echo "<h1>Welcome User!</h1>";
     }
-} else {
-    // Handle the case where user information is not available
-    echo "<h1>Error: User information not available</h1>";
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
