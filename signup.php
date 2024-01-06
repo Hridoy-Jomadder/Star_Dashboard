@@ -87,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="Username" style="font-family: times new roman;">
                             <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="E-mail Address" style="font-family: times new roman;">
                             <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="password" placeholder="password" style="font-family: times new roman;">
-                            <!-- ... other form fields ... -->
 
                             <input type="submit" class="btn btn-primary py-3 w-100 mb-4" id="button" value="Sign Up" style="font-family: times new roman;"><br><br>
                             <p class="text-center mb-0">Already have an account? <a href="login.php" style="font-family: times new roman;">Log In</a></p>
