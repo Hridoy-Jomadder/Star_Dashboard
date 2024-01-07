@@ -244,8 +244,6 @@ $role = $user['role'];
                     <div class="col-md-6 text-center">
                         <div class="col-sm-12 col-xl-6">
                             <div class="bg-light rounded h-100 p-4">
-                            <!-- <?php if (!empty($first_name) && !empty($last_name) && !empty($role)): ?> -->
-                                      Welcome to STAR_DASHMIN!<br>
                             <?php
                                     echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
                                     ?>
