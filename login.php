@@ -29,6 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['das_first_name'] = $user['first_name'];
             $_SESSION['das_last_name'] = $user['last_name'];
             $_SESSION['das_user_role'] = $user['role'];
+// Add these lines in your login.php file after setting session variables
+echo "UserID: " . $_SESSION['das_userid'] . "<br>";
+echo "FirstName: " . $_SESSION['das_first_name'] . "<br>";
+echo "LastName: " . $_SESSION['das_last_name'] . "<br>";
+echo "UserRole: " . $_SESSION['das_user_role'] . "<br>";
 
             header("Location: dashboard.php");
             exit();
