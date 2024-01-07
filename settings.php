@@ -218,26 +218,7 @@ session_start();
                                     <input type="submit" value="Upload">
                                 </form>
                                 <br/> -->
-                                <form method="post" enctype="multipart/form-data">
-         <?php
-         
-        $settings_class = new Settings();
-         
-         $settings = $settings_class->get_settings($_SESSION['das_userid']);
-            
-           if(is_array($settings)){ 
-               
-             echo "<input type='text' id='textbox' name='first_name' value='".htmlspecialchars($settings['first_name'])."' placeholder='First Name' />";
-             echo "<br/>";
-             echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/>";
-
- 
-               echo '<br/><br/><input id="post_button" type="submit" value="Save">';
-
-           }
-          ?>
-          </form>
-                            </div>
+                             </div>
                         </div>
                     </div>
                     </div>
