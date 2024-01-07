@@ -230,8 +230,7 @@ $role = $user['role'];
                                     <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
 
                                     <!-- Additional CEO-specific content -->
-                                    <!-- <p><strong>Email:</strong> <?php echo $email ?></p> -->
-                                    <p><strong>Company Role:</strong> CEO</p>
+                                    <p><strong>Email:</strong> <?php echo $email ?></p>
                                     <p><strong>Joined:</strong> <?php echo $join_date ?></p>
 
                             </div>
