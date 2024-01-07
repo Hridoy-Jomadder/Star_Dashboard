@@ -40,11 +40,13 @@ if (isset($user['profile_image']) && !empty($user['profile_image'])) {
 
 // Fetch CO-CEO data based on user ID if the user is a CO-CEO
 if ($user['role'] === 'co_ceo') {
+    // Use the fetched data directly in the CO-CEO profile section
     $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
 }
 
 // Fetch Star Member data based on user ID if the user is a Star Member
 if ($user['role'] === 'star_member') {
+    // Use the fetched data directly in the Star Member profile section
     $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
 }
 ?>
@@ -230,59 +232,37 @@ if ($user['role'] === 'star_member') {
             </nav>
             <!-- Navbar End -->
 
-     <!-- Display CEO's profile information -->
-     <div class="container-fluid pt-4 px-4">
+            <!-- Display CEO's profile information -->
+            <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
                         <div class="col-sm-12 col-xl-12">
                             <div class="bg-light rounded h-50 p-4">
-                            <?php if(isset($user_data['profile_image'])){ // Change $user_data to $user ?>
-                                $profile_image = $user_data['profile_image'];
-                            <?php } else { ?>
-                                // Set a default image or handle the case where profile_image is not set
-                                $profile_image = 'default_profile_image.jpg';
-                            <?php } ?>
+                                <!-- Set the profile image -->
+                                <img src="<?php echo $profile_image; ?>" width="300" height="300" class="rounded-circle">
+                                <br><br>
+                                <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
+                                <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
 
-                            <?php
-                                    echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                    ?>
-                                    <br><br>
-                                    <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
-                                    <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
+                                <!-- Additional CEO-specific content -->
+                                <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
+                                <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
 
-                                   <!-- Additional CEO-specific content -->
-                                    <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-                                    <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
+                                <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
+                                    <!-- CO-CEO profile section -->
+                                <?php endif; ?>
 
-                                    <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
-                                    <?php if ($user['role'] === 'co_ceo' && isset($co_ceo_data)): ?>
-                                        <div class="container-fluid pt-4 px-4">
-                                            <h3>CO-CEO Profile</h3>
-                                            <img src="<?php echo $co_ceo_data['profile_image']; ?>" alt="CO-CEO Profile Image" width="150" height="150" class="rounded-circle">
-                                            <p>Name: <?php echo $co_ceo_data['first_name'] . ' ' . $co_ceo_data['last_name']; ?></p>
-                                            <!-- Add other CO-CEO details as needed -->
-                                        </div>
-                                    <?php endif; ?>
-
-                                    <!-- Display Star Member's profile information if the user is a Star Member -->
-                                    <?php if ($user['role'] === 'star_member' && isset($star_member_data)): ?>
-                                        <div class="container-fluid pt-4 px-4">
-                                            <h3>Star Member Profile</h3>
-                                            <img src="<?php echo $star_member_data['profile_image']; ?>" alt="Star Member Profile Image" width="150" height="150" class="rounded-circle">
-                                            <p>Name: <?php echo $star_member_data['first_name'] . ' ' . $star_member_data['last_name']; ?></p>
-                                            <!-- Add other Star Member details as needed -->
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- CO-CEO and Star Member Profile Sections End -->
-
+                                <!-- Display Star Member's profile information if the user is a Star Member -->
+                                <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
+                                    <!-- Star Member profile section -->
+                                <?php endif; ?>
+                                <!-- CO-CEO and Star Member Profile Sections End -->
                             </div>
-                      </div>
+                        </div>
                     </div>
-               </div>
-             </div>
-          
-    
-       <!-- CO-CEO Profile Section -->
+                </div>
+            </div>
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
