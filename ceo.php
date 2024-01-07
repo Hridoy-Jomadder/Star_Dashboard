@@ -217,7 +217,7 @@ $role = $user['role'];
             <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
 
             <!-- Add any other CEO-specific content here -->
-            <p>This is a sample CEO profile. You can add more details and customize as needed.</p>
+            <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
 
 
             <!-- CO-CEO Profile Section -->
