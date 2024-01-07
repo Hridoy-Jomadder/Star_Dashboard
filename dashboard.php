@@ -239,22 +239,31 @@ $role = $user['role'];
     </div>
 
      <!-- Display CEO's profile information -->
-     <?php
-            echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-            ?>
-            <br><br>
-            <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
-            <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
+     <div class="container-fluid pt-4 px-4">
+                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                    <div class="col-md-6 text-center">
+                        <div class="col-sm-12 col-xl-6">
+                            <div class="bg-light rounded h-100 p-4">
+                            <?php
+                                    echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                                    ?>
+                                    <br><br>
+                                    <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
+                                    <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
 
-            <!-- Additional CEO-specific content -->
-            <p><strong>Email:</strong> <?php echo $email ?></p>
-            <p><strong>Company Role:</strong> CEO</p>
-            <p><strong>Joined:</strong> <?php echo $join_date ?></p>
+                                    <!-- Additional CEO-specific content -->
+                                    <p><strong>Email:</strong> <?php echo $email ?></p>
+                                    <p><strong>Company Role:</strong> CEO</p>
+                                    <p><strong>Joined:</strong> <?php echo $join_date ?></p>
 
-            <!-- Add any other CEO-specific content here -->
-            <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
-
-
+                                    <!-- Add any other CEO-specific content here -->
+                                    <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
+                               ?>
+                            </div>
+                      </div>
+                    </div>
+               </div>
+             </div>
        <!-- CO-CEO Profile Section -->
 
             <!-- Footer Start -->
