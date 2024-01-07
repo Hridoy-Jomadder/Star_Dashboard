@@ -80,21 +80,21 @@ if ($role === 'CEO') {
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                <?php if(isset($user_data['profile_image'])){
-                        $profile_image = $user_data['profile_image'];
-                    } else {
-                        // Set a default image or handle the case where profile_image is not set
-                        $profile_image = 'default_profile_image.jpg';
-                    }
+                <div class="position-relative">
+                    <?php if(isset($user_data['profile_image'])){
+                            $profile_image = $user_data['profile_image'];
+                        } else {
+                            // Set a default image or handle the case where profile_image is not set
+                            $profile_image = 'default_profile_image.jpg';
+                        }
+                    ?>
+                    <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                </div>
+                <div class="ms-3">
+                    <h1><?php echo $welcomeMessage; ?></h1>
+                    <?php echo $dashboardContent; ?>
+                </div>
 
-                ?>
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                     <h1><?php echo $welcomeMessage; ?></h1>
-                      <?php echo $dashboardContent; ?>
-                    </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
@@ -210,22 +210,6 @@ if ($role === 'CEO') {
             </nav>
             <!-- Navbar End -->
 
-            <?php
-             if ($role === 'CEO') {
-                    $welcomeMessage = "Welcome to $first_name $last_name!";
-                    $dashboardContent = "<title>CEO</title>";
-                } elseif ($role === 'Co-CEO') {
-                    $welcomeMessage = "Welcome to $first_name $last_name!";
-                    $dashboardContent = "<title>Co-CEO</title>";
-                } elseif ($role === 'StarMember') {
-                    $welcomeMessage = "Welcome to $first_name $last_name!";
-                    $dashboardContent = "<title>Star Member</title>";
-                } else {
-                    $welcomeMessage = "Welcome User!";
-                    $dashboardContent = "<p>This is the default dashboard.</p>";
-                }
-
-                ?>
                 <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
 <div class="ms-3">
     <h1><?php echo $welcomeMessage; ?></h1>
