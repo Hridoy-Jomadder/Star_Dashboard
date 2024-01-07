@@ -30,11 +30,6 @@ $first_name = $user['first_name'];
 $last_name = $user['last_name'];
 $role = $user['role'];
 
-// Fetch Co-CEO data
-$coCEOData = $DB->fetchCoCEOData($_SESSION['das_userid']);
-
-// Fetch Star Member data
-$starMemberData = $DB->fetchStarMemberData($_SESSION['das_userid']);
 
 ?>
 
@@ -241,34 +236,6 @@ $starMemberData = $DB->fetchStarMemberData($_SESSION['das_userid']);
                 <?php else: ?>
                     User data not available.
                 <?php endif; ?>
-
-                <!-- Display Co-CEO's profile information -->
-<?php if (!empty($coCEOData)): ?>
-    <div class="container-fluid pt-4 px-4">
-        <!-- Display Co-CEO data here using $coCEOData -->
-        <?php foreach ($coCEOData as $coCEO): ?>
-            <p><?= $coCEO['co_ceo_field']; ?></p>
-            <!-- Add other Co-CEO details as needed -->
-        <?php endforeach; ?>
-    </div>
-<?php else: ?>
-    <p>No Co-CEO data available.</p>
-<?php endif; ?>
-
-<!-- Display Star Member's profile information -->
-<?php if (!empty($starMemberData)): ?>
-    <div class="container-fluid pt-4 px-4">
-        <!-- Display Star Member data here using $starMemberData -->
-        <?php foreach ($starMemberData as $starMember): ?>
-            <p><?= $starMember['star_member_field']; ?></p>
-            <!-- Add other Star Member details as needed -->
-        <?php endforeach; ?>
-    </div>
-<?php else: ?>
-    <p>No Star Member data available.</p>
-<?php endif; ?>
-
-
             </div>
     </div>
 
