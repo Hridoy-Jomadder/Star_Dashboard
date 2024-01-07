@@ -13,10 +13,6 @@ if (isset($_SESSION['das_userid'])) {
     $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 }
 
-$_SESSION['das_first_name'] = $user['first_name'];
-$_SESSION['das_last_name'] = $user['last_name'];
-
-
 // Set default values for welcome message and dashboard content
 $welcomeMessage = "Welcome User!";
 $dashboardContent = "<p>This is the default dashboard.</p>";
@@ -32,6 +28,21 @@ if ($role === 'CEO') {
     $welcomeMessage = "Welcome to $first_name $last_name!";
     $dashboardContent = "<title>Star Member</title>";
 }
+if ($user) {
+    // Set session variables
+    $_SESSION['das_userid'] = $user['id'];
+    $_SESSION['das_first_name'] = $user['first_name'];
+    $_SESSION['das_last_name'] = $user['last_name'];
+    $_SESSION['das_user_role'] = $user['role'];
+
+    header("Location: dashboard.php");
+    exit();
+} else {
+    echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
+    echo "User not found.";
+    echo "</div>";
+}
+
 ?>
 
 
@@ -216,18 +227,16 @@ if ($role === 'CEO') {
                 </div>
             </nav>
             <!-- Navbar End -->
-
 <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
 <div class="ms-3">
     <h1><?php echo $welcomeMessage; ?></h1>
     <?php echo $dashboardContent; ?>
+
     Welcome to STAR_DASHMIN!
 
-Name: <?php echo $_SESSION['das_first_name'] . ' ' . $_SESSION['das_last_name']; ?>
+    Name: <?php echo $first_name . ' ' . $last_name; ?>
 
-Title: <?php echo $_SESSION['das_user_role']; ?>
-    <p>Name: <?php echo $first_name; ?> <?php echo $last_name; ?></p>
-    <p>Title: <?php echo $role; ?></p>
+    Title: <?php echo $role; ?>
 </div>
 
 
