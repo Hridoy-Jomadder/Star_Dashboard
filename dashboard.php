@@ -236,6 +236,7 @@ $role = $user['role'];
                     User data not available.
                 <?php endif; ?>
             </div>
+    </div>
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
