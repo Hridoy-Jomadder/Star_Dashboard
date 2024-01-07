@@ -263,6 +263,8 @@ $role = $user['role'];
                     </div>
                </div>
              </div>
+    </div>
+    
        <!-- CO-CEO Profile Section -->
 
             <!-- Footer Start -->
