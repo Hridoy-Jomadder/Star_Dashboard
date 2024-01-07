@@ -206,6 +206,7 @@ $role = $user['role'];
             <!-- Navbar End -->
 
             <!-- Display CEO's profile information -->
+            
             <?php
             echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
             ?>
