@@ -31,10 +31,10 @@ function hasRole($role) {
 
 // Usage
 // Check if the user is not logged in or does not have the CEO role
-if (!hasRole('CEO')) {
-    header("Location: unauthorized.php");
-    exit();
-}
+// if (!hasRole('CEO')) {
+//     header("Location: unauthorized.php");
+//     exit();
+// }
 
 // Now, the user has the CEO role, so you can display CEO-specific content
 $welcomeMessage = "Welcome CEO!";
