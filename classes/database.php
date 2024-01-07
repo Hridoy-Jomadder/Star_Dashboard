@@ -133,4 +133,32 @@ public function fetchStarMemberData() {
     }
 }
 
+
+public function fetchCoCEODetails($userId) {
+    $query = "SELECT * FROM co_ceo_table WHERE user_id = ?";
+    $params = [$userId];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result[0]; // Assuming you want to return the first row
+    } else {
+        // Handle the case where the query fails or no CO-CEO data is found
+        return false;
+    }
+}
+
+public function fetchStarMemberDetails($userId) {
+    $query = "SELECT * FROM star_member_table WHERE user_id = ?";
+    $params = [$userId];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result[0]; // Assuming you want to return the first row
+    } else {
+        // Handle the case where the query fails or no Star Member data is found
+        return false;
+    }
+}
 }

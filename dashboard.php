@@ -228,6 +228,13 @@ if ($user['role'] === 'star_member') {
                     <div class="col-md-6 text-center">
                         <div class="col-sm-12 col-xl-12">
                             <div class="bg-light rounded h-50 p-4">
+                            <?php if(isset($user_data['profile_image'])){ // Change $user_data to $user ?>
+                                $profile_image = $user_data['profile_image'];
+                            <?php } else { ?>
+                                // Set a default image or handle the case where profile_image is not set
+                                $profile_image = 'default_profile_image.jpg';
+                            <?php } ?>
+
                             <?php
                                     echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
                                     ?>
