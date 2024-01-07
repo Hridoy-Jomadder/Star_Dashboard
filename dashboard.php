@@ -202,8 +202,8 @@ $role = $user['role'];
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                         <!-- <h1><?php echo $welcomeMessage; ?></h1>
-                             <?php echo $dashboardContent; ?> -->
+                        <?php echo $first_name . ' ' . $last_name; ?>
+                        <?php echo $role; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
