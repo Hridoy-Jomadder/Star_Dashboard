@@ -229,7 +229,6 @@ $role = $user['role'];
 
                                    <!-- Additional CEO-specific content -->
                                     <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-                                    <p><strong>Company Role:</strong> CEO</p>
                                     <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
 
                             </div>
