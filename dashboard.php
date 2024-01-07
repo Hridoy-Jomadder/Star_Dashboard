@@ -232,10 +232,7 @@ $role = $user['role'];
                                     <!-- Additional CEO-specific content -->
                                     <!-- <p><strong>Email:</strong> <?php echo $email ?></p> -->
                                     <p><strong>Company Role:</strong> CEO</p>
-                                    <!-- <p><strong>Joined:</strong> <?php echo $join_date ?></p> -->
-
-                                    <!-- Add any other CEO-specific content here -->
-                                    <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
+                                    <p><strong>Joined:</strong> <?php echo $join_date ?></p>
 
                             </div>
                       </div>
