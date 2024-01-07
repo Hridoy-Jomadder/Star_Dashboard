@@ -232,7 +232,7 @@ if ($user['role'] === 'star_member') {
             </nav>
             <!-- Navbar End -->
 
-            <!-- Display CEO's profile information -->
+         <!-- Display CEO's profile information -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
@@ -246,7 +246,11 @@ if ($user['role'] === 'star_member') {
 
                                 <!-- Additional CEO-specific content -->
                                 <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-                                <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                
+                                <!-- Check if "join_date" key exists in the user array -->
+                                <?php if (isset($user['join_date'])): ?>
+                                    <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                <?php endif; ?>
 
                                 <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
                                 <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
@@ -263,6 +267,7 @@ if ($user['role'] === 'star_member') {
                     </div>
                 </div>
             </div>
+
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
