@@ -217,7 +217,7 @@ function hasRole($role) {
     // Check user role and display accordingly
     if ($role === 'CEO') {
         // CEO dashboard content
-        echo "<h3>Welcome to '$usename' !</h3>";
+        echo "<h3>Welcome to '$first_name' . '$last_name' !</h3>";
     } elseif ($role === 'Co-CEO') {
         // Co-CEO dashboard content
         echo "<h3>Welcome Co-CEO!</h3>";
