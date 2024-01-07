@@ -232,8 +232,7 @@ $role = $user['role'];
                     </div>
                </div>
              </div>
-          </div>
-         </div>
+          
     
        <!-- CO-CEO Profile Section -->
 
@@ -252,6 +251,8 @@ $role = $user['role'];
             </div>
             <!-- Footer End -->
         </div>
+        </div>
+         </div>
         <!-- Content End -->
 
 
