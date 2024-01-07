@@ -1,4 +1,3 @@
-class Database
 <?php
 class Database
 {
