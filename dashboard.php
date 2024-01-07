@@ -6,19 +6,21 @@ if (!isset($_SESSION['das_userid'])) {
     exit();
 }
 
-// Fetch user role from the session
+// Fetch user data from the session
+$first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
+$last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
 $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 
 // Check if $role is not null before displaying the welcome message
 if ($role === 'CEO') {
-    $welcomeMessage = "Welcome to '$first_name' . '$last_name'";
-    $dashboardContent = "<title>Ceo</title>";
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>CEO</title>";
 } elseif ($role === 'Co-CEO') {
-    $welcomeMessage = "Welcome to '$first_name' . '$last_name'";
-    $dashboardContent = "<title>Ceo</title>";
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>Co-CEO</title>";
 } elseif ($role === 'StarMember') {
-    $welcomeMessage = "Welcome to '$first_name' . '$last_name'";
-    $dashboardContent = "<title>Ceo</title>";
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>Star Member</title>";
 } else {
     $welcomeMessage = "Welcome User!";
     $dashboardContent = "<p>This is the default dashboard.</p>";
@@ -28,8 +30,6 @@ if ($role === 'CEO') {
 function hasRole($role) {
     return isset($_SESSION['das_user_role']) && $_SESSION['das_user_role'] === $role;
 }
-
-
 ?>
 
 <!DOCTYPE html>
