@@ -217,11 +217,15 @@ if ($role === 'CEO') {
                 <h1><?php echo $welcomeMessage; ?></h1>
                 <?php echo $dashboardContent; ?>
 
-                Welcome to STAR_DASHMIN!
+                <?php if (!empty($first_name) && !empty($last_name) && !empty($role)): ?>
+                    Welcome to STAR_DASHMIN!
 
-                Name: <?php echo $first_name . ' ' . $last_name; ?>
+                    Name: <?php echo $first_name . ' ' . $last_name; ?>
 
-                Title: <?php echo $role; ?>
+                    Title: <?php echo $role; ?>
+                <?php else: ?>
+                    User data not available.
+                <?php endif; ?>
             </div>
 
             <!-- Footer Start -->
