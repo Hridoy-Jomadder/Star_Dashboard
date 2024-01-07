@@ -81,19 +81,20 @@ class Database
     
 
     public function fetchUserById($userId)
-    {
-        $query = "SELECT * FROM users WHERE id = ?";
-        $params = [$userId];
+{
+    $query = "SELECT * FROM users WHERE userid = ?";
+    $params = [$userId];
 
-        $result = $this->readWithParams($query, $params);
+    $result = $this->readWithParams($query, $params);
 
-        if ($result !== false && !empty($result)) {
-            return $result[0]; // Assuming you want to return the first row
-        } else {
-            // Handle the case where the query fails or no user is found
-            return false;
-        }
+    if ($result !== false && !empty($result)) {
+        return $result[0]; // Assuming you want to return the first row
+    } else {
+        // Handle the case where the query fails or no user is found
+        return false;
     }
+}
+
     public function fetchAdditionalUserData($userId)
 {
     $query = "SELECT * FROM additional_user_data WHERE user_id = ?";
