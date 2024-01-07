@@ -109,4 +109,28 @@ class Database
     }
 }
 
+public function fetchCoCEOData() {
+    $query = "SELECT * FROM co_ceo_data_table";
+    $result = $this->execute($query);
+
+    if ($result !== false && $result->num_rows > 0) {
+        $co_ceo_data = $result->fetch_all(MYSQLI_ASSOC);
+        return $co_ceo_data;
+    } else {
+        return false;
+    }
+}
+
+public function fetchStarMemberData() {
+    $query = "SELECT * FROM star_member_data_table";
+    $result = $this->execute($query);
+
+    if ($result !== false && $result->num_rows > 0) {
+        $star_member_data = $result->fetch_all(MYSQLI_ASSOC);
+        return $star_member_data;
+    } else {
+        return false;
+    }
+}
+
 }
