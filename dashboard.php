@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-$_SESSION['das_userid'] = $user_id;  // Assuming $user_id is the user's ID
-$_SESSION['das_first_name'] = $first_name;  // Set the user's first name
-$_SESSION['das_last_name'] = $last_name;    // Set the user's last name
-$_SESSION['das_user_role'] = $user_role;    // Set the user's role
-
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
     exit();
