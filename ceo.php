@@ -1,31 +1,36 @@
 <?php
 session_start();
 
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/signup.php");
+
+// Check if the user is logged in, redirect to the login page if not
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
     exit();
 }
 
-// Fetch user role from the session
-$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+// Create a Database instance
+$DB = new Database();
 
-// Check if $role is not null before displaying the welcome message
-if ($role === 'CEO') {
-    $welcomeMessage = "Welcome CEO!";
-    $dashboardContent = "<p>Welcome Ceo</p>";
-} elseif ($role === 'Co-CEO') {
-    $welcomeMessage = "Welcome Co-CEO!";
-    $dashboardContent = "<p>This is the Co-CEO dashboard.</p>";
-} elseif ($role === 'StarMember') {
-    $welcomeMessage = "Welcome Star Member!";
-    $dashboardContent = "<p>This is the Star Member dashboard.</p>";
-} else {
-    $welcomeMessage = "Welcome User!";
-    $dashboardContent = "<p>This is the default dashboard.</p>";
+// Fetch user information based on the user ID stored in the session
+$user = $DB->fetchUserById($_SESSION['das_userid']);
+
+// Check if the user is found
+if (!$user) {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
 }
-?>
 
- 
+// Now you can use $user to display user information in your dashboard
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+$role = $user['role'];
+
+?>
  <!DOCTYPE html>
 <html lang="en">
 
