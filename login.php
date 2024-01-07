@@ -11,6 +11,9 @@ $password = "";
 $error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
     $DB = new Database();
     $login = new Login($DB);
 
@@ -29,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             header("Location: dashboard.php");
             exit();
-
         } else {
             echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
             echo "User not found.";
@@ -40,9 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo $error_message;
         echo "</div>";
     }
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 }
 ?>
 

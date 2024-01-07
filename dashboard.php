@@ -28,20 +28,7 @@ if ($role === 'CEO') {
     $welcomeMessage = "Welcome to $first_name $last_name!";
     $dashboardContent = "<title>Star Member</title>";
 }
-if ($user) {
-    // Set session variables
-    $_SESSION['das_userid'] = $user['id'];
-    $_SESSION['das_first_name'] = $user['first_name'];
-    $_SESSION['das_last_name'] = $user['last_name'];
-    $_SESSION['das_user_role'] = $user['role'];
 
-    header("Location: dashboard.php");
-    exit();
-} else {
-    echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-    echo "User not found.";
-    echo "</div>";
-}
 
 ?>
 
