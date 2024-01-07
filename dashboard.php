@@ -220,10 +220,10 @@ function hasRole($role) {
         echo "<h3>Welcome to '$first_name' . '$last_name' !</h3>";
     } elseif ($role === 'Co-CEO') {
         // Co-CEO dashboard content
-        echo "<h3>Welcome Co-CEO!</h3>";
+        echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
     } elseif ($role === 'StarMember') {
         // Star Member dashboard content
-        echo "<h3>Welcome Star Member!</h3>";
+        echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
     } else {
         // Default or unauthorized user content
         echo "<h1>Welcome User!</h1>";
