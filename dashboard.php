@@ -214,28 +214,7 @@ $role = $user['role'];
             </nav>
             <!-- Navbar End -->
 
-            <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
-            <!-- <div class="ms-3">
-            
-    <?php if(isset($user_data['profile_image'])): ?>
-        <img src="<?php echo $user_data['profile_image']; ?>" alt="Profile Image" style="width: 40px; height: 40px;">
-    <?php else: ?>
-        <!-- Set a default image or handle the case where profile_image is not set -->
-        <img src="default_profile_image.jpg" alt="Default Profile Image" style="width: 40px; height: 40px;">
-    <?php endif; ?>
-    </div>
-    <!-- Display other user data as needed -->
-          
-                <?php if (!empty($first_name) && !empty($last_name) && !empty($role)): ?>
-                    Welcome to STAR_DASHMIN!<br>
 
-                    Name: <?php echo $first_name . ' ' . $last_name; ?><br>
-
-                    Title: <?php echo $role; ?><br>
-                <?php else: ?>
-                    User data not available.
-                <?php endif; ?>
-            -->
 
      <!-- Display CEO's profile information -->
      <div class="container-fluid pt-4 px-4">
