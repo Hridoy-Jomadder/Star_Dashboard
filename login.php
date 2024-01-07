@@ -1,5 +1,5 @@
 <?php
-session_start(); // Ensure that session_start() is called at the beginning
+session_start();
 
 include_once("classes/connect.php");
 include_once("classes/login.php");
@@ -29,25 +29,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['das_first_name'] = $user['first_name'];
             $_SESSION['das_last_name'] = $user['last_name'];
             $_SESSION['das_user_role'] = $user['role'];
-// Add these lines in your login.php file after setting session variables
-echo "UserID: " . $_SESSION['das_userid'] . "<br>";
-echo "FirstName: " . $_SESSION['das_first_name'] . "<br>";
-echo "LastName: " . $_SESSION['das_last_name'] . "<br>";
-echo "UserRole: " . $_SESSION['das_user_role'] . "<br>";
+
+            // Optional: Add debug lines
+            echo "UserID: " . $_SESSION['das_userid'] . "<br>";
+            echo "FirstName: " . $_SESSION['das_first_name'] . "<br>";
+            echo "LastName: " . $_SESSION['das_last_name'] . "<br>";
+            echo "UserRole: " . $_SESSION['das_user_role'] . "<br>";
 
             header("Location: dashboard.php");
             exit();
         } else {
-            echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-            echo "User not found.";
-            echo "</div>";
+            $error_message = "User not found.";
         }
-    } else {
-        echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
-        echo $error_message;
-        echo "</div>";
     }
 }
+
 ?>
 
 
