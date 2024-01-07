@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-// Set user data from the session
-$first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
-$last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
-$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+// Set default values for user data
+$first_name = "";
+$last_name = "";
+$role = null;
 
-// Check if the user is not logged in
-if (!isset($_SESSION['das_userid'])) {
-    header("Location: login.php");
-    exit();
+// Check if the user is logged in and retrieve user data
+if (isset($_SESSION['das_userid'])) {
+    $first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
+    $last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
+    $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 }
 
 // Set default values for welcome message and dashboard content
@@ -28,6 +29,7 @@ if ($role === 'CEO') {
     $dashboardContent = "<title>Star Member</title>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
