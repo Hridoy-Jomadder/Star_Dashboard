@@ -230,11 +230,11 @@ $role = $user['role'];
                 <?php echo $dashboardContent; ?> -->
 
                 <?php if (!empty($first_name) && !empty($last_name) && !empty($role)): ?>
-                    Welcome to STAR_DASHMIN!
+                    Welcome to STAR_DASHMIN!<br>
 
-                    Name: <?php echo $first_name . ' ' . $last_name; ?>
+                    Name: <?php echo $first_name . ' ' . $last_name; ?><br>
 
-                    Title: <?php echo $role; ?>
+                    Title: <?php echo $role; ?><br>
                 <?php else: ?>
                     User data not available.
                 <?php endif; ?>
