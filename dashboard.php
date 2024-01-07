@@ -226,6 +226,15 @@ if ($role === 'CEO') {
                 }
 
                 ?>
+                <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
+<div class="ms-3">
+    <h1><?php echo $welcomeMessage; ?></h1>
+    <?php echo $dashboardContent; ?>
+    <p>Name: <?php echo $first_name; ?> <?php echo $last_name; ?></p>
+    <p>Title: <?php echo $role; ?></p>
+</div>
+
+
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
