@@ -71,6 +71,20 @@ class Database
             return false;
         }
     }
+    public function fetchUserById($userId)
+    {
+        $query = "SELECT * FROM users WHERE id = ?";
+        $params = [$userId];
+
+        $result = $this->readWithParams($query, $params);
+
+        if ($result !== false && !empty($result)) {
+            return $result[0]; // Assuming you want to return the first row
+        } else {
+            // Handle the case where the query fails or no user is found
+            return false;
+        }
+    }
 }
 
 ?>
