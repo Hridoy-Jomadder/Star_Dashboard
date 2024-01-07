@@ -30,6 +30,8 @@ $first_name = $user['first_name'];
 $last_name = $user['last_name'];
 $role = $user['role'];
 
+
+
 ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -220,10 +222,10 @@ $role = $user['role'];
             <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
 
 
-          <!-- CO-CEO Profile Section -->
+       <!-- CO-CEO Profile Section -->
 <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
     <div class="container-fluid pt-4 px-4">
-        <!-- ... (your existing code) ... -->
+        <!-- ... (your existing CO-CEO code) ... -->
     </div>
 <?php else: ?>
     <p>No CO-CEO data available.</p>
@@ -233,12 +235,13 @@ $role = $user['role'];
 <!-- Star Member Profile Section -->
 <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
     <div class="container-fluid pt-4 px-4">
-        <!-- ... (your existing code) ... -->
+        <!-- ... (your existing Star Member code) ... -->
     </div>
 <?php else: ?>
     <p>No Star Member data available.</p>
 <?php endif; ?>
 <!-- Star Member Profile Section End -->
+
 
 
 <!-- Star Member Profile Section -->
