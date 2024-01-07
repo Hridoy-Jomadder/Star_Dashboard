@@ -1,11 +1,14 @@
 <?php
 session_start();
 
+// Include the file containing the Database class
+include_once("classes/database.php");
+
 // Check if the user is logged in and retrieve user data
 if (isset($_SESSION['das_userid'])) {
     $DB = new Database(); // Assuming you have a Database class
     $user_data = $DB->fetchUserById($_SESSION['das_userid']);
-
+    
     if ($user_data) {
         $first_name = $user_data['first_name'];
         $last_name = $user_data['last_name'];
@@ -26,11 +29,7 @@ if (isset($_SESSION['das_userid'])) {
             $welcomeMessage = "Welcome to $first_name $last_name!";
             $dashboardContent = "<title>Star Member</title>";
         }
-    } else {
-        // Handle the case where user data couldn't be retrieved
-        $welcomeMessage = "Welcome User!";
-        $dashboardContent = "<p>This is the default dashboard.</p>";
-    }
+    } 
 } else {
     // Handle the case where the user is not logged in
     $welcomeMessage = "Welcome User!";
