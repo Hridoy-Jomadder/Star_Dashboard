@@ -96,7 +96,7 @@ $role = $user['role'];
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                <?php echo $first_name . ' ' . $last_name; ?>
+                <?php echo $first_name . ' ' . $last_name; ?><br>
                         <?php echo $role; ?>
                 </div>
 
