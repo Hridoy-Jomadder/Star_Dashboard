@@ -1,7 +1,8 @@
+class Database
 <?php
-
 class Database
 {
+
     private $conn;
     public $error;
 
@@ -40,9 +41,10 @@ class Database
         }
     }
 
-    public function readWithParams($query, $params) {
+    public function readWithParams($query, $params)
+    {
         $stmt = $this->conn->prepare($query);
-        
+
         if ($stmt) {
             // Bind parameters
             if (!empty($params)) {
@@ -71,6 +73,7 @@ class Database
             return false;
         }
     }
+
     public function fetchUserById($userId)
     {
         $query = "SELECT * FROM users WHERE id = ?";
@@ -86,5 +89,3 @@ class Database
         }
     }
 }
-
-?>
