@@ -1,33 +1,35 @@
 <?php
 session_start();
 
-// Set default values for user data
-$first_name = "";
-$last_name = "";
-$role = null;
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/signup.php");
 
-// Check if the user is logged in and retrieve user data
-if (isset($_SESSION['das_userid'])) {
-    $first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
-    $last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
-    $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
 }
 
-// Set default values for welcome message and dashboard content
-$welcomeMessage = "Welcome User!";
-$dashboardContent = "<p>This is the default dashboard.</p>";
+// Create a Database instance
+$DB = new Database();
 
-// Check the user's role and update welcome message and dashboard content accordingly
-if ($role === 'CEO') {
-    $welcomeMessage = "Welcome to $first_name $last_name!";
-    $dashboardContent = "<title>CEO</title>";
-} elseif ($role === 'Co-CEO') {
-    $welcomeMessage = "Welcome to $first_name $last_name!";
-    $dashboardContent = "<title>Co-CEO</title>";
-} elseif ($role === 'StarMember') {
-    $welcomeMessage = "Welcome to $first_name $last_name!";
-    $dashboardContent = "<title>Star Member</title>";
+// Fetch user information based on the user ID stored in the session
+$user = $DB->fetchUserById($_SESSION['das_userid']);
+
+// Check if the user is found
+if (!$user) {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
 }
+
+// Now you can use $user to display user information in your dashboard
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+$role = $user['role'];
+
 ?>
 
 <!DOCTYPE html>
