@@ -1,5 +1,4 @@
 <?php
-
 class Login
 {
     private $error = "";
@@ -24,6 +23,10 @@ class Login
             $_SESSION['das_userid'] = $user['userid'];
             $_SESSION['das_user_role'] = $user['role'];
 
+            // Fetch additional user data
+            $additionalUserData = $this->fetchAdditionalUserData($user['userid']);
+            $_SESSION['das_user_data'] = $additionalUserData;
+
             // Set $row for dashboard.php
             $row = $user;
 
@@ -36,6 +39,21 @@ class Login
         }
     }
 
+    private function fetchAdditionalUserData($userId)
+    {
+        // Query to fetch additional user data by user ID
+        $query = "SELECT * FROM additional_user_data WHERE user_id = ?";
+        $params = [$userId];
+
+        $result = $this->DB->readWithParams($query, $params);
+
+        // Check if additional user data was found
+        if (!empty($result)) {
+            return $result[0];
+        } else {
+            return null; // Additional user data not found
+        }
+    }
 
     private function fetchUserByEmail($email)
     {
@@ -53,4 +71,3 @@ class Login
         }
     }
 }
-?>

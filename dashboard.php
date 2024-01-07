@@ -216,6 +216,16 @@ $role = $user['role'];
 
             <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
             <div class="ms-3">
+            <div class="ms-2">
+    <?php if(isset($user_data['profile_image'])): ?>
+        <img src="<?php echo $user_data['profile_image']; ?>" alt="Profile Image" style="width: 40px; height: 40px;">
+    <?php else: ?>
+        <!-- Set a default image or handle the case where profile_image is not set -->
+        <img src="default_profile_image.jpg" alt="Default Profile Image" style="width: 40px; height: 40px;">
+    <?php endif; ?>
+    <!-- Display other user data as needed -->
+</div>
+
                 <h1><?php echo $welcomeMessage; ?></h1>
                 <?php echo $dashboardContent; ?>
 
