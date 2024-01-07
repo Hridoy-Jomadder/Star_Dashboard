@@ -88,4 +88,18 @@ class Database
             return false;
         }
     }
+    public function fetchAdditionalUserData($userId)
+{
+    $query = "SELECT * FROM additional_user_data WHERE user_id = ?";
+    $params = [$userId];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result[0]; // Assuming you want to return the first row
+    } else {
+        return false; // Handle the case where no additional user data is found
+    }
+}
+
 }
