@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($first_name, $last_name, $role);
 
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
