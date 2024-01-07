@@ -213,22 +213,26 @@ function hasRole($role) {
                 </div>
             </nav>
             <!-- Navbar End -->
-    <?php
-    // Check user role and display accordingly
-    if ($role === 'CEO') {
-        // CEO dashboard content
-        echo "<h3>Welcome to '$first_name' . '$last_name' !</h3>";
-    } elseif ($role === 'Co-CEO') {
-        // Co-CEO dashboard content
-        echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
-    } elseif ($role === 'StarMember') {
-        // Star Member dashboard content
-        echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
-    } else {
-        // Default or unauthorized user content
-        echo "<h1>Welcome User!</h1>";
-    }
-    ?>
+
+
+            <?php
+            // Check user role and display accordingly
+            if ($role === 'CEO') {
+                // CEO dashboard content
+                echo "<h3>Welcome to '$first_name' . '$last_name' !</h3>";
+            } elseif ($role === 'Co-CEO') {
+                // Co-CEO dashboard content
+                echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
+            } elseif ($role === 'StarMember') {
+                // Star Member dashboard content
+                echo "<h3>Welcome to '$first_name' . '$last_name'</h3>";
+            } else {
+                // Default or unauthorized user content
+                echo "<h1>Welcome User!</h1>";
+            }
+            ?>
+
+            
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
