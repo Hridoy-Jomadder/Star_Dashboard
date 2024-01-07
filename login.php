@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             header("Location: dashboard.php");
             exit();
+
         } else {
             echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
             echo "User not found.";
@@ -99,7 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
-                        <form method="post" action="login.php">
+                        <?php if (!empty($error_message)): ?>
+                            <div style="text-align:center; font-size:12px; color:white; background:red;">
+                                <?php echo $error_message; ?>
+                            </div>
+                        <?php endif; ?>
+
+
+                        <form method="post" action="">
                         <div class="form-floating mb-3">
                             <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
                             <label for="text">Email Address</label>
