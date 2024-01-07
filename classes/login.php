@@ -60,9 +60,12 @@ class Login
         // Query to fetch user information by email
         $query = "SELECT userid, role, password FROM users WHERE email = ?";
         $params = [$email];
-
+    
+        // For debugging purposes, output the SQL query
+        echo "Debug: SQL Query: $query, Params: " . implode(', ', $params) . "<br>";
+    
         $result = $this->DB->readWithParams($query, $params);
-
+    
         // Check if a user was found
         if (!empty($result)) {
             return $result[0];
@@ -70,4 +73,5 @@ class Login
             return null; // User not found
         }
     }
+    
 }
