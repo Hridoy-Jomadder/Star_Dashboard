@@ -40,38 +40,45 @@ class Database
         }
     }
 
-    public function readWithParams($query, $params)
-    {
+    public function readWithParams($query, $params) {
         $stmt = $this->conn->prepare($query);
-
+    
         if ($stmt) {
             // Bind parameters
             if (!empty($params)) {
-                $types = str_repeat('s', count($params)); // Assuming all parameters are strings, adjust as needed
+                $types = str_repeat('s', count($params));
                 $stmt->bind_param($types, ...$params);
             }
-
+    
             // Execute the query
             $stmt->execute();
-
+    
             // Get result set
             $result = $stmt->get_result();
-
+    
+            if ($result === false) {
+                // Display error if the result is false
+                echo "Database Error: " . $this->conn->error;
+                return false;
+            }
+    
             // Fetch the results
             $data = [];
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-
+    
             // Close statement
             $stmt->close();
-
+    
             return $data;
         } else {
             // Handle statement preparation failure
+            echo "Statement Preparation Error: " . $this->conn->error;
             return false;
         }
     }
+    
 
     public function fetchUserById($userId)
     {
