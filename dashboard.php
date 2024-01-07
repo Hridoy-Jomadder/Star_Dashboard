@@ -96,8 +96,8 @@ $role = $user['role'];
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
-                    <!-- <h1><?php echo $welcomeMessage; ?></h1>
-                    <?php echo $dashboardContent; ?> -->
+                <?php echo $first_name . ' ' . $last_name; ?>
+                        <?php echo $role; ?>
                 </div>
 
                 </div>
@@ -203,7 +203,6 @@ $role = $user['role'];
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <?php echo $first_name . ' ' . $last_name; ?>
-                        <?php echo $role; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
