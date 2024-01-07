@@ -1,21 +1,22 @@
 <?php
 session_start();
 
+// Set user data from the session
+$first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
+$last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
+$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+
+// Check if the user is not logged in
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
     exit();
 }
 
-// Fetch user data from the session
-$first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
-$last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
-$role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
-
 // Set default values for welcome message and dashboard content
 $welcomeMessage = "Welcome User!";
 $dashboardContent = "<p>This is the default dashboard.</p>";
 
-// Check if $role is not null before updating welcome message and dashboard content
+// Check the user's role and update welcome message and dashboard content accordingly
 if ($role === 'CEO') {
     $welcomeMessage = "Welcome to $first_name $last_name!";
     $dashboardContent = "<title>CEO</title>";
