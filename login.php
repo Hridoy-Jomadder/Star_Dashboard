@@ -2,7 +2,7 @@
 session_start(); // Ensure that session_start() is called at the beginning
 
 include_once("classes/connect.php");
-include_once("classes/login.php"); // Include_once should be sufficient
+include_once("classes/login.php");
 include_once("classes/database.php");
 include_once("classes/signup.php");
 
@@ -12,24 +12,28 @@ $error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $DB = new Database();
-    $login = new Login($DB); // Pass an instance of the Database class to Login
+    $login = new Login($DB);
+
     $error_message = $login->evaluate($_POST);
 
     if (empty($error_message)) {
-        // Redirect to a dashboard or home page after successful login
-        
         // Fetch user information from the database based on the email
         $user = $login->fetchUserByEmail($email);
 
-        // Assuming $user contains the user information fetched from the database
-        $row = $user;
+        if ($user) {
+            // Set session variables
+            $_SESSION['das_userid'] = $user['id'];
+            $_SESSION['das_first_name'] = $user['first_name'];
+            $_SESSION['das_last_name'] = $user['last_name'];
+            $_SESSION['das_user_role'] = $user['role'];
 
-        // Set session variables
-        $_SESSION['das_userid'] = $user['userid'];
-        $_SESSION['das_user_role'] = $user['role'];
-
-        header("Location: dashboard.php");
-        exit();
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
+            echo "User not found.";
+            echo "</div>";
+        }
     } else {
         echo "<div style='text-align:center;font-size:12px;color:white;background:red;'>";
         echo $error_message;
@@ -40,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
