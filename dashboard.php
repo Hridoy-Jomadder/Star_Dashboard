@@ -29,17 +29,6 @@ function hasRole($role) {
     return isset($_SESSION['das_user_role']) && $_SESSION['das_user_role'] === $role;
 }
 
-// Usage
-// Check if the user is not logged in or does not have the CEO role
-// if (!hasRole('CEO')) {
-//     header("Location: unauthorized.php");
-//     exit();
-// }
-
-// Now, the user has the CEO role, so you can display CEO-specific content
-$welcomeMessage = "Welcome CEO!";
-$dashboardContent = "<h6>Welcome CEO</h6>";
-
 
 ?>
 
