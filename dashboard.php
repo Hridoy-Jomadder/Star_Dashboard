@@ -1,42 +1,34 @@
 <?php
 session_start();
 
-// Include the file containing the Database class
-include_once("classes/database.php");
+// Set default values for user data
+$first_name = "";
+$last_name = "";
+$role = null;
 
 // Check if the user is logged in and retrieve user data
 if (isset($_SESSION['das_userid'])) {
-    $DB = new Database(); // Assuming you have a Database class
-    $user_data = $DB->fetchUserById($_SESSION['das_userid']);
-    
-    if ($user_data) {
-        $first_name = $user_data['first_name'];
-        $last_name = $user_data['last_name'];
-        $role = $user_data['role'];
+    $first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] : "";
+    $last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
+    $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
+}
 
-        // Set default values for welcome message and dashboard content
-        $welcomeMessage = "Welcome to $first_name $last_name!";
-        $dashboardContent = "<p>This is the default dashboard.</p>";
+// Set default values for welcome message and dashboard content
+$welcomeMessage = "Welcome User!";
+$dashboardContent = "<p>This is the default dashboard.</p>";
 
-        // Check the user's role and update welcome message and dashboard content accordingly
-        if ($role === 'CEO') {
-            $welcomeMessage = "Welcome to $first_name $last_name!";
-            $dashboardContent = "<title>CEO</title>";
-        } elseif ($role === 'Co-CEO') {
-            $welcomeMessage = "Welcome to $first_name $last_name!";
-            $dashboardContent = "<title>Co-CEO</title>";
-        } elseif ($role === 'StarMember') {
-            $welcomeMessage = "Welcome to $first_name $last_name!";
-            $dashboardContent = "<title>Star Member</title>";
-        }
-    } 
-} else {
-    // Handle the case where the user is not logged in
-    $welcomeMessage = "Welcome User!";
-    $dashboardContent = "<p>This is the default dashboard.</p>";
+// Check the user's role and update welcome message and dashboard content accordingly
+if ($role === 'CEO') {
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>CEO</title>";
+} elseif ($role === 'Co-CEO') {
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>Co-CEO</title>";
+} elseif ($role === 'StarMember') {
+    $welcomeMessage = "Welcome to $first_name $last_name!";
+    $dashboardContent = "<title>Star Member</title>";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -220,6 +212,7 @@ if (isset($_SESSION['das_userid'])) {
             </nav>
             <!-- Navbar End -->
 
+            <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
             <div class="ms-3">
                 <h1><?php echo $welcomeMessage; ?></h1>
                 <?php echo $dashboardContent; ?>
@@ -230,8 +223,6 @@ if (isset($_SESSION['das_userid'])) {
 
                 Title: <?php echo $role; ?>
             </div>
-
-
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
