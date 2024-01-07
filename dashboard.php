@@ -211,7 +211,9 @@ if ($role === 'CEO') {
             <!-- Navbar End -->
 
                 <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
-<div class="ms-3">
+                var_dump($first_name, $last_name, $role);
+
+                <div class="ms-3">
     <h1><?php echo $welcomeMessage; ?></h1>
     <?php echo $dashboardContent; ?>
     <p>Name: <?php echo $first_name; ?> <?php echo $last_name; ?></p>
