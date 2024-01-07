@@ -238,6 +238,25 @@ $role = $user['role'];
             </div>
     </div>
 
+     <!-- Display CEO's profile information -->
+     <?php
+            echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+            ?>
+            <br><br>
+            <h5 class="mb-0"><?php echo $user['first_name'] . " " . $user['last_name'] ?></h5>
+            <h6 class="mb-2"><?php echo $user['role'] ?></h6>
+
+            <!-- Additional CEO-specific content -->
+            <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
+            <p><strong>Company Role:</strong> CEO</p>
+            <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+
+            <!-- Add any other CEO-specific content here -->
+            <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
+
+
+       <!-- CO-CEO Profile Section -->
+
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
