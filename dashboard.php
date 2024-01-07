@@ -11,7 +11,11 @@ $first_name = isset($_SESSION['das_first_name']) ? $_SESSION['das_first_name'] :
 $last_name = isset($_SESSION['das_last_name']) ? $_SESSION['das_last_name'] : "";
 $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 
-// Check if $role is not null before displaying the welcome message
+// Set default values for welcome message and dashboard content
+$welcomeMessage = "Welcome User!";
+$dashboardContent = "<p>This is the default dashboard.</p>";
+
+// Check if $role is not null before updating welcome message and dashboard content
 if ($role === 'CEO') {
     $welcomeMessage = "Welcome to $first_name $last_name!";
     $dashboardContent = "<title>CEO</title>";
@@ -21,14 +25,6 @@ if ($role === 'CEO') {
 } elseif ($role === 'StarMember') {
     $welcomeMessage = "Welcome to $first_name $last_name!";
     $dashboardContent = "<title>Star Member</title>";
-} else {
-    $welcomeMessage = "Welcome User!";
-    $dashboardContent = "<p>This is the default dashboard.</p>";
-}
-
-// Assume you have a function to check if a user has a specific role
-function hasRole($role) {
-    return isset($_SESSION['das_user_role']) && $_SESSION['das_user_role'] === $role;
 }
 ?>
 
