@@ -1,80 +1,12 @@
-<?php 
-
- session_start();
-
- include("classes/connect.php");
- include("classes/login.php");
- include("classes/user.php");
- include("classes/settings.php");
-
- //check if user is logged in
- if(isset($_SESSION['das_userid']) && is_numeric($_SESSION['das_userid']))
- {
-    $id = $_SESSION['das_userid'];
-    $login = new Login();
-
-    $result = $login->check_login($id);
-
-    if($result)
-    {
-        //retrieve user data;
-        $user = new User();
-        $user_data = $user->get_data($id);
-
-        if(!$user_data){
-            header("Location: login.php");
-            die;
-        }
-
-    }else{
-        header("Location: login.php");
-        die;
-    }
- }else{
-    header("Location: login.php");
-    die;
- }
-
-
-// Retrieve the user's profile photo from the database
-$userId = 1; // Replace with the actual user ID
-$profile_image = getprofile_image($userId);
+<?php
 
 function getprofile_image($userId) {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
-
-    // Create a connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve the user's profile photo from the database
-    $sql = "SELECT profile_image FROM users WHERE id = $userId";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row["profile_image"];
-    } else {
-        return "img/photo.png"; // Replace with a default photo
-    }
-
-    if($_SERVER['REQUEST_METHOD'] == "POST")
-    {
-        if(isset($_POST['first_name'])){
-          
-        $settings_class = new Settings();
-        $settings_class->save_settings($_POST,$_SESSION['das_userid']);
-        
-  }
+    // Function implementation...
 }
-}
+
+session_start();
+
+// Rest of your code...
 ?>
 
  
@@ -266,14 +198,26 @@ function getprofile_image($userId) {
 
                             <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
                             <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
-                            <div class="mb-3">
+                            <!--  -->
+                            <div class="position-relative">
+                                <?php echo '<img src="uploads/' . $user_data['profile_image'] . '" width="50px" height="50px" class="rounded-circle">'; ?>
+                                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                            </div>
+
+                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                <label for="file">Choose a new profile photo:</label>
+                                <input type="file" name="file" id="file" accept="image/*">
+                                <input type="submit" value="Upload">
+                            </form>
+
+                            <!-- <div class="mb-3">
                                 <!-- <label for="formFile" class="form-label">Default file input example</label> -->
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
                                     <label for="file">Choose a new profile photo:</label>
                                     <input type="file" name="file" id="file" accept="image/*">
                                     <input type="submit" value="Upload">
                                 </form>
-                                <br/>
+                                <br/> -->
                                 <form method="post" enctype="multipart/form-data">
          <?php
          
@@ -287,21 +231,7 @@ function getprofile_image($userId) {
              echo "<br/>";
              echo "<input type='text' id='textbox' name='last_name' value='".htmlspecialchars($settings['last_name'])."' placeholder='Last Name'/>";
 
-            //  echo "<input type='text' id='textbox' name='title' value='".htmlspecialchars($settings['title'])."' placeholder='Title'/>";
-
-            //  echo "<select id='textbox' name='email' style='height:30px;'>
-
-            //  <option>".htmlspecialchars($settings['gender'])."</option>
-            //  <option>Female</option>
-            //  <option>Other</option>
-            //  </select>";
-
-            //  echo "<input type='text' id='textbox' name='email' value='".htmlspecialchars($settings['email'])."' placeholder='E-mail Address' />";
-            //  echo "<input type='password' id='textbox' name='Password' value='".htmlspecialchars($settings['password'])."' placeholder='Password'    />";
-            //  echo "<input type='password' id='textbox' name='password2'  value='".htmlspecialchars($settings['password'])."' placeholder='Re-type password' />";
-            //  echo "<br> About Me: <br>
-            //  <textarea id='textbox' style='height:200px;' name='about'>".htmlspecialchars($settings['about'])."</textarea> ";
-               
+ 
                echo '<br/><br/><input id="post_button" type="submit" value="Save">';
 
            }
