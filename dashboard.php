@@ -231,6 +231,25 @@ $role = $user['role'];
                                     <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
                                     <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
 
+                                <!-- CO-CEO Profile Section -->
+                                <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
+                                    <div class="container-fluid pt-4 px-4">
+                                        <!-- ... (your existing CO-CEO code) ... -->
+                                    </div>
+                                <?php else: ?>
+                                    <p>No CO-CEO data available.</p>
+                                <?php endif; ?>
+                                <!-- CO-CEO Profile Section End -->
+
+                                <!-- Star Member Profile Section -->
+                                <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
+                                    <div class="container-fluid pt-4 px-4">
+                                        <!-- ... (your existing Star Member code) ... -->
+                                    </div>
+                                <?php else: ?>
+                                    <p>No Star Member data available.</p>
+                                <?php endif; ?>
+                                <!-- Star Member Profile Section End -->
                             </div>
                       </div>
                     </div>
