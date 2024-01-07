@@ -13,6 +13,10 @@ if (isset($_SESSION['das_userid'])) {
     $role = isset($_SESSION['das_user_role']) ? $_SESSION['das_user_role'] : null;
 }
 
+$_SESSION['das_first_name'] = $user['first_name'];
+$_SESSION['das_last_name'] = $user['last_name'];
+
+
 // Set default values for welcome message and dashboard content
 $welcomeMessage = "Welcome User!";
 $dashboardContent = "<p>This is the default dashboard.</p>";
