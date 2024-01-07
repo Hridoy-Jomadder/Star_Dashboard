@@ -213,14 +213,14 @@ if ($role === 'CEO') {
             </nav>
             <!-- Navbar End -->
 
-                <!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
-
-                <div class="ms-3">
+<!-- Inside the <div class="ms-3"> where you display the welcome message and dashboard content -->
+<div class="ms-3">
     <h1><?php echo $welcomeMessage; ?></h1>
     <?php echo $dashboardContent; ?>
     <p>Name: <?php echo $first_name; ?> <?php echo $last_name; ?></p>
     <p>Title: <?php echo $role; ?></p>
 </div>
+
 
 
             <!-- Footer Start -->
