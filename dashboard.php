@@ -30,6 +30,14 @@ $first_name = $user['first_name'];
 $last_name = $user['last_name'];
 $role = $user['role'];
 
+// Set a default profile image or use the user's profile image if available
+if (isset($user['profile_image']) && !empty($user['profile_image'])) {
+    $profile_image = $user['profile_image'];
+} else {
+    // Set a default image path or handle the case where profile_image is not set
+    $profile_image = 'default_profile_image.jpg';
+}
+
 // Fetch CO-CEO data based on user ID if the user is a CO-CEO
 if ($user['role'] === 'co_ceo') {
     $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
