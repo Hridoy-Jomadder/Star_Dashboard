@@ -64,6 +64,12 @@ class Login
         // For debugging purposes, output the SQL query
         echo "Debug: SQL Query: $query, Params: " . implode(', ', $params) . "<br>";
     
+        // Corrected property name and binding
+        $stmt = $this->DB->prepare("SELECT userid, role, password FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);  // Assuming $email is the variable holding the email value
+        $stmt->execute();
+    
+        // Example code, adapt to your actual implementation
         $result = $this->DB->readWithParams($query, $params);
     
         // Check if a user was found
@@ -73,5 +79,6 @@ class Login
             return null; // User not found
         }
     }
+    
     
 }
