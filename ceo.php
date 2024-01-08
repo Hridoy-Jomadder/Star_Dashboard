@@ -284,8 +284,10 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                                     <!-- Additional CO-CEO-specific content -->
                                     <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
 
-                                    <!-- Add any other CO-CEO-specific content here -->
-                                    <!-- <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p> -->
+                                    <!-- Check if "join_date" key exists in the user array -->
+                                    <?php if (isset($user['join_date'])): ?>
+                                        <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -314,6 +316,11 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
 
                                 <!-- Additional Star Member-specific content -->
                                 <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
+
+                                <!-- Check if "join_date" key exists in the user array -->
+                                <?php if (isset($user['join_date'])): ?>
+                                <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                <?php endif; ?>
                             
                             </div>
                         </div>
