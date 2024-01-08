@@ -235,10 +235,10 @@ if ($user['role'] === 'star_member') {
                                 <h6 class="mb-0">CEO</h6>
                             </div>
                             <div class="d-flex align-items-center border-top py-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0">Jhon Doe</h6>
+                                        <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
                                     </div>
                                     <span>Short message goes here...</span>
                                 </div>
@@ -251,7 +251,6 @@ if ($user['role'] === 'star_member') {
                                 <h6 class="mb-0">CO-CEO & Star Member</h6>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                 <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
