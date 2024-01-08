@@ -332,6 +332,36 @@ session_start();
             <!-- Star Member Profile Section End -->
 
 
+            <!-- Display CEO's profile information -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light rounded h-50 p-4">
+                    <!-- Set the profile image -->
+                    <?php
+                    echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                    ?>
+                    <br><br>
+                    <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
+                    <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
+
+                    <!-- Additional CEO-specific content -->
+                    <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
+
+                    <!-- Check if "join_date" key exists in the user array -->
+                    <?php if (isset($user['join_date'])): ?>
+                        <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Additional CEO-specific content -->
+
+
+
              <!-- Footer Start -->
              <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
