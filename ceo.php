@@ -12,10 +12,10 @@ session_start();
         // Replace this with your actual implementation to retrieve CO-CEO data from the database
         // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
         $co_ceo_data = array(
-            'first_name' => '',
-            'last_name' => '',
-            'title' => '',
-            'email' => '',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'title' => 'Co-CEO',
+            'email' => 'john.doe@example.com',
             // Add other CO-CEO data fields as needed
         );
 
