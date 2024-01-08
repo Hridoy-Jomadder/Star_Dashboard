@@ -131,8 +131,8 @@ session_start();
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="ceo.php" class="dropdown-item active">CEO</a>
-                            <a href="co-ceo.php" class="dropdown-item">Co-CEO</a>
+                            <a href="ceo.php" class="dropdown-item">CEO</a>
+                            <a href="co-ceo.php" class="dropdown-item active">Co-CEO</a>
                             <a href="star_member.php" class="dropdown-item">Star Member</a>
                         </div>
                     </div>
