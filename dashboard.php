@@ -236,8 +236,10 @@ if ($user['role'] === 'star_member') {
                 </div>
             </nav>
             <!-- Navbar End -->
-<!-- Display CEO's profile information -->
-<div class="container-fluid pt-4 px-4">
+
+
+                <!-- Display CEO's profile information -->
+                <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
                         <div class="col-sm-12 col-xl-12">
@@ -292,33 +294,33 @@ if ($user['role'] === 'star_member') {
 
                                 <!-- Display Star Member's profile information if the user is a Star Member -->
                                 <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
-                                    <!-- Star Member Profile Section -->
-                                    <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-                                    <div class="container-fluid pt-4 px-4">
-                                        <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                                            <div class="col-md-6 text-center">
-                                                <div class="col-sm-12 col-xl-12">
-                                                    <div class="bg-light rounded h-100 p-4">
-                                                        <!-- Display Star Member's profile information -->
-                                                        <?php
-                                                        echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                                        ?>
-                                                        <br><br>
-                                                        <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                                                        <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
+                              <!-- Star Member Profile Section -->
+                                <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
+                                <div class="container-fluid pt-4 px-4">
+                                    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                                        <div class="col-md-6 text-center">
+                                            <div class="col-sm-12 col-xl-12">
+                                                <div class="bg-light rounded h-100 p-4">
+                                                    <!-- Display Star Member's profile information -->
+                                                    <?php
+                                                    echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                                                    ?>
+                                                    <br><br>
+                                                    <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
+                                                    <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
 
-                                                        <!-- Additional Star Member-specific content -->
-                                                        <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                                                    
-                                                    </div>
+                                                    <!-- Additional Star Member-specific content -->
+                                                    <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
+                                                
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php else: ?>
-                                        <p>No Star Member data available.</p>
-                                    <?php endif; ?>
-                                    <!-- Star Member Profile Section End -->
+                                </div>
+                                <?php else: ?>
+                                    <p>No Star Member data available.</p>
+                                <?php endif; ?>
+                                <!-- Star Member Profile Section End -->
                                 <?php endif; ?>
                                 <!-- CO-CEO and Star Member Profile Sections End -->
                             </div>
@@ -328,11 +330,7 @@ if ($user['role'] === 'star_member') {
             </div>
             <!-- Additional CEO-specific content -->
 
-
-
-
             
-
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
