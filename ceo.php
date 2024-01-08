@@ -294,10 +294,9 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
 
                                     <!-- Additional CO-CEO-specific content -->
                                     <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
-                                    <p><strong>Joined:</strong> <?php echo $co_ceo_data['join_date'] ?></p>
 
                                     <!-- Add any other CO-CEO-specific content here -->
-                                    <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p>
+                                    <!-- <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p> -->
                                 </div>
                             </div>
                         </div>
