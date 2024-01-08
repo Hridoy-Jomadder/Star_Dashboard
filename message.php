@@ -240,9 +240,7 @@ session_start();
             </nav>
             <!-- Navbar End -->
 
-
- 
-                     <!-- Chart Start -->
+            <!-- Chart Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-12">
                     <div class="col-sm-12 col-md-6 col-xl-4">
