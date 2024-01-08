@@ -259,12 +259,66 @@ if ($user['role'] === 'star_member') {
 
                                 <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
                                 <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
-                                    <!-- CO-CEO profile section -->
+                                        <!-- CO-CEO Profile Section -->
+                                        <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
+                                            <div class="container-fluid pt-4 px-4">
+                                                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                                                    <div class="col-md-6 text-center">
+                                                        <div class="col-sm-12 col-xl-12">
+                                                            <div class="bg-light rounded h-100 p-4">
+                                                                <!-- Display CO-CEO's profile information -->
+                                                                <?php
+                                                                echo '<img src="' . $co_ceo_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                                                                ?>
+                                                                <br><br>
+                                                                <h5 class="mb-0"><?php echo $co_ceo_data['first_name'] . " " . $co_ceo_data['last_name'] ?></h5>
+                                                                <h6 class="mb-2"><?php echo $co_ceo_data['title'] ?></h6>
+
+                                                                <!-- Additional CO-CEO-specific content -->
+                                                                <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
+
+                                                                <!-- Add any other CO-CEO-specific content here -->
+                                                                <!-- <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php else: ?>
+                                            <p>No CO-CEO data available.</p>
+                                        <?php endif; ?>
+                                        <!-- CO-CEO Profile Section End -->
                                 <?php endif; ?>
 
                                 <!-- Display Star Member's profile information if the user is a Star Member -->
                                 <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
-                                    <!-- Star Member profile section -->
+                                    <!-- Star Member Profile Section -->
+                                    <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
+                                    <div class="container-fluid pt-4 px-4">
+                                        <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                                            <div class="col-md-6 text-center">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div class="bg-light rounded h-100 p-4">
+                                                        <!-- Display Star Member's profile information -->
+                                                        <?php
+                                                        echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                                                        ?>
+                                                        <br><br>
+                                                        <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
+                                                        <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
+
+                                                        <!-- Additional Star Member-specific content -->
+                                                        <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php else: ?>
+                                        <p>No Star Member data available.</p>
+                                    <?php endif; ?>
+                                    <!-- Star Member Profile Section End -->
                                 <?php endif; ?>
                                 <!-- CO-CEO and Star Member Profile Sections End -->
                             </div>
@@ -274,66 +328,10 @@ if ($user['role'] === 'star_member') {
             </div>
             <!-- Additional CEO-specific content -->
 
-            <!-- CO-CEO Profile Section -->
-            <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                        <div class="col-md-6 text-center">
-                            <div class="col-sm-12 col-xl-12">
-                                <div class="bg-light rounded h-100 p-4">
-                                    <!-- Display CO-CEO's profile information -->
-                                    <?php
-                                    echo '<img src="' . $co_ceo_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                    ?>
-                                    <br><br>
-                                    <h5 class="mb-0"><?php echo $co_ceo_data['first_name'] . " " . $co_ceo_data['last_name'] ?></h5>
-                                    <h6 class="mb-2"><?php echo $co_ceo_data['title'] ?></h6>
-
-                                    <!-- Additional CO-CEO-specific content -->
-                                    <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
-
-                                    <!-- Add any other CO-CEO-specific content here -->
-                                    <!-- <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-                <p>No CO-CEO data available.</p>
-            <?php endif; ?>
-            <!-- CO-CEO Profile Section End -->
 
 
-            <!-- Star Member Profile Section -->
-            <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-12">
-                            <div class="bg-light rounded h-100 p-4">
-                                <!-- Display Star Member's profile information -->
-                                <?php
-                                echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                ?>
-                                <br><br>
-                                <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                                <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
 
-                                <!-- Additional Star Member-specific content -->
-                                <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php else: ?>
-                <p>No Star Member data available.</p>
-            <?php endif; ?>
-            <!-- Star Member Profile Section End -->
-
-
+            
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
