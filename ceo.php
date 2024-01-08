@@ -282,7 +282,7 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                 <div class="container-fluid pt-4 px-4">
                     <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                         <div class="col-md-6 text-center">
-                            <div class="col-sm-12 col-xl-6">
+                            <div class="col-sm-12 col-xl-12">
                                 <div class="bg-light rounded h-100 p-4">
                                     <!-- Display CO-CEO's profile information -->
                                     <!-- <?php
@@ -302,33 +302,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                         </div>
                     </div>
                 </div>
-            <?php else: ?>
-                <p>No CO-CEO data available.</p>
-            <?php endif; ?>
+
             <!-- CO-CEO Profile Section End -->
-
-                <!-- CO-CEO Profile Section -->
-            <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
-                <div class="container-fluid pt-4 px-4">
-                    <!-- ... (your existing CO-CEO code) ... -->
-                </div>
-            <?php else: ?>
-                <p>No CO-CEO data available.</p>
-            <?php endif; ?>
-            <!-- CO-CEO Profile Section End -->
-
-            <!-- Star Member Profile Section -->
-            <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-                <div class="container-fluid pt-4 px-4">
-                    <!-- ... (your existing Star Member code) ... -->
-                </div>
-            <?php else: ?>
-                <p>No Star Member data available.</p>
-            <?php endif; ?>
-            <!-- Star Member Profile Section End -->
-
-
-
 
             <!-- Star Member Profile Section -->
             <div class="container-fluid pt-4 px-4">
