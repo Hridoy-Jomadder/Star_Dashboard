@@ -246,8 +246,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                         <div class="col-sm-12 col-xl-12">
                             <div class="bg-light rounded h-50 p-4">
                                 <!-- Set the profile image -->
-                                <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                                  ?>
+                                <!-- <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                                  ?> -->
                                 <br><br>
                                 <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
                                 <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
