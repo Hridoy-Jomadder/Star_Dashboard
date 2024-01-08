@@ -1,70 +1,56 @@
 <?php
 session_start();
 
-    include_once("classes/connect.php");
-    include_once("classes/login.php");
-    include_once("classes/database.php");
-    include_once("classes/signup.php");
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/signup.php");
 
-    // Function to get CO-CEO data
-    $co_ceo_data = getCoCEOData();
-    function getCoCEOData() {
-        // Replace this with your actual implementation to retrieve CO-CEO data from the database
-        // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
-        $co_ceo_data = array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'title' => 'Co-CEO',
-            'email' => 'john.doe@example.com',
-            // Add other CO-CEO data fields as needed
-        );
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
 
-        return $co_ceo_data;
-    }
+// Create a Database instance
+$DB = new Database();
 
-    // Function to get Star Member data
-    function getStarMemberData() {
-        // Replace this with your actual implementation to retrieve Star Member data from the database
-        // Example: You might have a Database method to fetch Star Member data, modify accordingly
-        $star_member_data = array(
-            'first_name' => 'Reza',
-            'last_name' => 'Jomadder',
-            'title' => 'Star Member',
-            'email' => 'john.doe@example.com',
-            // Add other Star Member data fields as needed
-        );
+// Fetch user information based on the user ID stored in the session
+$user = $DB->fetchUserById($_SESSION['das_userid']);
 
-        return $star_member_data;
-    }
+// Check if the user is found
+if (!$user) {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
+}
 
-    // Check if the user is logged in, redirect to the login page if not
-    if (!isset($_SESSION['das_userid'])) {
-        header("Location: login.php");
-        exit();
-    }
+// Now you can use $user to display user information in your dashboard
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+$role = $user['role'];
 
-    // Create a Database instance
-    $DB = new Database();
+// Set a default profile image or use the user's profile image if available
+if (isset($user['profile_image']) && !empty($user['profile_image'])) {
+    $profile_image = $user['profile_image'];
+} else {
+    // Set a default image path or handle the case where profile_image is not set
+    $profile_image = 'default_profile_image.jpg';
+}
 
-    // Fetch user information based on the user ID stored in the session
-    $user = $DB->fetchUserById($_SESSION['das_userid']);
+// Fetch CO-CEO data based on user ID if the user is a CO-CEO
+if ($user['role'] === 'co_ceo') {
+    // Use the fetched data directly in the CO-CEO profile section
+    $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
+}
 
-    // Check if the user is found
-    if (!$user) {
-        // Handle the case where the user is not found
-        echo "User not found.";
-        exit();
-    }
+// Fetch Star Member data based on user ID if the user is a Star Member
+if ($user['role'] === 'star_member') {
+    // Use the fetched data directly in the Star Member profile section
+    $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
+}
+?>
 
-    // Now you can use $user to display user information in your dashboard
-    $first_name = $user['first_name'];
-    $last_name = $user['last_name'];
-    $role = $user['role'];
-
-    // Add these lines at the beginning of your code
-    $co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
-    $star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
-    ?>
 
 <!DOCTYPE html>
 <html lang="en">
