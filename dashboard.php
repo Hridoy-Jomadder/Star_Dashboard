@@ -238,97 +238,257 @@ if ($user['role'] === 'star_member') {
             <!-- Navbar End -->
 
 
-                <!-- Display CEO's profile information -->
-                <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-12">
-                            <div class="bg-light rounded h-50 p-4">
-                                <!-- Set the profile image -->
-                                <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                                  ?>
-                                <br><br>
-                                <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
-                                <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
-
-                                <!-- Additional CEO-specific content -->
-                                <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-                                
-                                <!-- Check if "join_date" key exists in the user array -->
-                                <?php if (isset($user['join_date'])): ?>
-                                    <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
-                                <?php endif; ?>
-
-                                <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
-                                <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
-                                        <!-- CO-CEO Profile Section -->
-                                        <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
-                                            <div class="container-fluid pt-4 px-4">
-                                                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                                                    <div class="col-md-6 text-center">
-                                                        <div class="col-sm-12 col-xl-12">
-                                                            <div class="bg-light rounded h-100 p-4">
-                                                                <!-- Display CO-CEO's profile information -->
-                                                                <?php
-                                                                echo '<img src="' . $co_ceo_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                                                ?>
-                                                                <br><br>
-                                                                <h5 class="mb-0"><?php echo $co_ceo_data['first_name'] . " " . $co_ceo_data['last_name'] ?></h5>
-                                                                <h6 class="mb-2"><?php echo $co_ceo_data['title'] ?></h6>
-
-                                                                <!-- Additional CO-CEO-specific content -->
-                                                                <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
-
-                                                                <!-- Add any other CO-CEO-specific content here -->
-                                                                <!-- <p>This is a sample CO-CEO profile. You can add more details and customize as needed.</p> -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php else: ?>
-                                            <p>No CO-CEO data available.</p>
-                                        <?php endif; ?>
-                                        <!-- CO-CEO Profile Section End -->
-                                <?php endif; ?>
-
-                                <!-- Display Star Member's profile information if the user is a Star Member -->
-                                <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
-                              <!-- Star Member Profile Section -->
-                                <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-                                <div class="container-fluid pt-4 px-4">
-                                    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                                        <div class="col-md-6 text-center">
-                                            <div class="col-sm-12 col-xl-12">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <!-- Display Star Member's profile information -->
-                                                    <?php
-                                                    echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                                    ?>
-                                                    <br><br>
-                                                    <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                                                    <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
-
-                                                    <!-- Additional Star Member-specific content -->
-                                                    <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                                                
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php else: ?>
-                                    <p>No Star Member data available.</p>
-                                <?php endif; ?>
-                                <!-- Star Member Profile Section End -->
-                                <?php endif; ?>
-                                <!-- CO-CEO and Star Member Profile Sections End -->
+           <!-- Star Start -->
+           <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Today Star</p>
+                                <h6 class="mb-0">123</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Star</p>
+                                <h6 class="mb-0">123</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Star Country</p>
+                                <h6 class="mb-0">5</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">All Star ID</p>
+                                <h6 class="mb-0">1234</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Additional CEO-specific content -->
+            <!-- Star End -->
+
+            <!-- Id Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Star Account</h6>
+                        <a href="reports.php">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Last Post</th>
+                                    <th scope="col">IP Address</th>
+                                    <th scope="col">Browser Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>7348023179899108</td>
+                                    <td>Hridoy Jomadder</td>
+                                    <td>I am back.</td>
+                                    <td>17.172.224.47</td>
+                                    <td>I Phone</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                
+                                <!-- <tr>
+                                    <td>762276656392054</td>
+                                    <td>Tuba Islam</td>
+                                    <td>I am back.</td>
+                                    <td>17.172.224.47</td>
+                                    <td>Apple</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr> -->
+                                <!-- <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+            <!-- Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Worldwide</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="worldwide-country"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Active & Offline</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="active-offline"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Chart End -->
+
+
+            <!-- Recent Sales Start -->
+            <!-- <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Salse</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Invoice</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Recent Sales End -->
+
+
+            <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Calender</h6>
+                            </div>
+                            <div id="calender"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">To Do List</h6>
+                                <!-- <a href="">Show All</a> -->
+                            </div>
+                            <div class="d-flex mb-2">
+                                <input class="form-control bg-transparent" type="text" id="taskInput" placeholder="Enter task">
+                                <button type="button" class="btn btn-primary ms-2" onclick="addTask()">Add</button>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <!-- <input class="form-check-input m-0" type="checkbox"> -->
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <div id="taskList"></div>
+                                        <!-- <button class="btn btn-sm"><i class="fa fa-times"></i></button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
+
 
             
             <!-- Footer Start -->
