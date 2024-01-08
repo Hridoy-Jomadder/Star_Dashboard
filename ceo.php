@@ -313,12 +313,12 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
             <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-6">
+                        <div class="col-sm-12 col-xl-12">
                             <div class="bg-light rounded h-100 p-4">
                                 <!-- Display Star Member's profile information -->
-                                <!-- <?php
+                                <?php
                                 echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                ?> -->
+                                ?>
                                 <br><br>
                                 <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
                                 <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
