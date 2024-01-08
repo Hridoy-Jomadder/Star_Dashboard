@@ -259,17 +259,6 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                                 <?php if (isset($user['join_date'])): ?>
                                     <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
                                 <?php endif; ?>
-
-                                <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
-                                <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
-                                    <!-- CO-CEO profile section -->
-                                <?php endif; ?>
-
-                                <!-- Display Star Member's profile information if the user is a Star Member -->
-                                <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
-                                    <!-- Star Member profile section -->
-                                <?php endif; ?>
-                                <!-- CO-CEO and Star Member Profile Sections End -->
                             </div>
                         </div>
                     </div>
