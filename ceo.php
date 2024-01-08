@@ -308,9 +308,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
             <!-- CO-CEO Profile Section End -->
 
 
-
-
             <!-- Star Member Profile Section -->
+            <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
             <div class="container-fluid pt-4 px-4">
                 <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                     <div class="col-md-6 text-center">
@@ -332,7 +331,11 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                     </div>
                 </div>
             </div>
+            <?php else: ?>
+                <p>No Star Member data available.</p>
+            <?php endif; ?>
             <!-- Star Member Profile Section End -->
+
 
              <!-- Footer Start -->
              <div class="container-fluid pt-4 px-4">
