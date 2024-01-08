@@ -109,13 +109,7 @@ if ($user['role'] === 'star_member') {
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <?php if(isset($user_data['profile_image'])){
-                            $profile_image = $user_data['profile_image'];
-                        } else {
-                            // Set a default image or handle the case where profile_image is not set
-                            $profile_image = 'default_profile_image.jpg';
-                        }
-                    ?>
+                <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
