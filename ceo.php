@@ -27,7 +27,7 @@ session_start();
         // Replace this with your actual implementation to retrieve Star Member data from the database
         // Example: You might have a Database method to fetch Star Member data, modify accordingly
         $star_member_data = array(
-            'first_name' => 'Hridoy',
+            'first_name' => 'Reza',
             'last_name' => 'Jomadder',
             'title' => 'Star Member',
             'email' => 'john.doe@example.com',
