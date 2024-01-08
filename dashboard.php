@@ -314,7 +314,7 @@ if ($user['role'] === 'star_member') {
                                     <td>762276656392054</td>
                                     <td>Tuba Islam</td>
                                     <td>I am back.</td>
-                                    <td>17.172.224.47</td>
+                                    <td>17.172.224.48</td>
                                     <td>Apple</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr>
@@ -360,7 +360,7 @@ if ($user['role'] === 'star_member') {
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Worldwide</h6>
-                                <a href="">Show All</a>
+                                <a href="worldwide.php">Show All</a>
                             </div>
                             <canvas id="worldwide-country"></canvas>
                         </div>
@@ -369,7 +369,7 @@ if ($user['role'] === 'star_member') {
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Active & Offline</h6>
-                                <a href="">Show All</a>
+                                <a href="worldwide.php">Show All</a>
                             </div>
                             <canvas id="active-offline"></canvas>
                         </div>
