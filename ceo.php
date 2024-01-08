@@ -9,16 +9,8 @@ include_once("classes/signup.php");
 // Create a Database instance
 $DB = new Database();
 
-// Check if the database connection is successful
-if (!$DB->connect()) {
-    // Handle the case where the database connection fails
-    echo "Database connection failed.";
-    exit();
-}
-
 // Fetch CO-CEO data
 $co_ceo_data = $DB->fetchCoCEOData();
-
 
 // Function to get CO-CEO data
 $co_ceo_data = getCoCEOData();
@@ -45,9 +37,6 @@ if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
     exit();
 }
-
-// Create a Database instance
-$DB = new Database();
 
 // Fetch user information based on the user ID stored in the session
 $user = $DB->fetchUserById($_SESSION['das_userid']);
