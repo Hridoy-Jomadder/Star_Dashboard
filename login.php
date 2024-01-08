@@ -100,18 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3 class="text-primary" style="font-family: times new roman;"><i class="fa fa-star me-2"></i>STAR_DASHMIN</h3>
                         </div>
 
-                        <?php
-                        if (!empty($error_message)) {
-                            // Display specific error messages based on the situation
-                            if ($error_message === "User not found.") {
-                                echo "Invalid email address or password.";
-                            } else {
-                                echo "An error occurred during login.";
-                            }
-                        }
-                        ?>
-
-
                         <form method="post" action="">
                         <div class="form-floating mb-3">
                             <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="Email Address" style="font-family: times new roman;">
