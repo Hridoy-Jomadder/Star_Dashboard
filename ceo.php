@@ -229,7 +229,6 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <?php echo $first_name . ' ' . $last_name; ?><br>
-                        <?php echo $role; ?>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
                             <a href="settings.php" class="dropdown-item">Settings</a>
