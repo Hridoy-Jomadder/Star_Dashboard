@@ -1,62 +1,70 @@
 <?php
 session_start();
 
-include_once("classes/connect.php");
-include_once("classes/login.php");
-include_once("classes/database.php");
-include_once("classes/signup.php");
+    include_once("classes/connect.php");
+    include_once("classes/login.php");
+    include_once("classes/database.php");
+    include_once("classes/signup.php");
 
-// Create a Database instance
-$DB = new Database();
+    // Function to get CO-CEO data
+    $co_ceo_data = getCoCEOData();
+    function getCoCEOData() {
+        // Replace this with your actual implementation to retrieve CO-CEO data from the database
+        // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
+        $co_ceo_data = array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'title' => 'Co-CEO',
+            'email' => 'john.doe@example.com',
+            // Add other CO-CEO data fields as needed
+        );
 
-// Fetch CO-CEO data
-$co_ceo_data = $DB->fetchCoCEOData();
+        return $co_ceo_data;
+    }
 
-// Function to get CO-CEO data
-$co_ceo_data = getCoCEOData();
+    // Function to get Star Member data
+    function getStarMemberData() {
+        // Replace this with your actual implementation to retrieve Star Member data from the database
+        // Example: You might have a Database method to fetch Star Member data, modify accordingly
+        $star_member_data = array(
+            'first_name' => 'Reza',
+            'last_name' => 'Jomadder',
+            'title' => 'Star Member',
+            'email' => 'john.doe@example.com',
+            // Add other Star Member data fields as needed
+        );
 
-function getCoCEOData() {
-    global $DB; // Add this line to access the $DB object inside the function
-    // Fetch CO-CEO data from the database
-    $co_ceo_data = $DB->fetchCoCEOData(); // Use your method to fetch CO-CEO data
+        return $star_member_data;
+    }
 
-    return $co_ceo_data;
-}
+    // Check if the user is logged in, redirect to the login page if not
+    if (!isset($_SESSION['das_userid'])) {
+        header("Location: login.php");
+        exit();
+    }
 
-// Function to get Star Member data
-function getStarMemberData() {
-    global $DB; // Add this line to access the $DB object inside the function
-    // Fetch Star Member data from the database
-    $star_member_data = $DB->fetchStarMemberData(); // Use your method to fetch Star Member data
+    // Create a Database instance
+    $DB = new Database();
 
-    return $star_member_data;
-}
+    // Fetch user information based on the user ID stored in the session
+    $user = $DB->fetchUserById($_SESSION['das_userid']);
 
-// Check if the user is logged in, redirect to the login page if not
-if (!isset($_SESSION['das_userid'])) {
-    header("Location: login.php");
-    exit();
-}
+    // Check if the user is found
+    if (!$user) {
+        // Handle the case where the user is not found
+        echo "User not found.";
+        exit();
+    }
 
-// Fetch user information based on the user ID stored in the session
-$user = $DB->fetchUserById($_SESSION['das_userid']);
+    // Now you can use $user to display user information in your dashboard
+    $first_name = $user['first_name'];
+    $last_name = $user['last_name'];
+    $role = $user['role'];
 
-// Check if the user is found
-if (!$user) {
-    // Handle the case where the user is not found
-    echo "User not found.";
-    exit();
-}
-
-// Now you can use $user to display user information in your dashboard
-$first_name = $user['first_name'];
-$last_name = $user['last_name'];
-$role = $user['role'];
-
-// Add these lines at the beginning of your code
-$co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
-$star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
-?>
+    // Add these lines at the beginning of your code
+    $co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
+    $star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
+    ?>
 
  <!DOCTYPE html>
 <html lang="en">
@@ -322,6 +330,7 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                 <p>No Star Member data available.</p>
             <?php endif; ?>
             <!-- Star Member Profile Section End -->
+
 
              <!-- Footer Start -->
              <div class="container-fluid pt-4 px-4">
