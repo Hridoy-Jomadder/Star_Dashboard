@@ -108,8 +108,6 @@ if ($user['role'] === 'star_member') {
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
-                <?php
-$profile_image = $user['profile_image']?>
                     <div class="position-relative">
                     <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
