@@ -6,16 +6,23 @@ include_once("classes/login.php");
 include_once("classes/database.php");
 include_once("classes/signup.php");
 
+// Create a Database instance
 $DB = new Database();
+
+// Check if the database connection is successful
 if (!$DB->connect()) {
     // Handle the case where the database connection fails
     echo "Database connection failed.";
     exit();
 }
 
+// Fetch CO-CEO data
+$co_ceo_data = $DB->fetchCoCEOData();
+
 
 // Function to get CO-CEO data
 $co_ceo_data = getCoCEOData();
+
 function getCoCEOData() {
     global $DB; // Add this line to access the $DB object inside the function
     // Fetch CO-CEO data from the database
