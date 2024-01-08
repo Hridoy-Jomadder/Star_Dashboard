@@ -246,8 +246,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                         <div class="col-sm-12 col-xl-12">
                             <div class="bg-light rounded h-50 p-4">
                                 <!-- Set the profile image -->
-                                <!-- <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                                  ?> -->
+                                <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                                  ?>
                                 <br><br>
                                 <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
                                 <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
@@ -285,9 +285,9 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                             <div class="col-sm-12 col-xl-12">
                                 <div class="bg-light rounded h-100 p-4">
                                     <!-- Display CO-CEO's profile information -->
-                                    <!-- <?php
+                                    <?php
                                     echo '<img src="' . $co_ceo_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                    ?> -->
+                                    ?>
                                     <br><br>
                                     <h5 class="mb-0"><?php echo $co_ceo_data['first_name'] . " " . $co_ceo_data['last_name'] ?></h5>
                                     <h6 class="mb-2"><?php echo $co_ceo_data['title'] ?></h6>
