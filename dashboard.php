@@ -104,9 +104,9 @@ if ($user['role'] === 'star_member') {
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="" class="navbar-brand mx-4 mb-3">
+                <!-- <a href="" class="navbar-brand mx-4 mb-3"> -->
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
-                </a>
+                <!-- </a> -->
                 <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
                     <?php if(isset($user_data['profile_image'])){
