@@ -237,22 +237,46 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
             </nav>
             <!-- Navbar End -->
 
-            <!--CEO profile section with this code -->
-<?php
-if (isset($user) && is_array($user)) {
-    $first_name = $user['first_name'];
-    $last_name = $user['last_name'];
-    $role = $user['role'];
-} else {
-    echo "User not found.";
-    exit();
-}
-?>
+         <!-- Display CEO's profile information -->
+         <div class="container-fluid pt-4 px-4">
+                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                    <div class="col-md-6 text-center">
+                        <div class="col-sm-12 col-xl-12">
+                            <div class="bg-light rounded h-50 p-4">
+                                <!-- Set the profile image -->
+                                <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
+                                  ?>
+                                <br><br>
+                                <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
+                                <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
 
+                                <!-- Additional CEO-specific content -->
+                                <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
+                                
+                                <!-- Check if "join_date" key exists in the user array -->
+                                <?php if (isset($user['join_date'])): ?>
+                                    <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+                                <?php endif; ?>
+
+                                <!-- Display CO-CEO's profile information if the user is a CO-CEO -->
+                                <?php if ($user['role'] === 'co_ceo' && $co_ceo_data): ?>
+                                    <!-- CO-CEO profile section -->
+                                <?php endif; ?>
+
+                                <!-- Display Star Member's profile information if the user is a Star Member -->
+                                <?php if ($user['role'] === 'star_member' && $star_member_data): ?>
+                                    <!-- Star Member profile section -->
+                                <?php endif; ?>
+                                <!-- CO-CEO and Star Member Profile Sections End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Additional CEO-specific content -->
-            <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
+            <!-- <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
             <!-- Replace this line in the CEO profile section -->
-            <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p>
+            <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p> -->
 
                 <!-- CO-CEO Profile Section -->
             <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
