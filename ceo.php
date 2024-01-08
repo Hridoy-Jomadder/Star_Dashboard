@@ -8,7 +8,7 @@ session_start();
 
     // Function to get CO-CEO data
     function getCoCEOData() {
-        // Replace this with your actual implementation to retrieve CO-CEO data from the database
+        $co_ceo_data = getCoCEOData();
         // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
         $co_ceo_data = array(
             'first_name' => 'John',
