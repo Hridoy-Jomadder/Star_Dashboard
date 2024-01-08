@@ -26,10 +26,10 @@ function getStarMemberData() {
     // Replace this with your actual implementation to retrieve Star Member data from the database
     // Example: You might have a Database method to fetch Star Member data, modify accordingly
     $star_member_data = array(
-        'first_name' => '',
-        'last_name' => '',
-        'title' => '',
-        'email' => '',
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'title' => 'Co-CEO',
+        'email' => 'john.doe@example.com',
         // Add other Star Member data fields as needed
     );
 
