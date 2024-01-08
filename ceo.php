@@ -227,7 +227,19 @@ if (isset($user) && is_array($user)) {
                 <!-- CO-CEO Profile Section -->
             <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
                 <div class="container-fluid pt-4 px-4">
-                    <!-- ... (your existing CO-CEO code) ... -->
+              <?php  function getCoCEOData() {
+    // Replace this with your actual implementation to retrieve CO-CEO data from the database
+    // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
+    $co_ceo_data = array(
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'title' => 'Co-CEO',
+        'email' => 'john.doe@example.com',
+        // Add other CO-CEO data fields as needed
+    );
+
+    return $co_ceo_data;
+}?>
                 </div>
             <?php else: ?>
                 <p>No CO-CEO data available.</p>
