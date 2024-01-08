@@ -72,7 +72,7 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>DASHMIN - </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -119,8 +119,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                    <h1><?php echo $welcomeMessage; ?></h1>
-                      <?php echo $dashboardContent; ?>
+                    <?php echo $first_name . ' ' . $last_name; ?><br>
+                        <?php echo $role; ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
@@ -228,7 +228,8 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <!-- profile name -->
+                        <?php echo $first_name . ' ' . $last_name; ?><br>
+                        <?php echo $role; ?>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
                             <a href="settings.php" class="dropdown-item">Settings</a>
@@ -307,11 +308,6 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
             <?php endif; ?>
             <!-- CO-CEO Profile Section End -->
 
-
-            <!-- <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-            <!-- Replace this line in the CEO profile section -->
-            <!-- <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p> --> -->
-
                 <!-- CO-CEO Profile Section -->
             <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
                 <div class="container-fluid pt-4 px-4">
@@ -351,11 +347,7 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
 
                                 <!-- Additional Star Member-specific content -->
                                 <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                                <p><strong>Membership Type:</strong> Star Member</p>
-                                <p><strong>Joined:</strong> <?php echo $star_member_data['join_date'] ?></p>
-
-                                <!-- Add any other Star Member-specific content here -->
-                                <p>This is a sample Star Member profile. You can add more details and customize as needed.</p>
+                            
                             </div>
                         </div>
                     </div>
