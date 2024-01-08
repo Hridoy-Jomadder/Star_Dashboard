@@ -1,3 +1,56 @@
+<?php
+session_start();
+
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/signup.php");
+
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Create a Database instance
+$DB = new Database();
+
+// Fetch user information based on the user ID stored in the session
+$user = $DB->fetchUserById($_SESSION['das_userid']);
+
+// Check if the user is found
+if (!$user) {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
+}
+
+// Now you can use $user to display user information in your dashboard
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+$role = $user['role'];
+
+// Set a default profile image or use the user's profile image if available
+if (isset($user['profile_image']) && !empty($user['profile_image'])) {
+    $profile_image = $user['profile_image'];
+} else {
+    // Set a default image path or handle the case where profile_image is not set
+    $profile_image = 'default_profile_image.jpg';
+}
+
+// Fetch CO-CEO data based on user ID if the user is a CO-CEO
+if ($user['role'] === 'co_ceo') {
+    // Use the fetched data directly in the CO-CEO profile section
+    $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
+}
+
+// Fetch Star Member data based on user ID if the user is a Star Member
+if ($user['role'] === 'star_member') {
+    // Use the fetched data directly in the Star Member profile section
+    $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +108,8 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                        <small><?php echo $user_data['title'] ?></small>
+                    <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
+                        <small><?php echo $role; ?></small>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
