@@ -6,6 +6,36 @@ include_once("classes/login.php");
 include_once("classes/database.php");
 include_once("classes/signup.php");
 
+// Function to get CO-CEO data
+function getCoCEOData() {
+    // Replace this with your actual implementation to retrieve CO-CEO data from the database
+    // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
+    $co_ceo_data = array(
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'title' => 'Co-CEO',
+        'email' => 'john.doe@example.com',
+        // Add other CO-CEO data fields as needed
+    );
+
+    return $co_ceo_data;
+}
+
+// Function to get Star Member data
+function getStarMemberData() {
+    // Replace this with your actual implementation to retrieve Star Member data from the database
+    // Example: You might have a Database method to fetch Star Member data, modify accordingly
+    $star_member_data = array(
+        'first_name' => 'Star',
+        'last_name' => 'Member',
+        'title' => 'Star Member',
+        'email' => 'star.member@example.com',
+        // Add other Star Member data fields as needed
+    );
+
+    return $star_member_data;
+}
+
 // Check if the user is logged in, redirect to the login page if not
 if (!isset($_SESSION['das_userid'])) {
     header("Location: login.php");
@@ -227,19 +257,7 @@ if (isset($user) && is_array($user)) {
                 <!-- CO-CEO Profile Section -->
             <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
                 <div class="container-fluid pt-4 px-4">
-              <?php  function getCoCEOData() {
-    // Replace this with your actual implementation to retrieve CO-CEO data from the database
-    // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
-    $co_ceo_data = array(
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-        'title' => 'Co-CEO',
-        'email' => 'john.doe@example.com',
-        // Add other CO-CEO data fields as needed
-    );
-
-    return $co_ceo_data;
-}?>
+                    <!-- ... (your existing CO-CEO code) ... -->
                 </div>
             <?php else: ?>
                 <p>No CO-CEO data available.</p>
