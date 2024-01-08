@@ -276,7 +276,7 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
             <!-- Additional CEO-specific content -->
             <!-- <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
             <!-- Replace this line in the CEO profile section -->
-            <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p> -->
+            <!-- <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p> --> -->
 
                 <!-- CO-CEO Profile Section -->
             <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
