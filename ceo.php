@@ -122,8 +122,8 @@ session_start();
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                    <?php echo $first_name . ' ' . $last_name; ?><br>
-                            <?php echo $role; ?>
+                    <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
+                        <small><?php echo $role; ?></small>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
