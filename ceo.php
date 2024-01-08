@@ -10,15 +10,17 @@ include_once("classes/signup.php");
 function getCoCEOData() {
     // Replace this with your actual implementation to retrieve CO-CEO data from the database
     // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
-    $co_ceo_data = array(
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-        'title' => 'Co-CEO',
-        'email' => 'john.doe@example.com',
-        // Add other CO-CEO data fields as needed
-    );
+    $query = "SELECT * FROM co_ceo_table WHERE user_id = ?";
+    $params = [$userId];
 
-    return $co_ceo_data;
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result[0]; // Assuming you want to return the first row
+    } else {
+        // Handle the case where the query fails or no CO-CEO data is found
+        return false;
+    }
 }
 
 // Function to get Star Member data
