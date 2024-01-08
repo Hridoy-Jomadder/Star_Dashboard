@@ -26,15 +26,25 @@ function getStarMemberData() {
     // Replace this with your actual implementation to retrieve Star Member data from the database
     // Example: You might have a Database method to fetch Star Member data, modify accordingly
     $star_member_data = array(
-        'first_name' => 'Star',
-        'last_name' => 'Member',
-        'title' => 'Star Member',
-        'email' => 'star.member@example.com',
+        'first_name' => '',
+        'last_name' => '',
+        'title' => '',
+        'email' => '',
         // Add other Star Member data fields as needed
     );
 
     return $star_member_data;
 }
+
+// Function to get CO-CEO data
+function getCoCEOData($DB) {
+    // Replace this with your actual implementation to retrieve CO-CEO data from the database
+    // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
+    $co_ceo_data = $DB->fetchCoCEOData(); // Assuming you have a method like fetchCoCEOData in your Database class
+
+    return $co_ceo_data;
+}
+
 
 // Check if the user is logged in, redirect to the login page if not
 if (!isset($_SESSION['das_userid'])) {
