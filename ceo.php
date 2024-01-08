@@ -302,8 +302,13 @@ $star_member_data = getStarMemberData(); // Replace this with your actual method
                         </div>
                     </div>
                 </div>
-
+            <?php else: ?>
+                <p>No CO-CEO data available.</p>
+            <?php endif; ?>
             <!-- CO-CEO Profile Section End -->
+
+
+
 
             <!-- Star Member Profile Section -->
             <div class="container-fluid pt-4 px-4">
