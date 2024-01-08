@@ -30,9 +30,11 @@ $first_name = $user['first_name'];
 $last_name = $user['last_name'];
 $role = $user['role'];
 
-
-
+// Add these lines at the beginning of your code
+$co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
+$star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
 ?>
+
  <!DOCTYPE html>
 <html lang="en">
 
@@ -205,73 +207,73 @@ $role = $user['role'];
             </nav>
             <!-- Navbar End -->
 
-            <!-- Display CEO's profile information -->
-            
-            <?php
-            echo '<img src="' . $user['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-            ?>
-            <br><br>
-            <h5 class="mb-0"><?php echo $user['first_name'] . " " . $user['last_name'] ?></h5>
-            <h6 class="mb-2"><?php echo $user['role'] ?></h6>
+            <!--CEO profile section with this code -->
+<?php
+if (isset($user) && is_array($user)) {
+    $first_name = $user['first_name'];
+    $last_name = $user['last_name'];
+    $role = $user['role'];
+} else {
+    echo "User not found.";
+    exit();
+}
+?>
 
             <!-- Additional CEO-specific content -->
             <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-            <p><strong>Company Role:</strong> CEO</p>
-            <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
+            <!-- Replace this line in the CEO profile section -->
+            <p><strong>Joined:</strong> <?php echo isset($user['join_date']) ? $user['join_date'] : 'N/A'; ?></p>
 
-            <!-- Add any other CEO-specific content here -->
-            <!-- <p>This is a sample CEO profile. You can add more details and customize as needed.</p> -->
+                <!-- CO-CEO Profile Section -->
+            <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
+                <div class="container-fluid pt-4 px-4">
+                    <!-- ... (your existing CO-CEO code) ... -->
+                </div>
+            <?php else: ?>
+                <p>No CO-CEO data available.</p>
+            <?php endif; ?>
+            <!-- CO-CEO Profile Section End -->
 
-
-       <!-- CO-CEO Profile Section -->
-<?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
-    <div class="container-fluid pt-4 px-4">
-        <!-- ... (your existing CO-CEO code) ... -->
-    </div>
-<?php else: ?>
-    <p>No CO-CEO data available.</p>
-<?php endif; ?>
-<!-- CO-CEO Profile Section End -->
-
-<!-- Star Member Profile Section -->
-<?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-    <div class="container-fluid pt-4 px-4">
-        <!-- ... (your existing Star Member code) ... -->
-    </div>
-<?php else: ?>
-    <p>No Star Member data available.</p>
-<?php endif; ?>
-<!-- Star Member Profile Section End -->
+            <!-- Star Member Profile Section -->
+            <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
+                <div class="container-fluid pt-4 px-4">
+                    <!-- ... (your existing Star Member code) ... -->
+                </div>
+            <?php else: ?>
+                <p>No Star Member data available.</p>
+            <?php endif; ?>
+            <!-- Star Member Profile Section End -->
 
 
 
-<!-- Star Member Profile Section -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-        <div class="col-md-6 text-center">
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-light rounded h-100 p-4">
-                    <!-- Display Star Member's profile information -->
-                    <?php
-                    echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                    ?>
-                    <br><br>
-                    <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                    <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
 
-                    <!-- Additional Star Member-specific content -->
-                    <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                    <p><strong>Membership Type:</strong> Star Member</p>
-                    <p><strong>Joined:</strong> <?php echo $star_member_data['join_date'] ?></p>
+            <!-- Star Member Profile Section -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                    <div class="col-md-6 text-center">
+                        <div class="col-sm-12 col-xl-6">
+                            <div class="bg-light rounded h-100 p-4">
+                                <!-- Display Star Member's profile information -->
+                                <?php
+                                echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
+                                ?>
+                                <br><br>
+                                <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
+                                <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
 
-                    <!-- Add any other Star Member-specific content here -->
-                    <p>This is a sample Star Member profile. You can add more details and customize as needed.</p>
+                                <!-- Additional Star Member-specific content -->
+                                <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
+                                <p><strong>Membership Type:</strong> Star Member</p>
+                                <p><strong>Joined:</strong> <?php echo $star_member_data['join_date'] ?></p>
+
+                                <!-- Add any other Star Member-specific content here -->
+                                <p>This is a sample Star Member profile. You can add more details and customize as needed.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- Star Member Profile Section End -->
+            <!-- Star Member Profile Section End -->
 
              <!-- Footer Start -->
              <div class="container-fluid pt-4 px-4">
