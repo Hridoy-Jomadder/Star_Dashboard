@@ -30,10 +30,7 @@ session_start();
     $last_name = $user['last_name'];
     $role = $user['role'];
 
-    // Add these lines at the beginning of your code
-    $co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
-    $star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
-    ?>
+?>
 
  <!DOCTYPE html>
 <html lang="en">

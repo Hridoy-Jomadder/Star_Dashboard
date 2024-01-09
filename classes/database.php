@@ -160,7 +160,6 @@ public function fetchStarMemberDetails($userId) {
         // Handle the case where the query fails or no Star Member data is found
         return false;
     }
-}
     // Function to get CO-CEO data
     $co_ceo_data = getCoCEOData();
     function getCoCEOData() {
@@ -179,7 +178,7 @@ public function fetchStarMemberDetails($userId) {
 
     // Function to get Star Member data
     function getStarMemberData() {
-        // Replace this with your actual implementation to retrieve Star Member data from the database
+        $star_member_data = getStarMemberData();// Replace this with your actual implementation to retrieve Star Member data from the database
         // Example: You might have a Database method to fetch Star Member data, modify accordingly
         $star_member_data = array(
             'first_name' => 'Reza',
@@ -190,5 +189,4 @@ public function fetchStarMemberDetails($userId) {
         );
 
         return $star_member_data;
-    }
-}
+    }}}
