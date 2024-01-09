@@ -52,10 +52,10 @@ session_start();
 
     // start
 function getDashboardData() {
-    $host = "your_database_host";
-    $username = "your_database_username";
-    $password = "your_database_password";
-    $database = "your_database_name";
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "star_db1";
 
     // Create connection
     $conn = new mysqli($host, $username, $password, $database);
