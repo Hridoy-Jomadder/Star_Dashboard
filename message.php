@@ -99,7 +99,7 @@ if ($user['role'] === 'star_member') {
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="" class="navbar-brand mx-4 mb-3">
+                <a href="dashboard.php" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -138,7 +138,7 @@ if ($user['role'] === 'star_member') {
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a href="" class="navbar-brand d-flex d-lg-none me-4">
+                <a href="dashboard.php" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-star"></i></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
