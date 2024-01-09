@@ -6,6 +6,37 @@ session_start();
     include_once("classes/database.php");
     include_once("classes/signup.php");
 
+    // Function to get CO-CEO data
+    $co_ceo_data = getCoCEOData();
+    function getCoCEOData() {
+        // Replace this with your actual implementation to retrieve CO-CEO data from the database
+        // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
+        $co_ceo_data = array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'title' => 'Co-CEO',
+            'email' => 'john.doe@example.com',
+            // Add other CO-CEO data fields as needed
+        );
+
+        return $co_ceo_data;
+    }
+
+    // Function to get Star Member data
+    function getStarMemberData() {
+        // Replace this with your actual implementation to retrieve Star Member data from the database
+        // Example: You might have a Database method to fetch Star Member data, modify accordingly
+        $star_member_data = array(
+            'first_name' => 'Reza',
+            'last_name' => 'Jomadder',
+            'title' => 'Star Member',
+            'email' => 'john.doe@example.com',
+            // Add other Star Member data fields as needed
+        );
+
+        return $star_member_data;
+    }
+
     // Check if the user is logged in, redirect to the login page if not
     if (!isset($_SESSION['das_userid'])) {
         header("Location: login.php");
@@ -30,7 +61,10 @@ session_start();
     $last_name = $user['last_name'];
     $role = $user['role'];
 
-?>
+    // Add these lines at the beginning of your code
+    $co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
+    $star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
+    ?>
 
  <!DOCTYPE html>
 <html lang="en">
