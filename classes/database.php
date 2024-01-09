@@ -161,8 +161,11 @@ public function fetchStarMemberDetails($userId) {
         return false;
     }
     // Function to get CO-CEO data
-    $co_ceo_data = getCoCEOData();
+    
     function getCoCEOData() {
+
+        $co_ceo_data = getCoCEOData();
+
         // Replace this with your actual implementation to retrieve CO-CEO data from the database
         // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
         $co_ceo_data = array(
@@ -189,4 +192,6 @@ public function fetchStarMemberDetails($userId) {
         );
 
         return $star_member_data;
-    }}}
+    }
+}
+}
