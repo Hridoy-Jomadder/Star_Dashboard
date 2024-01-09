@@ -66,7 +66,7 @@ function getDashboardData() {
     }
 
     // SQL query to retrieve data
-    $sql = "SELECT id, name, last_post, ip_address, browser_name FROM star_account";
+    $sql = "SELECT id, name, last_post, ip_address, browser_name FROM userid";
 
     $result = $conn->query($sql);
 
