@@ -235,7 +235,7 @@ if ($user['role'] === 'star_member') {
                             <div class="owl-carousel testimonial-carousel">
                                 <div class="testimonial-item text-center">
                                 <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
-                                <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>    
+                                <!-- <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>     -->
                                 <h5 class="mb-1"><?php echo $first_name . ' ' . $last_name; ?></h5>
                                     <p><small><?php $title ?></small></p>
                                     <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
