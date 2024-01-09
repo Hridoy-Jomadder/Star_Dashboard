@@ -1,54 +1,98 @@
 <?php
 session_start();
 
-include_once("classes/connect.php");
-include_once("classes/login.php");
-include_once("classes/database.php");
-include_once("classes/signup.php");
+    include_once("classes/connect.php");
+    include_once("classes/login.php");
+    include_once("classes/database.php");
+    include_once("classes/signup.php");
 
-// Check if the user is logged in, redirect to the login page if not
-if (!isset($_SESSION['das_userid'])) {
-    header("Location: login.php");
-    exit();
+    // Check if the user is logged in, redirect to the login page if not
+    if (!isset($_SESSION['das_userid'])) {
+        header("Location: login.php");
+        exit();
+    }
+
+    // Create a Database instance
+    $DB = new Database();
+
+    // Fetch user information based on the user ID stored in the session
+    $user = $DB->fetchUserById($_SESSION['das_userid']);
+
+    // Check if the user is found
+    if (!$user) {
+        // Handle the case where the user is not found
+        echo "User not found.";
+        exit();
+    }
+
+    // Now you can use $user to display user information in your dashboard
+    $first_name = $user['first_name'];
+    $last_name = $user['last_name'];
+    $role = $user['role'];
+
+    // Set a default profile image or use the user's profile image if available
+    if (isset($user['profile_image']) && !empty($user['profile_image'])) {
+        $profile_image = $user['profile_image'];
+    } else {
+        // Set a default image path or handle the case where profile_image is not set
+        $profile_image = 'default_profile_image.jpg';
+    }
+
+    // Fetch CO-CEO data based on user ID if the user is a CO-CEO
+    if ($user['role'] === 'co_ceo') {
+        // Use the fetched data directly in the CO-CEO profile section
+        $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
+    }
+
+    // Fetch Star Member data based on user ID if the user is a Star Member
+    if ($user['role'] === 'star_member') {
+        // Use the fetched data directly in the Star Member profile section
+        $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
+    }
+
+    // start
+function getDashboardData() {
+    $host = "your_database_host";
+    $username = "your_database_username";
+    $password = "your_database_password";
+    $database = "your_database_name";
+
+    // Create connection
+    $conn = new mysqli($host, $username, $password, $database);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // SQL query to retrieve data
+    $sql = "SELECT id, name, last_post, ip_address, browser_name FROM star_account";
+
+    $result = $conn->query($sql);
+
+    // Check if there are results
+    if ($result->num_rows > 0) {
+        // Fetch data and return as an associative array
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $data = array(); // Return an empty array if no data found
+    }
+
+    // Close the connection
+    $conn->close();
+
+    return $data;
 }
 
-// Create a Database instance
-$DB = new Database();
+// Example usage:
+$dashboardData = getDashboardData();
 
-// Fetch user information based on the user ID stored in the session
-$user = $DB->fetchUserById($_SESSION['das_userid']);
+// Display data (you can customize this part based on your requirements)
+echo "<pre>";
+print_r($dashboardData);
+echo "</pre>";
 
-// Check if the user is found
-if (!$user) {
-    // Handle the case where the user is not found
-    echo "User not found.";
-    exit();
-}
 
-// Now you can use $user to display user information in your dashboard
-$first_name = $user['first_name'];
-$last_name = $user['last_name'];
-$role = $user['role'];
-
-// Set a default profile image or use the user's profile image if available
-if (isset($user['profile_image']) && !empty($user['profile_image'])) {
-    $profile_image = $user['profile_image'];
-} else {
-    // Set a default image path or handle the case where profile_image is not set
-    $profile_image = 'default_profile_image.jpg';
-}
-
-// Fetch CO-CEO data based on user ID if the user is a CO-CEO
-if ($user['role'] === 'co_ceo') {
-    // Use the fetched data directly in the CO-CEO profile section
-    $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
-}
-
-// Fetch Star Member data based on user ID if the user is a Star Member
-if ($user['role'] === 'star_member') {
-    // Use the fetched data directly in the Star Member profile section
-    $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
-}
 ?>
 
 <!DOCTYPE html>
