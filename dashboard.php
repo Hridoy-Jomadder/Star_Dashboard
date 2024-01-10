@@ -51,46 +51,46 @@ session_start();
     }
 
 // start
-function getDashboardData() {
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "star_db1";
+// function getDashboardData() {
+//     $host = "localhost";
+//     $username = "root";
+//     $password = "";
+//     $database = "star_db1";
 
-    // Create connection
-    $conn = new mysqli($host, $username, $password, $database);
+//     // Create connection
+//     $conn = new mysqli($host, $username, $password, $database);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+//     // Check connection
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     }
 
-    // SQL query to retrieve data
-    $sql = "SELECT id, name, last_post, ip_address, browser_name FROM users";
+//     // SQL query to retrieve data
+//     $sql = "SELECT id, name, last_post, ip_address, browser_name FROM users";
 
-    $result = $conn->query($sql);
+//     $result = $conn->query($sql);
 
-    // Check if there are results
-    if ($result->num_rows > 0) {
-        // Fetch data and return as an associative array
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-    } else {
-        $data = array(); // Return an empty array if no data found
-    }
+//     // Check if there are results
+//     if ($result->num_rows > 0) {
+//         // Fetch data and return as an associative array
+//         $data = $result->fetch_all(MYSQLI_ASSOC);
+//     } else {
+//         $data = array(); // Return an empty array if no data found
+//     }
 
-    // Close the connection
-    $conn->close();
+//     // Close the connection
+//     $conn->close();
 
-    return $data;
-}
+//     return $data;
+// }
 
-// Example usage:
-$dashboardData = getDashboardData();
+// // Example usage:
+// $dashboardData = getDashboardData();
 
-// Display data (you can customize this part based on your requirements)
-echo "<pre>";
-print_r($dashboardData);
-echo "</pre>";
+// // Display data (you can customize this part based on your requirements)
+// echo "<pre>";
+// print_r($dashboardData);
+// echo "</pre>";
 
 ?>
 
