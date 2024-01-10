@@ -120,7 +120,7 @@
     var myChart3 = new Chart(ctx3, {
         type: "line",
         data: {
-            labels: [1, 2, 3, 80, 90, 100, 110, 120, 130, 140, 150],
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             datasets: [{
                 label: "Star Accounts",
                 fill: false,
