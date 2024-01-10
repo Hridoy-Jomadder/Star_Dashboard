@@ -257,8 +257,8 @@ if ($user['role'] === 'star_member') {
                             </div>
                         </div>
                     </div>
-                            </div>
-                    </div>
+                </div>
+            </div>
 
 
             <!-- Footer Start -->
