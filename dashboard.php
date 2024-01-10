@@ -50,7 +50,7 @@ session_start();
         $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
     }
 
-    // start
+// start
 function getDashboardData() {
     $host = "localhost";
     $username = "root";
@@ -91,7 +91,6 @@ $dashboardData = getDashboardData();
 echo "<pre>";
 print_r($dashboardData);
 echo "</pre>";
-
 
 ?>
 
