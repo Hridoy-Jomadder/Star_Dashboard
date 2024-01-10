@@ -59,24 +59,24 @@
     });
 
 
-    // Worldwide Chart
-    var ctx1 = $("#worldwide-countrys").get(0).getContext("2d");
+    // Worldwide Sales Chart
+    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
     var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
-            labels: ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
+            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
             datasets: [{
-                    label: "BD",
+                    label: "USA",
                     data: [15, 30, 55, 65, 60, 80, 95],
                     backgroundColor: "rgba(0, 156, 255, .7)"
                 },
                 {
-                    label: "IND",
+                    label: "UK",
                     data: [8, 35, 40, 60, 70, 55, 75],
                     backgroundColor: "rgba(0, 156, 255, .5)"
                 },
                 {
-                    label: "PAK",
+                    label: "AU",
                     data: [12, 25, 45, 55, 65, 70, 60],
                     backgroundColor: "rgba(0, 156, 255, .3)"
                 }
@@ -88,20 +88,20 @@
     });
 
 
-    // Active & Offline Chart
-    var ctx2 = $("#active-offline").get(0).getContext("2d");
+    // Salse & Revenue Chart
+    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
     var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-            labels: ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
+            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
             datasets: [{
-                    label: "Active",
+                    label: "Salse",
                     data: [15, 30, 55, 45, 70, 65, 85],
                     backgroundColor: "rgba(0, 156, 255, .5)",
                     fill: true
                 },
                 {
-                    label: "Offline",
+                    label: "Revenue",
                     data: [99, 135, 170, 130, 190, 180, 270],
                     backgroundColor: "rgba(0, 156, 255, .3)",
                     fill: true
@@ -120,20 +120,18 @@
     var myChart3 = new Chart(ctx3, {
         type: "line",
         data: {
-            labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            labels: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
             datasets: [{
-                label: "Star Accounts",
+                label: "Salse",
                 fill: false,
                 backgroundColor: "rgba(0, 156, 255, .3)",
-                data: [0, 10, 10, 20, 20, 20, 30, 40, 80, 80, 100]
-                // data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                data: [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
             }]
         },
         options: {
             responsive: true
         }
     });
-                
 
 
     // Single Bar Chart
