@@ -678,7 +678,7 @@ session_start();
                         display: true,
                         title: {
                             display: true,
-                            text: 'Categories'
+                            text: 'Days'
                         }
                     },
                     y: {
