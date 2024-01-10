@@ -122,16 +122,18 @@
         data: {
             labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
             datasets: [{
-                label: "Salse",
+                label: "Star Accounts",
                 fill: false,
                 backgroundColor: "rgba(0, 156, 255, .3)",
                 data: [0, 10, 10, 20, 20, 20, 30, 40, 80, 80, 100]
+                // data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             }]
         },
         options: {
             responsive: true
         }
     });
+                
 
 
     // Single Bar Chart
