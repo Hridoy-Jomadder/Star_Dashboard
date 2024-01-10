@@ -88,20 +88,20 @@
     });
 
 
-    // Salse & Revenue Chart
-    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
+    // Active & Offline Chart
+    var ctx2 = $("#active-offline").get(0).getContext("2d");
     var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            labels: ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
             datasets: [{
-                    label: "Salse",
+                    label: "Active",
                     data: [15, 30, 55, 45, 70, 65, 85],
                     backgroundColor: "rgba(0, 156, 255, .5)",
                     fill: true
                 },
                 {
-                    label: "Revenue",
+                    label: "Offline",
                     data: [99, 135, 170, 130, 190, 180, 270],
                     backgroundColor: "rgba(0, 156, 255, .3)",
                     fill: true
