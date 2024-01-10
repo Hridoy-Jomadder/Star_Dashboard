@@ -646,9 +646,9 @@ session_start();
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var categories = ['Category 1', 'Category 2', 'Category 3'];
-        var activeData = [10, 15, 8];
-        var offlineData = [5, 8, 12];
+        var categories = ['1', '2', '3', '4', '5', '6', '7'];
+        var activeData = [10, 15, 8, 5, 8, 8, 9];
+        var offlineData = [5, 8, 12, 4, 5, 6, 8];
 
         // Get the canvas element
         var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
