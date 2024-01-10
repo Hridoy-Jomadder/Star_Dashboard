@@ -244,7 +244,7 @@ if ($user['role'] === 'star_member') {
                                     <span>Short message goes here...</span>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
+                            <div class="d-flex  border-bottom py-3">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
                                         <small>15 minutes ago</small>
