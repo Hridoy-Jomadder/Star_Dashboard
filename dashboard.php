@@ -591,8 +591,8 @@ session_start();
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var countries = ['BD', 'IND', 'PAK','AFG'];
-        var data = [150, 200, 100,50];
+        var countries = ['BD', 'IND', 'PAK', 'AFG', 'SL'];
+        var data = [150, 200, 100, 50, 80];
 
         // Get the canvas element
         var ctxWorldwideCountry = document.getElementById('worldwide-country').getContext('2d');
@@ -611,12 +611,14 @@ session_start();
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(55, 106, 186, 0.2)',
+                        'rgba(200, 06, 186, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(55, 106, 186, 1)',
+                        'rgba(200, 06, 186, 1)',
                     ],
                     borderWidth: 1
                 }]
