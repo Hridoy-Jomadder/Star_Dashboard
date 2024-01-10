@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    // Single Line Chart
+    // Star Accounts Chart
 var lineChartData = {
 labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'], // Replace with your labels
 datasets: [

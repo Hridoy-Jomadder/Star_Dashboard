@@ -231,7 +231,7 @@ if ($user['role'] === 'star_member') {
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Star Account Chart</h6>
+                            <h6 class="mb-4">Star Accounts Chart</h6>
                             <canvas id="line-chart"  height="200"></canvas>
                             
                         </div>
