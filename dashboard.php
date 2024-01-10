@@ -648,7 +648,7 @@ session_start();
         // Sample data
         var categories = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
         var activeData = [10, 15, 8, 5, 8, 8, 9];
-        var offlineData = [5, 8, 12, 4, 5, 6, 18];
+        var offlineData = [1, 3, 12, 4, 5, 6, 18];
 
         // Get the canvas element
         var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
