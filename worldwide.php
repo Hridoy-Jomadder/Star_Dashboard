@@ -289,14 +289,14 @@ if ($user['role'] === 'star_member') {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    // Template Javascript
+ <!-- Template Javascript -->
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var countries = ['UK', 'US', 'Australia'];
-        var data = [150, 200, 100];
+        var countries = ['BD', 'IND', 'PAK', 'AFG', 'SL'];
+        var data = [150, 200, 100, 50, 80];
 
         // Get the canvas element
         var ctxWorldwideCountry = document.getElementById('worldwide-country').getContext('2d');
@@ -308,16 +308,21 @@ if ($user['role'] === 'star_member') {
                 labels: countries,
                 datasets: [{
                     label: 'Number of Users',
+                    labelColor: 'rgba(255, 99, 132, 1)',
                     data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
+                        'rgba(100, 106, 186, 0.2)',
+                        'rgba(200, 06, 186, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
+                        'rgba(100, 106, 186, 1)',
+                        'rgba(200, 06, 186, 1)',
                     ],
                     borderWidth: 1
                 }]
@@ -348,9 +353,9 @@ if ($user['role'] === 'star_member') {
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var categories = ['Category 1', 'Category 2', 'Category 3'];
-        var activeData = [10, 15, 8];
-        var offlineData = [5, 8, 12];
+        var categories = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
+        var activeData = [10, 15, 8, 5, 8, 8, 9];
+        var offlineData = [1, 3, 12, 4, 22, 26, 1];
 
         // Get the canvas element
         var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
@@ -380,7 +385,7 @@ if ($user['role'] === 'star_member') {
                         display: true,
                         title: {
                             display: true,
-                            text: 'Categories'
+                            text: 'Days'
                         }
                     },
                     y: {
@@ -395,6 +400,7 @@ if ($user['role'] === 'star_member') {
         });
     });
 </script>
+
 
 </body>
 
