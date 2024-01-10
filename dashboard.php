@@ -651,7 +651,7 @@ session_start();
         var offlineData = [5, 8, 12, 4, 5, 6, 8];
 
         // Get the canvas element
-        var ctxActiveOffline = document.getElementById('active-offline').getContext('2d');
+        var ctxActiveOffline = document.getElementById('active-offline').getContext('1d');
 
         // Create the line chart for Active & Offline
         var activeOfflineChart = new Chart(ctxActiveOffline, {
