@@ -646,7 +646,7 @@ session_start();
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var categories = ['1', '2', '3', '4', '5', '6', '7'];
+        var categories = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
         var activeData = [10, 15, 8, 5, 8, 8, 9];
         var offlineData = [5, 8, 12, 4, 5, 6, 8];
 
