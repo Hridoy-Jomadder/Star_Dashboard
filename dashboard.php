@@ -604,6 +604,7 @@ session_start();
                 labels: countries,
                 datasets: [{
                     label: 'Number of Users',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
