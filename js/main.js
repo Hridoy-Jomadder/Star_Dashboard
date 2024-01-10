@@ -60,23 +60,23 @@
 
 
     // Worldwide Chart
-    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
+    var ctx1 = $("#worldwide-countrys").get(0).getContext("2d");
     var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
             labels: ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
             datasets: [{
-                    label: "USA",
+                    label: "BD",
                     data: [15, 30, 55, 65, 60, 80, 95],
                     backgroundColor: "rgba(0, 156, 255, .7)"
                 },
                 {
-                    label: "UK",
+                    label: "IND",
                     data: [8, 35, 40, 60, 70, 55, 75],
                     backgroundColor: "rgba(0, 156, 255, .5)"
                 },
                 {
-                    label: "AU",
+                    label: "PAK",
                     data: [12, 25, 45, 55, 65, 70, 60],
                     backgroundColor: "rgba(0, 156, 255, .3)"
                 }
