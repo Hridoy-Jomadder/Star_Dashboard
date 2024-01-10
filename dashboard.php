@@ -55,7 +55,7 @@ function getDashboardData() {
     $host = "localhost";
     $username = "root";
     $password = "";
-    $database = "star_db1";
+    $database = "das_db";
 
     // Create connection
     $conn = new mysqli($host, $username, $password, $database);
