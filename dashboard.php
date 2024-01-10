@@ -591,7 +591,7 @@ session_start();
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Sample data
-        var countries = ['UK', 'US', 'Australia'];
+        var countries = ['BD', 'IND', 'PAK'];
         var data = [150, 200, 100];
 
         // Get the canvas element
