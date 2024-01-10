@@ -234,7 +234,7 @@ if ($user['role'] === 'star_member') {
                             <h6 class="mb-4">Star Accounts Chart</h6>
 
                             <canvas id="line-chart"  height="200"></canvas>
-                            
+
                         </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
@@ -305,6 +305,7 @@ if ($user['role'] === 'star_member') {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/Charts.js"></script>
 
 <!-- JavaScript Libraries -->
 <script src="lib/chart/chart.min.js"></script>
