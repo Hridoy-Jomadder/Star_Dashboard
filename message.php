@@ -247,7 +247,7 @@ if ($user['role'] === 'star_member') {
                             <div class="d-flex  border-bottom py-3">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <small>15 minutes ago</small>
+                                        <!-- <small>15 minutes ago</small> -->
                                         <h6 class="mb-0">Jhon Doe</h6>
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                                     </div>
