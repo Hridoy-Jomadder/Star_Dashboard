@@ -305,7 +305,7 @@ if ($user['role'] === 'star_member') {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/Charts.js"></script>
+    <script src="js/Chart.js"></script>
 
 <!-- JavaScript Libraries -->
 <script src="lib/chart/chart.min.js"></script>
