@@ -309,58 +309,6 @@ if ($user['role'] === 'star_member') {
 <script src="lib/chart/chart.min.js"></script>
 
 
-<!-- Custom Chart Script -->
-<!-- <script>
-    // Wait for the DOM to be ready
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the canvas element
-        var lineChartCanvas = document.getElementById('line-chart').getContext('2d');
-        
-            // Set the height dynamically
-    lineChartCanvas.height = 200; // Adjust the value as needed
-
-
-        // Data for the chart
-        var chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-            datasets: [{
-                label: 'Monthly Sales',
-                data: [1, 2, 1.5, 4, 3, 6],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color
-                borderColor: 'rgba(75, 192, 192, 1)', // Border color
-                borderWidth: 1, // Border width
-                fill: true // Fill the area under the line
-            }]
-        };
-
-        // Chart Configuration
-        var chartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: [{
-                    display: true,
-                }],
-                y: [{
-                    display: true,
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        };
-
-        // Create the line chart
-        var lineChart = new Chart(lineChartCanvas, {
-            type: 'line', // Specify the chart type
-            data: chartData,
-            options: chartOptions
-        });
-    });
-</script>
- -->
-
-
 </body>
 
 </html>
