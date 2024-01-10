@@ -234,6 +234,7 @@ if ($user['role'] === 'star_member') {
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Messages</h6>
                             </div>
+                            <a href="#" class="dropdown-item">
                             <div class="ms-2">
                                 <div class="d-flex align-items-center border-bottom py-3">
                                     <div class="w-100 ms-3">
@@ -246,6 +247,7 @@ if ($user['role'] === 'star_member') {
                                     </div>
                                 </div>
                             </div>
+                            </a>
                             <div class="d-flex align-items-center pt-3">
                                 <div class="w-100 ms-3">
                                     <div class="d-flex w-100 justify-content-between">
