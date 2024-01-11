@@ -57,7 +57,7 @@ if ($user['role'] === 'star_member') {
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - </title>
+    <title>DASHMIN - Star</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
