@@ -122,7 +122,7 @@
         data: {
             labels: [0, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
             datasets: [{
-                label: "Salse",
+                label: "Star Accounts",
                 fill: true,
                 backgroundColor: "rgba(0, 156, 255, .3)",
                 data: [0, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
