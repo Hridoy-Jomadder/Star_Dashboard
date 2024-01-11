@@ -139,16 +139,17 @@
     var myChart4 = new Chart(ctx4, {
         type: "bar",
         data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
+            labels: ["Italy", "France", "Spain", "USA", "Argentina","BD"],
             datasets: [{
                 backgroundColor: [
                     "rgba(0, 156, 255, .7)",
                     "rgba(0, 156, 255, .6)",
                     "rgba(0, 156, 255, .5)",
                     "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
+                    "rgba(0, 156, 255, .3)",
+                    "rgba(255, 156, 255, .3)"
                 ],
-                data: [55, 49, 44, 24, 15]
+                data: [55, 49, 44, 24, 15,23]
             }]
         },
         options: {
