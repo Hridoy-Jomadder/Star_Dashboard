@@ -1,6 +1,6 @@
-{/* <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    // Star Accounts Chart
+    // Single Line Chart
 var lineChartData = {
 labels: ['Label1', 'Label2', 'Label3', 'Label4', 'Label5'], // Replace with your labels
 datasets: [
@@ -86,4 +86,4 @@ type: 'line',
 data: lineChartData,
 options: lineChartOptions
 });
- */}
+
