@@ -500,6 +500,7 @@ session_start();
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Calender</h6>
+                                <span id="currentDateTime" style="padding: 5px;"></span>
                             </div>
                             <div id="calender"></div>
                         </div>
