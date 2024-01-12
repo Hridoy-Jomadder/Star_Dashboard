@@ -196,7 +196,7 @@ session_start();
                     <input class="form-control border-0" type="search" placeholder="Search ID or Name">
                 </form>
 
-                <span id="currentDateTime"></span>
+                <span id="currentDateTime" style="padding: 5px;"></span>
 
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
