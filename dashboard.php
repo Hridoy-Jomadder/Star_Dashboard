@@ -195,8 +195,8 @@ session_start();
                 <form class="d-none d-md-flex ms-4">
                     <input class="form-control border-0" type="search" placeholder="Search ID or Name">
                 </form>
-                let currentDate = new Date();
-                console.log(currentDate);
+
+                <h1 id="currentDateTime"></h1>
 
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
@@ -700,6 +700,20 @@ session_start();
     });
 </script>
 
+<script>
+    function updateDateTime() {
+      var currentDate = new Date();
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+      var formattedDateTime = currentDate.toLocaleDateString('en-US', options);
+      document.getElementById('currentDateTime').textContent = formattedDateTime;
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+
+    // Initial update
+    updateDateTime();
+  </script>
 </body>
 
 </html>
