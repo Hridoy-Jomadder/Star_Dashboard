@@ -92,6 +92,19 @@ session_start();
 // print_r($dashboardData);
 // echo "</pre>";
 
+// Establish a connection to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "das_db";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Get the task name from the query parameter
 $taskName = $_GET['taskName'];
 
@@ -104,6 +117,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
