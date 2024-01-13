@@ -518,12 +518,12 @@ if ($conn->query($sql) === TRUE) {
                         </div>
                     </div>
                     <!-- add -->
-                    <!-- <div>
+                    <div>
                         <input type="text" id="taskInput" placeholder="Add a new task">
                         <button onclick="addTask()">Add Task</button>
                     </div>
-                    <ul id="taskList"></ul> -->
-
+                    <ul id="taskList"></ul>
+<!-- 
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -544,7 +544,7 @@ if ($conn->query($sql) === TRUE) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- Widgets End -->
