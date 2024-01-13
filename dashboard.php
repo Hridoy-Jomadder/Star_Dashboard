@@ -92,6 +92,18 @@ session_start();
 // print_r($dashboardData);
 // echo "</pre>";
 
+// Get the task name from the query parameter
+$taskName = $_GET['taskName'];
+
+// Insert the task into the tasks table
+$sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Task saved successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 ?>
 
 <!DOCTYPE html>
