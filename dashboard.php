@@ -506,11 +506,11 @@ session_start();
                         </div>
                     </div>
                     <!-- add -->
-                    <div>
+                    <!-- <div>
                         <input type="text" id="taskInput" placeholder="Add a new task">
                         <button onclick="addTask()">Add Task</button>
                     </div>
-                    <ul id="taskList"></ul>
+                    <ul id="taskList"></ul> -->
 
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
@@ -772,7 +772,7 @@ session_start();
             xhr.send();
         }
     </script>
-    
+
 </body>
 
 </html>
