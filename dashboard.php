@@ -383,14 +383,14 @@ $conn->close();
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr>
                                 
-                                <tr>
+                                <!-- <tr>
                                     <td>762276656392054</td>
                                     <td>Tuba Islam</td>
                                     <td>I am back.</td>
                                     <td>17.172.224.48</td>
                                     <td>Apple</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
+                                </tr> -->
                                 <!-- <tr>
                                     <td><input class="form-check-input" type="checkbox"></td>
                                     <td>01 Jan 2045</td>
