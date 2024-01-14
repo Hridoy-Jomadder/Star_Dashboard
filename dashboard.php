@@ -105,19 +105,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the task name from the query parameter
-$taskName = $_GET['taskName'];
+// Check if the "taskName" key is set in the $_GET array
+if (isset($_GET['taskName'])) {
+    // Get the task name from the query parameter
+    $taskName = $_GET['taskName'];
 
-// Insert the task into the tasks table
-$sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
+    // Insert the task into the tasks table
+    $sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Task saved successfully";
+    if ($conn->query($sql) === TRUE) {
+        echo "Task saved successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    // Handle the case where "taskName" is not set in the $_GET array
+    echo "Error: 'taskName' not set in the query parameters.";
 }
 
 $conn->close();
+
 ?>
 
 <!DOCTYPE html>
