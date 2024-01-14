@@ -380,7 +380,8 @@ $conn->close();
                                     <td>I am back.</td>
                                     <td>127.0.0.1</td>
                                     <td>I Phone</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                    <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
+                                    <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
                                 </tr>
                                 
                                 <!-- <tr>
