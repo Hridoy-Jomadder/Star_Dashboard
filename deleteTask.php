@@ -16,14 +16,24 @@ if (isset($_GET['taskName'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Delete the task from the tasks table
-    $sql = "DELETE FROM tasks WHERE task_name = '$taskName'";
+    // Use prepared statement to prevent SQL injection
+    $stmt = $conn->prepare("DELETE FROM tasks WHERE task_name = ?");
+    $stmt->bind_param("s", $taskName);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Task deleted successfully";
+    // Execute the statement
+    if ($stmt->execute()) {
+        // Check if any rows were affected
+        if ($stmt->affected_rows > 0) {
+            echo "Task deleted successfully";
+        } else {
+            echo "Task not found";
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
+
+    // Close the statement
+    $stmt->close();
 
     // Close the connection
     $conn->close();
