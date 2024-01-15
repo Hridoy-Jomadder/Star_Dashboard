@@ -701,6 +701,36 @@ function addTask() {
     xhr.open("GET", `saveTask.php?taskName=${taskName}`, true);
     xhr.send();
 }
+// Assuming this is the JavaScript code in your HTML or included in your project
+function saveTask() {
+    var taskName = document.getElementById("taskName").value;  // Assuming you have an input field with id "taskName"
+
+    // Check if the taskName is not empty before making the request
+    if (taskName.trim() !== "") {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    // Handle the response as needed
+                } else {
+                    console.error("Error: " + xhr.status + " - " + xhr.statusText);
+                    // Handle the error as needed
+                }
+            }
+        };
+
+        // Encode the taskName to ensure special characters are handled properly
+        var encodedTaskName = encodeURIComponent(taskName);
+
+        // Make sure to adjust the URL based on your project structure
+        xhr.open("GET", "saveTask.php?taskName=" + encodedTaskName, true);
+        xhr.send();
+    } else {
+        console.error("Error: Task name is empty");
+        // Handle the case where the task name is empty
+    }
+}
 
     </script>
 
