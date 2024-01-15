@@ -86,7 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <form method="post" action="signup.php">
                             <input name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>" type="text" id="text" placeholder="Username" style="font-family: times new roman;">
-                            
+                            <select id="text" name="role" style="font-family: times new roman;">
+                                <option <?php echo $role ?>>CEO</option>
+                                <option>Co-CEO</option>
+                                <option>Star Member</option>
+                            </select>
                             <input name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>" type="text" id="text" placeholder="E-mail Address" style="font-family: times new roman;">
                             <input name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>" type="password" id="password" placeholder="password" style="font-family: times new roman;">
 
