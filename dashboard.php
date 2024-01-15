@@ -660,7 +660,7 @@ $conn->close();
             deleteTaskFromDatabase(li.innerText.split(' ')[0]);
         }
 
-        function saveTaskToDatabase(taskName) {
+        function saveTaskToDatabase(encodeURIComponent(taskInput.value)){
             // Send an AJAX request to the server to save the task in the database
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -672,7 +672,7 @@ $conn->close();
             xhr.send();
         }
 
-        function deleteTaskFromDatabase(taskName) {
+        deleteTaskFromDatabase(encodeURIComponent(li.innerText.split(' ')[0])) {
             // Send an AJAX request to the server to delete the task from the database
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
