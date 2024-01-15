@@ -507,27 +507,6 @@ $conn->close();
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script>
-    //Todo list js
-        function addTask() {
-            const taskInput = document.getElementById("taskInput");
-            const taskList = document.getElementById("taskList");
-        
-            if (taskInput.value.trim() !== "") {
-                const li = document.createElement("li");
-                li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
-                taskList.appendChild(li);
-                taskInput.value = "";
-            }
-        }
-        
-        function removeTask(button) {
-            const li = button.parentElement;
-            const taskList = document.getElementById("taskList");
-            taskList.removeChild(li);
-        }</script>
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
