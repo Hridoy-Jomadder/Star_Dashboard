@@ -96,7 +96,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "das_db";
+$dbname = "das_db"; // Assuming this is your database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -105,26 +105,36 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the "taskName" key is set in the $_GET array
-if (isset($_GET['taskName'])) {
-    // Get the task name from the query parameter
-    $taskName = $_GET['taskName'];
+// Function to add a task to the database
+function addTask($taskName, $conn) {
+    $taskName = mysqli_real_escape_string($conn, $taskName);
 
-    // Insert the task into the tasks table
     $sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Task saved successfully";
+        return true; // Task added successfully
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        return false; // Error adding task
     }
-} else {
-    // Handle the case where "taskName" is not set in the $_GET array
-    echo "Error: 'taskName' not set in the query parameters.";
 }
 
-$conn->close();
+// Get tasks from the database
+function getTasks($conn) {
+    $sql = "SELECT * FROM tasks";
+    $result = $conn->query($sql);
 
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo '<div>' . $row["task_name"] . '</div>';
+        }
+    } else {
+        echo "No tasks found";
+    }
+}
+
+// Close the database connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -392,7 +402,7 @@ $conn->close();
                                     <td>Apple</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr> -->
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -513,13 +523,6 @@ $conn->close();
                             <div id="calender"></div>
                         </div>
                     </div>
-                    <!-- add -->
-                    <div>
-                        <input type="text" id="taskInput" placeholder="Add a new task">
-                        <button onclick="addTask()">Add Task</button>
-                    </div>
-                    <ul id="taskList"></ul>
-
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
