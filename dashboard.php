@@ -637,35 +637,35 @@ $conn->close();
 
 <script>
         function addTask() {
-            const taskInput = document.getElementById("taskInput");
-            const taskList = document.getElementById("taskList");
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
 
-            if (taskInput.value.trim() !== "") {
-                const li = document.createElement("li");
-                li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
-                taskList.appendChild(li);
-                taskInput.value = "";
+    if (taskInput.value.trim() !== "") {
+        const li = document.createElement("li");
+        li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
+        taskList.appendChild(li);
 
-                // Send task to the server to save in the database
-                saveTaskToDatabase(taskInput.value);
-            }
-        }
+        // Send task to the server to save in the database
+        saveTaskToDatabase(encodeURIComponent(taskInput.value));
 
-        function removeTask(button) {
-            const li = button.parentElement;
-            const taskList = document.getElementById("taskList");
-            taskList.removeChild(li);
+        taskInput.value = "";
+    }
+}
 
-            // Send request to the server to delete the task from the database
-            deleteTaskFromDatabase(li.innerText.split(' ')[0]);
-        }
+function removeTask(button) {
+    const li = button.parentElement;
+    const taskList = document.getElementById("taskList");
+    taskList.removeChild(li);
 
-        function saveTaskToDatabase(taskName) {
+    // Send request to the server to delete the task from the database
+    deleteTaskFromDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
+}
+
+function saveTaskToDatabase(taskName) {
     // Send an AJAX request to the server to save the task in the database
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            console.log(xhr.responseText);  // Log the response from the server
             if (xhr.status == 200) {
                 console.log("Task saved to the database");
             } else {
@@ -682,7 +682,6 @@ function deleteTaskFromDatabase(taskName) {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
-            console.log(xhr.responseText);  // Log the response from the server
             if (xhr.status == 200) {
                 console.log("Task deleted from the database");
             } else {
