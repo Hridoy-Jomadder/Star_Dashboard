@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 ?>
 
 
-	function read($query)
+	<!-- function read($query)
 	{
 		$conn = $this->connect();
 		$result = mysqli_query($conn,$query);
@@ -52,4 +52,4 @@ if ($conn->connect_error) {
 	}
 
 }
-
+ -->

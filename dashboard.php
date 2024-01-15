@@ -92,49 +92,6 @@ session_start();
 // print_r($dashboardData);
 // echo "</pre>";
 
-//
-if (isset($_GET['taskName'])) {
-    // Get the task name from the query parameter
-    $taskName = $_GET['taskName'];
-
-    // Establish a connection to the database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Use prepared statement to prevent SQL injection
-    $stmt = $conn->prepare("DELETE FROM tasks WHERE task_name = ?");
-    $stmt->bind_param("s", $taskName);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        // Check if any rows were affected
-        if ($stmt->affected_rows > 0) {
-            echo "Task deleted successfully";
-        } else {
-            echo "Task not found";
-        }
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close the statement
-    $stmt->close();
-
-    // Close the connection
-    $conn->close();
-} else {
-    // Handle the case where "taskName" is not set in the $_GET array
-    echo "Error: 'taskName' not set in the query parameters.";
-}
 ?>
 
 <!DOCTYPE html>
@@ -448,18 +405,12 @@ if (isset($_GET['taskName'])) {
                             <div id="calender"></div>
                         </div>
                     </div>
-                    <!-- add -->
-                    <!-- <div>
-                        <input type="text" id="taskInput" placeholder="Add a new task">
-                        <button onclick="addTask()">Add Task</button>
-                    </div>
-                    <ul id="taskList"></ul> -->
+
 
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">To Do List</h6>
-                                <!-- <a href="">Show All</a> -->
                             </div>
                             <div class="d-flex mb-2">
                                 <input class="form-control bg-transparent" type="text" id="taskInput" placeholder="Enter task">
@@ -644,57 +595,6 @@ if (isset($_GET['taskName'])) {
     // Initial update
     updateDateTime();
   </script>
-
-<script>
-        function addTask() {
-            const taskInput = document.getElementById("taskInput");
-            const taskList = document.getElementById("taskList");
-
-            if (taskInput.value.trim() !== "") {
-                const li = document.createElement("li");
-                li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
-                taskList.appendChild(li);
-                taskInput.value = "";
-
-                // Send task to the server to save in the database
-                saveTaskToDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
-            }
-        }
-
-        function removeTask(button) {
-            const li = button.parentElement;
-            const taskList = document.getElementById("taskList");
-            taskList.removeChild(li);
-
-            // Send request to the server to delete the task from the database
-            deleteTaskFromDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
-        }
-
-    function saveTaskToDatabase(taskName) {
-        // Send an AJAX request to the server to save the task in the database
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("Task saved to the database");
-            }
-        };
-        xhr.open("GET", `saveTask.php?taskName=${encodeURIComponent(taskName)}`, true);
-        xhr.send();
-    }
-
-    function deleteTaskFromDatabase(taskName) {
-        // Send an AJAX request to the server to delete the task from the database
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("Task deleted from the database");
-            }
-        };
-        xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
-        xhr.send();
-    }
-
-    </script>
 
 </body>
 
