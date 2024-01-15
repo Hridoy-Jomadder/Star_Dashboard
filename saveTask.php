@@ -35,6 +35,10 @@ if (isset($_GET['taskName'])) {
         echo "Error: 'taskName' is empty.";
     }
 } else {
+    // Debugging statement to print the entire $_GET array
+    echo "Debugging: ";
+    print_r($_GET);
+    
     // Handle the case where "taskName" is not set in the $_GET array
     echo "Error: 'taskName' not set in the query parameters.";
 }
