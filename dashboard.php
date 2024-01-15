@@ -662,28 +662,29 @@ $conn->close();
     }
 
     function saveTaskToDatabase(taskName) {
-        // Send an AJAX request to the server to save the task in the database
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("Task saved to the database");
-            }
-        };
-        xhr.open("GET", `saveTask.php?taskName=${taskName}`, true);
-        xhr.send();
-    }
+    // Send an AJAX request to the server to save the task in the database
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("Task saved to the database");
+        }
+    };
+    xhr.open("GET", `saveTask.php?taskName=${encodeURIComponent(taskName)}`, true);
+    xhr.send();
+}
 
-    function deleteTaskFromDatabase(taskName) {
-        // Send an AJAX request to the server to delete the task from the database
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("Task deleted from the database");
-            }
-        };
-        xhr.open("GET", `deleteTask.php?taskName=${taskName}`, true);
-        xhr.send();
-    }
+function deleteTaskFromDatabase(taskName) {
+    // Send an AJAX request to the server to delete the task from the database
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("Task deleted from the database");
+        }
+    };
+    xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
+    xhr.send();
+}
+
 </script>
     </script>
 
