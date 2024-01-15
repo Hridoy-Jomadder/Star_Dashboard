@@ -680,7 +680,7 @@ $conn->close();
     updateDateTime();
   </script>
 
-<script>
+<!-- <script>
         function addTask() {
             const taskInput = document.getElementById("taskInput");
             const taskList = document.getElementById("taskList");
@@ -728,7 +728,7 @@ $conn->close();
             xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
             xhr.send();
         }
-    </script>
+    </script> -->
 
 <script>
     // JavaScript function to add a task using AJAX
