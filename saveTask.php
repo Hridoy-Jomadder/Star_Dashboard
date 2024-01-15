@@ -3,33 +3,37 @@ if (isset($_GET['taskName'])) {
     // Get the task name from the query parameter
     $taskName = $_GET['taskName'];
 
-    // Establish a connection to the database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "das_db";
+    // Check if taskName is not empty
+    if (!empty($taskName)) {
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        // Establish a connection to the database
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "das_db";
 
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Use prepared statements to prevent SQL injection
-    $sql = "INSERT INTO tasks (task_name) VALUES (?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $taskName);
+        // Check the connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-    if ($stmt->execute()) {
-        echo "Task saved successfully";
+        // Insert the task into the tasks table
+        $sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Task saved successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        // Close the connection
+        $conn->close();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Handle the case where taskName is empty
+        echo "Error: 'taskName' is empty.";
     }
-
-    // Close the connection
-    $stmt->close();
-    $conn->close();
 } else {
     // Handle the case where "taskName" is not set in the $_GET array
     echo "Error: 'taskName' not set in the query parameters.";
