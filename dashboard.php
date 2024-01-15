@@ -96,7 +96,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "das_db"; // Assuming this is your database name
+$dbname = "das_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -105,36 +105,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Function to add a task to the database
-function addTask($taskName, $conn) {
-    $taskName = mysqli_real_escape_string($conn, $taskName);
+// Check if the "taskName" key is set in the $_GET array
+if (isset($_GET['taskName'])) {
+    // Get the task name from the query parameter
+    $taskName = $_GET['taskName'];
 
+    // Insert the task into the tasks table
     $sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
 
     if ($conn->query($sql) === TRUE) {
-        return true; // Task added successfully
+        echo "Task saved successfully";
     } else {
-        return false; // Error adding task
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
+} else {
+    // Handle the case where "taskName" is not set in the $_GET array
+    echo "Error: 'taskName' not set in the query parameters.";
 }
 
-// Get tasks from the database
-function getTasks($conn) {
-    $sql = "SELECT * FROM tasks";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo '<div>' . $row["task_name"] . '</div>';
-        }
-    } else {
-        echo "No tasks found";
-    }
-}
-
-// Close the database connection
 $conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -402,7 +392,7 @@ $conn->close();
                                     <td>Apple</td>
                                     <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
                                 </tr> -->
-
+                               
                             </tbody>
                         </table>
                     </div>
@@ -448,6 +438,13 @@ $conn->close();
                             <div id="calender"></div>
                         </div>
                     </div>
+                    <!-- add -->
+                    <!-- <div>
+                        <input type="text" id="taskInput" placeholder="Add a new task">
+                        <button onclick="addTask()">Add Task</button>
+                    </div>
+                    <ul id="taskList"></ul> -->
+
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -456,7 +453,7 @@ $conn->close();
                             </div>
                             <div class="d-flex mb-2">
                                 <input class="form-control bg-transparent" type="text" id="taskInput" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2" onclick="addTask()">Add</button>
+                                <button type="button" class="btn btn-primary ms-2" onclick="addTask()">Add Task</button>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <!-- <input class="form-check-input m-0" type="checkbox"> -->
@@ -469,27 +466,6 @@ $conn->close();
                             </div>
                         </div>
                     </div>
-
-                    <!--add-->
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">To Do List</h6>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <input class="form-control bg-transparent" type="text" id="taskInput" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2" onclick="addTask()">Add</button>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between" id="taskList">
-                                        <!-- Display tasks here using AJAX -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <!-- Widgets End -->
@@ -680,7 +656,7 @@ $conn->close();
     updateDateTime();
   </script>
 
-<!-- <script>
+<script>
         function addTask() {
             const taskInput = document.getElementById("taskInput");
             const taskList = document.getElementById("taskList");
@@ -728,41 +704,7 @@ $conn->close();
             xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
             xhr.send();
         }
-    </script> -->
-
-<script>
-    // JavaScript function to add a task using AJAX
-    function addTask() {
-        var taskInput = document.getElementById("taskInput").value;
-
-        // AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                // Refresh task list after adding a task
-                document.getElementById("taskList").innerHTML = this.responseText;
-            }
-        };
-
-        xhttp.open("GET", "dashboard.php?task=" + taskInput, true);
-        xhttp.send();
-    }
-
-    // Display tasks on page load
-    window.onload = function () {
-        // AJAX request
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                // Display tasks on page load
-                document.getElementById("taskList").innerHTML = this.responseText;
-            }
-        };
-
-        xhttp.open("GET", "dashboard.php", true);
-        xhttp.send();
-    };
-</script>
+    </script>
 
 </body>
 
