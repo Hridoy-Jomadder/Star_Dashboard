@@ -321,7 +321,32 @@ session_start();
             </div>
             <!-- Star End -->
 
-            <!-- Id Start -->
+            <!-- Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Worldwide</h6>
+                                <a href="worldwide.php">Show All</a>
+                            </div>
+                            <canvas id="worldwide-country"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Active & Offline</h6>
+                                <a href="worldwide.php">Show All</a>
+                            </div>
+                            <canvas id="active-offline"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Chart End -->
+
+            <!-- Star Account Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -365,33 +390,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <!-- Recent Sales End -->
-
-
-            <!-- Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Worldwide</h6>
-                                <a href="worldwide.php">Show All</a>
-                            </div>
-                            <canvas id="worldwide-country"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Active & Offline</h6>
-                                <a href="worldwide.php">Show All</a>
-                            </div>
-                            <canvas id="active-offline"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Chart End -->
+            <!-- Star Account End -->
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4">
