@@ -16,16 +16,19 @@ if (isset($_GET['taskName'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Insert the task into the tasks table
-    $sql = "INSERT INTO tasks (task_name) VALUES ('$taskName')";
+    // Use prepared statements to prevent SQL injection
+    $sql = "INSERT INTO tasks (task_name) VALUES (?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $taskName);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         echo "Task saved successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     // Close the connection
+    $stmt->close();
     $conn->close();
 } else {
     // Handle the case where "taskName" is not set in the $_GET array

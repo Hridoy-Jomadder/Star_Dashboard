@@ -636,51 +636,69 @@ $conn->close();
   </script>
 
 <script>
-    function addTask() {
-        const taskInput = document.getElementById("taskInput");
-        const taskList = document.getElementById("taskList");
+//     function addTask() {
+//         const taskInput = document.getElementById("taskInput");
+//         const taskList = document.getElementById("taskList");
 
-        if (taskInput.value.trim() !== "") {
-            const li = document.createElement("li");
-            li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
-            taskList.appendChild(li);
-            taskInput.value = "";
+//         if (taskInput.value.trim() !== "") {
+//             const li = document.createElement("li");
+//             li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Delete</button>`;
+//             taskList.appendChild(li);
+//             taskInput.value = "";
 
-            // Send task to the server to save in the database
-            saveTaskToDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
-        }
-    }
+//             // Send task to the server to save in the database
+//             saveTaskToDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
+//         }
+//     }
 
-    function removeTask(button) {
-        const li = button.parentElement;
-        const taskList = document.getElementById("taskList");
-        taskList.removeChild(li);
+//     function removeTask(button) {
+//         const li = button.parentElement;
+//         const taskList = document.getElementById("taskList");
+//         taskList.removeChild(li);
 
-        // Send request to the server to delete the task from the database
-        deleteTaskFromDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
-    }
+//         // Send request to the server to delete the task from the database
+//         deleteTaskFromDatabase(encodeURIComponent(li.innerText.split(' ')[0]));
+//     }
 
-    function saveTaskToDatabase(taskName) {
-    // Send an AJAX request to the server to save the task in the database
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+//     function saveTaskToDatabase(taskName) {
+//     // Send an AJAX request to the server to save the task in the database
+//     const xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             console.log("Task saved to the database");
+//         }
+//     };
+//     xhr.open("GET", `saveTask.php?taskName=${encodeURIComponent(taskName)}`, true);
+//     xhr.send();
+// }
+
+// function deleteTaskFromDatabase(taskName) {
+//     // Send an AJAX request to the server to delete the task from the database
+//     const xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             console.log("Task deleted from the database");
+//         }
+//     };
+//     xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
+//     xhr.send();
+// }
+// Assuming this is the part of your JavaScript code that sends the request
+function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Task saved to the database");
+            console.log(xhr.responseText);
+            // Handle the response if needed
         }
     };
-    xhr.open("GET", `saveTask.php?taskName=${encodeURIComponent(taskName)}`, true);
-    xhr.send();
-}
 
-function deleteTaskFromDatabase(taskName) {
-    // Send an AJAX request to the server to delete the task from the database
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("Task deleted from the database");
-        }
-    };
-    xhr.open("GET", `deleteTask.php?taskName=${encodeURIComponent(taskName)}`, true);
+    // Make sure taskInput.value is not empty
+    var taskName = encodeURIComponent(taskInput.value);
+
+    xhr.open("GET", `saveTask.php?taskName=${taskName}`, true);
     xhr.send();
 }
 
