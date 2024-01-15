@@ -636,7 +636,6 @@ $conn->close();
   </script>
 
 <script>
-     <script>
     function addTask() {
         const taskInput = document.getElementById("taskInput");
         const taskList = document.getElementById("taskList");
@@ -685,7 +684,6 @@ function deleteTaskFromDatabase(taskName) {
     xhr.send();
 }
 
-</script>
     </script>
 
 </body>
