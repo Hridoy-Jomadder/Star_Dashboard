@@ -259,7 +259,7 @@ if ($user['role'] === 'star_member') {
                                 <tr>
                                     <td><input class="form-check-input" type="checkbox"></td>
                                     <td>762276656392054</td>
-                                    <td>Tuba Islam</td>
+                                    <td>Star Islam</td>
                                     <td>I am back.</td>
                                     <td>17.172.224.47</td>
                                     <td>Apple</td>
