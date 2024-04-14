@@ -272,7 +272,7 @@ session_start();
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">All Star ID</p>
+                                <p class="mb-2">All Delete ID</p>
                                 <h6 class="mb-0">1234</h6>
                             </div>
                         </div>
@@ -299,7 +299,7 @@ session_start();
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-bug fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Users Reports</p>
+                                <p class="mb-2">Users Report</p>
                                 <h6 class="mb-0">1234</h6>
                             </div>
                         </div>
@@ -355,7 +355,7 @@ session_start();
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-dark">
-                        <th scope="col">ID</th>
+                        <!-- <th scope="col">ID</th> -->
                         <th scope="col">User ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Profile Image</th>
@@ -374,7 +374,7 @@ session_start();
                     if (isset($users) && $users !== false) {
                         foreach ($users as $user): ?>
                             <tr>
-                                <td><?php echo $user['id']; ?></td>
+                                <!-- <td><?php echo $user['id']; ?></td> -->
                                 <td><?php echo $user['userid']; ?></td>
                                 <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
                                 <td><img src="<?php echo $user['profile_image_url']; ?>" alt="Profile Image" width="50" height="50"></td>
@@ -385,8 +385,9 @@ session_start();
                                 <td><?php echo $user['ip_address']; ?></td>
                                 <td><?php echo $user['country']; ?></td>
                                 <td><?php echo $user['browser_name']; ?></td>
-                                <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
+                                <td><a class="btn btn-sm btn-info" href="detail.php?id=<?php echo $user['id']; ?>">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="delete.php?id=<?php echo $user['id']; ?>">Delete</a></td>
+
                             </tr>
                     <?php endforeach; 
                     } else {

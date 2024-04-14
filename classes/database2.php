@@ -15,7 +15,7 @@ class Database2 {
 
     public function getDashboardData() {
         // SQL query to retrieve data
-        $sql = "SELECT id, userid, first_name, last_name, profile_image, gender, date, email, ip_address, country, browser_name FROM users";
+        $sql = "SELECT id, userid, first_name, last_name, profile_image, gender, title, date, email, ip_address, country, browser_name FROM users";
 
         // Execute the query
         $result = $this->conn->query($sql);
@@ -45,7 +45,21 @@ class Database2 {
     $uploadsFolder = "/Star/";
     return "http://" . $baseUrl . $uploadsFolder . $imageName;
 }
+// Method to delete a user by ID
+    public function deleteUserByID($userID) {
+        // Define your SQL query to delete a user by ID
+        $query = "DELETE FROM users WHERE id = $userID";
 
+        // Execute the query
+        $result = $this->conn->query($query);
+
+        // Check if the query executed successfully
+        if ($result !== false) {
+            return true; // Return true if user deletion is successful
+        } else {
+            return false; // Return false if user deletion failed
+        }
+    }
 // Method to fetch all users from the database
  public function fetchAllUsers() {
      // Define your SQL query to fetch all users
@@ -70,6 +84,45 @@ class Database2 {
          return false;
      }
  }
+// Method to get user details by ID
+public function getUserByID($userID) {
+    // Define your SQL query to fetch user details by ID
+    $query = "SELECT * FROM users WHERE id = $userID";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query executed successfully and if there are any results
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch user details and return as an associative array
+        $user = $result->fetch_assoc();
+
+        // Append the profile image URL to the user
+        $user['profile_image_url'] = $this->constructProfileImageUrl($user['profile_image']);
+
+        return $user;
+    } else {
+        // Return false if the user is not found or an error occurred
+        return false;
+    }
+}
+
+// Method to delete a user by ID
+public function deleteByID($userID) {
+    // Define your SQL query to delete a user by ID
+    $query = "DELETE FROM users WHERE id = $userID";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query executed successfully
+    if ($result !== false) {
+        return true; // Return true if user deletion is successful
+    } else {
+        return false; // Return false if user deletion failed
+    }
+}
+
 
 
     public function __destruct() {
