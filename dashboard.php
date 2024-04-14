@@ -1,19 +1,16 @@
 <?php
 session_start();
 
-// Include necessary files
-include_once("classes/login.php");
-include_once("classes/signup.php");
-require_once("classes/Database.php");
+    include_once("classes/connect.php");
+    include_once("classes/login.php");
+    include_once("classes/database.php");
+    include_once("classes/signup.php");
 
-$database1 = new Database('das_db');
-$database2 = new Database('star_db1');
-
-// Check if the user is logged in, redirect to the login page if not
-if (!isset($_SESSION['das_userid'])) {
-    header("Location: login.php");
-    exit();
-}
+    // Check if the user is logged in, redirect to the login page if not
+    if (!isset($_SESSION['das_userid'])) {
+        header("Location: login.php");
+        exit();
+    }
 
     // Create a Database instance
     $DB = new Database();
@@ -53,7 +50,47 @@ if (!isset($_SESSION['das_userid'])) {
         $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
     }
 
+// start
+// function getDashboardData() {
+//     $host = "localhost";
+//     $username = "root";
+//     $password = "";
+//     $database = "star_db1";
 
+//     // Create connection
+//     $conn = new mysqli($host, $username, $password, $database);
+
+//     // Check connection
+//     if ($conn->connect_error) {
+//         die("Connection failed: " . $conn->connect_error);
+//     }
+
+//     // SQL query to retrieve data
+//     $sql = "SELECT id, name, last_post, ip_address, browser_name FROM users";
+
+//     $result = $conn->query($sql);
+
+//     // Check if there are results
+//     if ($result->num_rows > 0) {
+//         // Fetch data and return as an associative array
+//         $data = $result->fetch_all(MYSQLI_ASSOC);
+//     } else {
+//         $data = array(); // Return an empty array if no data found
+//     }
+
+//     // Close the connection
+//     $conn->close();
+
+//     return $data;
+// }
+
+// // Example usage:
+// $dashboardData = getDashboardData();
+
+// // Display data (you can customize this part based on your requirements)
+// echo "<pre>";
+// print_r($dashboardData);
+// echo "</pre>";
 
 ?>
 
@@ -99,13 +136,11 @@ if (!isset($_SESSION['das_userid'])) {
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-<!--
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
--->
         <!-- Spinner End -->
 
 
@@ -250,7 +285,7 @@ if (!isset($_SESSION['das_userid'])) {
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total User ID</p>
+                                <p class="mb-2">Today Star</p>
                                 <h6 class="mb-0">123</h6>
                             </div>
                         </div>
@@ -259,7 +294,7 @@ if (!isset($_SESSION['das_userid'])) {
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Online</p>
+                                <p class="mb-2">Total Star</p>
                                 <h6 class="mb-0">123</h6>
                             </div>
                         </div>
@@ -268,7 +303,7 @@ if (!isset($_SESSION['das_userid'])) {
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">All Country</p>
+                                <p class="mb-2">Star Country</p>
                                 <h6 class="mb-0">5</h6>
                             </div>
                         </div>
@@ -282,52 +317,6 @@ if (!isset($_SESSION['das_userid'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-male fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">All Male</p>
-                                <h6 class="mb-0">5</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-female fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">All Female</p>
-                                <h6 class="mb-0">1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-bug  fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">User Report</p>
-                                <h6 class="mb-0">5</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-flag fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2">All Report</p>
-                                <h6 class="mb-0">1234</h6>
-                            </div>
-                        </div>
-                    </div>
-<!--
-                    <i class="fa fa-superpowers fa-3x text-primary"></i>
-                    <i class="fa fa-users  fa-3x text-primary"></i>
-                    <i class="fa fa-user fa-3x text-primary"></i>
-                    <i class="fa fa-picture-o fa-3x text-primary"></i>
-                    <i class="fa fa-fa-file-video-o fa-3x text-primary"></i>
-                    <i class="fa fa-user fa-3x text-primary"></i>
--->
-
-                    
                 </div>
             </div>
             <!-- Star End -->
@@ -357,48 +346,53 @@ if (!isset($_SESSION['das_userid'])) {
             </div>
             <!-- Chart End -->
 
-<!-- Star Account Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-light text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Star Account</h6>
-            <a href="reports.php">Show All</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                <thead>
-                    <tr class="text-dark">
-                        <th scope="col">User ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">IP Address</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Browser Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($dashboardData as $user) : ?>
-                        <tr>
-                            <td><?php echo $user['userid']; ?></td>
-                            <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
-                            <td><?php echo $user['gender']; ?></td>
-                            <td><?php echo isset($user['ip_address']) ? $user['ip_address'] : ''; ?></td>
-                            <td><?php echo isset($user['country']) ? $user['country'] : ''; ?></td>
-                            <td><?php echo isset($user['browser_name']) ? $user['browser_name'] : ''; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- Star Account End -->
-
-
-
+            <!-- Star Account Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Star Account</h6>
+                        <a href="reports.php">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Last Post</th>
+                                    <th scope="col">IP Address</th>
+                                    <th scope="col">Browser Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>7348023179899108</td>
+                                    <td>Hridoy Jomadder</td>
+                                    <td>I am back.</td>
+                                    <td>127.0.0.1</td>
+                                    <td>I Phone</td>
+                                    <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
+                                    <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
+                                </tr>
+                                
+                                <!-- <tr>
+                                    <td>762276656392054</td>
+                                    <td>Tuba Islam</td>
+                                    <td>I am back.</td>
+                                    <td>17.172.224.48</td>
+                                    <td>Apple</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr> -->
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Star Account End -->
 
             <!-- Widgets Start -->
-<!--
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-md-6 col-xl-4">
@@ -412,7 +406,6 @@ if (!isset($_SESSION['das_userid'])) {
                     </div>
                 </div>
             </div>
--->
             <!-- Widgets End -->
 
 
@@ -433,11 +426,13 @@ if (!isset($_SESSION['das_userid'])) {
             <!-- Footer End -->
         </div>
         </div>
+         </div>
         <!-- Content End -->
 
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
