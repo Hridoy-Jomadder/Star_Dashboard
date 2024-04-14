@@ -4,6 +4,7 @@ session_start();
 include_once("classes/connect.php");
 include_once("classes/login.php");
 include_once("classes/database.php");
+include_once("classes/database2.php");
 include_once("classes/signup.php");
 
 // Check if the user is logged in, redirect to the login page if not
@@ -227,77 +228,65 @@ if ($user['role'] === 'star_member') {
             <!-- Navbar End -->
 
 
-            <!-- Id Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Star Account</h6>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col"></th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Last Post</th>
-                                    <th scope="col">IP Address</th>
-                                    <th scope="col">Browser Name</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>7348023179899108</td>
-                                    <td>Hridoy Jomadder</td>
-                                    <td>I am back.</td>
-                                    <td>17.172.224.47</td>
-                                    <td>I Phone</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>762276656392054</td>
-                                    <td>Tuba Islam</td>
-                                    <td>I am back.</td>
-                                    <td>17.172.224.47</td>
-                                    <td>Apple</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <!-- <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr> -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Recent Sales End -->
+          <!-- Star Account Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Star Account</h6>
+            <!-- <a href="reports.php">Show All</a> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">ID</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Profile Image</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">IP Address</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Browser Name</th>
+                        <th scope="col" colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    // Check if $users is defined and not null
+                    if (isset($users) && $users !== false) {
+                        foreach ($users as $user): ?>
+                            <tr>
+                                <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['userid']; ?></td>
+                                <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
+                                <td><img src="<?php echo $user['profile_image_url']; ?>" alt="Profile Image" width="50" height="50"></td>
+
+                                <td><?php echo $user['gender']; ?></td>
+                                <td><?php echo $user['date']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo $user['ip_address']; ?></td>
+                                <td><?php echo $user['country']; ?></td>
+                                <td><?php echo $user['browser_name']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
+                            </tr>
+                    <?php endforeach; 
+                    } else {
+                        // Handle the case where no users were fetched or $users is not defined
+                        echo "<tr><td colspan='11'>No users found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Star Account End -->
+
+
+
 
 
             <!-- Footer Start -->

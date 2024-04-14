@@ -51,9 +51,7 @@ session_start();
         $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
     }
 
-
-
-    
+  
 ?>
 
 <!DOCTYPE html>
@@ -247,7 +245,7 @@ session_start();
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Star</p>
+                                <p class="mb-2">User ID</p>
                                 <h6 class="mb-0">123</h6>
                             </div>
                         </div>
@@ -343,46 +341,67 @@ session_start();
             </div>
             <!-- Chart End -->
 
-            <!-- Star Account Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Star Account</h6>
-                        <a href="reports.php">Show All</a>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">User ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Profile Image</th>
-                                    <th scope="col">Post</th>
-                                    <th scope="col">IP Address</th>
-                                    <th scope="col">Country</th>
-                                    <th scope="col">Browser Name</th>
-                                    <th scope="col" colspan="2">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>7348023179899108</td>
-                                    <td>Hridoy Jomadder</td>
-                                    <td>Image</td>
-                                    <td>I am back.</td>
-                                    <td>127.0.0.1</td>
-                                    <td>country</td>
-                                    <td>I Phone</td>
-                                    <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
-                                    <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
-                                </tr>
-                               
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Star Account End -->
+          
+
+<!-- Star Account Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Star Account</h6>
+            <a href="reports.php">Show All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">ID</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Profile Image</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">IP Address</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Browser Name</th>
+                        <th scope="col" colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    // Check if $users is defined and not null
+                    if (isset($users) && $users !== false) {
+                        foreach ($users as $user): ?>
+                            <tr>
+                                <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['userid']; ?></td>
+                                <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
+                                <td><img src="<?php echo $user['profile_image_url']; ?>" alt="Profile Image" width="50" height="50"></td>
+
+                                <td><?php echo $user['gender']; ?></td>
+                                <td><?php echo $user['date']; ?></td>
+                                <td><?php echo $user['email']; ?></td>
+                                <td><?php echo $user['ip_address']; ?></td>
+                                <td><?php echo $user['country']; ?></td>
+                                <td><?php echo $user['browser_name']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
+                            </tr>
+                    <?php endforeach; 
+                    } else {
+                        // Handle the case where no users were fetched or $users is not defined
+                        echo "<tr><td colspan='11'>No users found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Star Account End -->
+
+
+
 
             <!-- Widgets Start -->
             <!-- <div class="container-fluid pt-4 px-4">
