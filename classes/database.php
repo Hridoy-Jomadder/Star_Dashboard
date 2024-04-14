@@ -1,24 +1,36 @@
 <?php
-class Database
-{
 
+class Database {
     private $conn;
     public $error;
 
-    public function __construct()
+    public function __construct($dbType)
     {
-        $this->conn = new mysqli("localhost", "root", "", "das_db");
+        $this->connectToDatabase($dbType);
+    }
+
+    private function connectToDatabase($dbType) {
+        if ($dbType === 'das_db') {
+            $this->conn = new mysqli("localhost", "root", "", "das_db");
+        } elseif ($dbType === 'star_db1') {
+            $this->conn = new mysqli("localhost", "root", "", "star_db1");
+        } else {
+            $this->error = "Invalid database type";
+            return;
+        }
 
         if ($this->conn->connect_error) {
             $this->error = $this->conn->connect_error;
         }
     }
 
+    // Function to escape strings
     public function escape_string($value)
     {
         return $this->conn->real_escape_string($value);
     }
 
+    // Function to execute prepared statements
     public function execute($query, $params = [])
     {
         $stmt = $this->conn->prepare($query);
@@ -40,37 +52,38 @@ class Database
         }
     }
 
+    // Function to execute prepared statements with parameters and fetch data
     public function readWithParams($query, $params) {
         $stmt = $this->conn->prepare($query);
-    
+
         if ($stmt) {
             // Bind parameters
             if (!empty($params)) {
                 $types = str_repeat('s', count($params));
                 $stmt->bind_param($types, ...$params);
             }
-    
+
             // Execute the query
             $stmt->execute();
-    
+
             // Get result set
             $result = $stmt->get_result();
-    
+
             if ($result === false) {
                 // Display error if the result is false
                 echo "Database Error: " . $this->conn->error;
                 return false;
             }
-    
+
             // Fetch the results
             $data = [];
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-    
+
             // Close statement
             $stmt->close();
-    
+
             return $data;
         } else {
             // Handle statement preparation failure
@@ -78,88 +91,61 @@ class Database
             return false;
         }
     }
-    
 
+    // Function to fetch user data by user ID
     public function fetchUserById($userId)
-{
-    $query = "SELECT * FROM users WHERE userid = ?";
-    $params = [$userId];
+    {
+        $query = "SELECT * FROM users WHERE userid = ?";
+        $params = [$userId];
 
-    $result = $this->readWithParams($query, $params);
-
-    if ($result !== false && !empty($result)) {
-        return $result[0]; // Assuming you want to return the first row
-    } else {
-        // Handle the case where the query fails or no user is found
-        return false;
+        return $this->readWithParams($query, $params);
     }
-}
 
+    // Function to fetch additional user data by user ID
     public function fetchAdditionalUserData($userId)
-{
-    $query = "SELECT * FROM additional_user_data WHERE user_id = ?";
-    $params = [$userId];
+    {
+        $query = "SELECT * FROM additional_user_data WHERE user_id = ?";
+        $params = [$userId];
 
-    $result = $this->readWithParams($query, $params);
+        return $this->readWithParams($query, $params);
+    }
 
-    if ($result !== false && !empty($result)) {
-        return $result[0]; // Assuming you want to return the first row
-    } else {
-        return false; // Handle the case where no additional user data is found
+    // Function to fetch CO-CEO data
+    public function fetchCoCEOData() {
+        $query = "SELECT * FROM co_ceo_data_table";
+        return $this->execute($query);
+    }
+
+    // Function to fetch star member data
+    public function fetchStarMemberData() {
+        $query = "SELECT * FROM star_member_data_table";
+        return $this->execute($query);
+    }
+
+    // Function to fetch CO-CEO details by user ID
+    public function fetchCoCEODetails($userId) {
+        $query = "SELECT * FROM co_ceo_table WHERE user_id = ?";
+        $params = [$userId];
+        return $this->readWithParams($query, $params);
+    }
+
+    // Function to fetch star member details by user ID
+    public function fetchStarMemberDetails($userId) {
+        $query = "SELECT * FROM star_member_table WHERE user_id = ?";
+        $params = [$userId];
+        return $this->readWithParams($query, $params);
+    }
+
+    // Destructor to close connection
+    public function __destruct() {
+        $this->conn->close();
     }
 }
 
-public function fetchCoCEOData() {
-    $query = "SELECT * FROM co_ceo_data_table";
-    $result = $this->execute($query);
+// Assuming you want to connect to 'das_db'
+$database1 = new Database('das_db');
 
-    if ($result !== false && $result->num_rows > 0) {
-        $co_ceo_data = $result->fetch_all(MYSQLI_ASSOC);
-        return $co_ceo_data;
-    } else {
-        return false;
-    }
-}
-
-public function fetchStarMemberData() {
-    $query = "SELECT * FROM star_member_data_table";
-    $result = $this->execute($query);
-
-    if ($result !== false && $result->num_rows > 0) {
-        $star_member_data = $result->fetch_all(MYSQLI_ASSOC);
-        return $star_member_data;
-    } else {
-        return false;
-    }
-}
+// Assuming you want to connect to 'star_db1'
+$database2 = new Database('star_db1');
 
 
-public function fetchCoCEODetails($userId) {
-    $query = "SELECT * FROM co_ceo_table WHERE user_id = ?";
-    $params = [$userId];
-
-    $result = $this->readWithParams($query, $params);
-
-    if ($result !== false && !empty($result)) {
-        return $result[0]; // Assuming you want to return the first row
-    } else {
-        // Handle the case where the query fails or no CO-CEO data is found
-        return false;
-    }
-}
-
-public function fetchStarMemberDetails($userId) {
-    $query = "SELECT * FROM star_member_table WHERE user_id = ?";
-    $params = [$userId];
-
-    $result = $this->readWithParams($query, $params);
-
-    if ($result !== false && !empty($result)) {
-        return $result[0]; // Assuming you want to return the first row
-    } else {
-        // Handle the case where the query fails or no Star Member data is found
-        return false;
-    }
-}
-
-}
