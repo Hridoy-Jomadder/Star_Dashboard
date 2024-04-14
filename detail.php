@@ -257,17 +257,21 @@ if ($user['role'] === 'star_member') {
 
                         if ($user !== false) {
                             // Display user details
+                            echo"<div style='text-align: justify;color:#009cff;'>";
                             echo "<h1>User Details</h1>";
                             echo "<img src='" . $user['profile_image_url'] . "' style='width: 30%; height: auto;border-radius: 15px;'>"; 
+                            echo "<br/>";
                             echo "<br/>";
                             echo "<p>Full Name: ". $user['first_name'] . ' ' . $user['last_name']; "</p>";
                             echo "<p>Title: " . $user['title'] . "</p>";
                             echo "<p>Gender: " . $user['gender'] . "</p>";
                             echo "<p>Email: " . $user['email'] . "</p>";
+                            echo "<p>Date: " . $user['date'] . "</p>";
                             echo "<p>Country: " . $user['country'] . "</p>";
                             echo "<p>Browser Name: " . $user['browser_name'] . "</p>";
                             echo "<p>IP Address: " . $user['ip_address'] . "</p>";
                             echo "<br/>";
+                            echo"</div>";
 
                         } else {
                             // User not found

@@ -273,7 +273,7 @@ session_start();
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">All Delete ID</p>
-                                <h6 class="mb-0">1234</h6>
+                                <h6 class="mb-0">123</h6>
                             </div>
                         </div>
                     </div> 
@@ -291,7 +291,7 @@ session_start();
                             <i class="fa fa-female fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Total Female</p>
-                                <h6 class="mb-0">1234</h6>
+                                <h6 class="mb-0">123</h6>
                             </div>
                         </div>
                     </div>
@@ -300,7 +300,7 @@ session_start();
                             <i class="fa fa-bug fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Users Report</p>
-                                <h6 class="mb-0">1234</h6>
+                                <h6 class="mb-0">123</h6>
                             </div>
                         </div>
                     </div>
@@ -355,12 +355,12 @@ session_start();
             <table class="table text-start align-middle table-bordered table-hover mb-0">
                 <thead>
                     <tr class="text-dark">
-                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">ID</th>
                         <th scope="col">User ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Profile Image</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">Date</th>
+                        <!-- <th scope="col">Date</th> -->
                         <th scope="col">E-mail</th>
                         <th scope="col">IP Address</th>
                         <th scope="col">Country</th>
@@ -374,13 +374,13 @@ session_start();
                     if (isset($users) && $users !== false) {
                         foreach ($users as $user): ?>
                             <tr>
-                                <!-- <td><?php echo $user['id']; ?></td> -->
+                                <td><?php echo $user['id']; ?></td>
                                 <td><?php echo $user['userid']; ?></td>
                                 <td><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></td>
                                 <td><img src="<?php echo $user['profile_image_url']; ?>" alt="Profile Image" width="50" height="50"></td>
 
                                 <td><?php echo $user['gender']; ?></td>
-                                <td><?php echo $user['date']; ?></td>
+                                <!-- <td><?php echo $user['date']; ?></td> -->
                                 <td><?php echo $user['email']; ?></td>
                                 <td><?php echo $user['ip_address']; ?></td>
                                 <td><?php echo $user['country']; ?></td>
