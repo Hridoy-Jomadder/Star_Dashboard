@@ -4,6 +4,7 @@ session_start();
     include_once("classes/connect.php");
     include_once("classes/login.php");
     include_once("classes/database.php");
+    include_once("classes/database2.php");
     include_once("classes/signup.php");
 
     // Check if the user is logged in, redirect to the login page if not
@@ -50,48 +51,9 @@ session_start();
         $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
     }
 
-// start
-// function getDashboardData() {
-//     $host = "localhost";
-//     $username = "root";
-//     $password = "";
-//     $database = "star_db1";
 
-//     // Create connection
-//     $conn = new mysqli($host, $username, $password, $database);
 
-//     // Check connection
-//     if ($conn->connect_error) {
-//         die("Connection failed: " . $conn->connect_error);
-//     }
-
-//     // SQL query to retrieve data
-//     $sql = "SELECT id, name, last_post, ip_address, browser_name FROM users";
-
-//     $result = $conn->query($sql);
-
-//     // Check if there are results
-//     if ($result->num_rows > 0) {
-//         // Fetch data and return as an associative array
-//         $data = $result->fetch_all(MYSQLI_ASSOC);
-//     } else {
-//         $data = array(); // Return an empty array if no data found
-//     }
-
-//     // Close the connection
-//     $conn->close();
-
-//     return $data;
-// }
-
-// // Example usage:
-// $dashboardData = getDashboardData();
-
-// // Display data (you can customize this part based on your requirements)
-// echo "<pre>";
-// print_r($dashboardData);
-// echo "</pre>";
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -316,6 +278,41 @@ session_start();
                                 <h6 class="mb-0">1234</h6>
                             </div>
                         </div>
+                    </div>                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-male fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total male</p>
+                                <h6 class="mb-0">123</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-female fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Female</p>
+                                <h6 class="mb-0">1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-bug fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Users Reports</p>
+                                <h6 class="mb-0">1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-flag fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">All report</p>
+                                <h6 class="mb-0">123</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -357,33 +354,28 @@ session_start();
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col">ID</th>
+                                    <th scope="col">User ID</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Last Post</th>
+                                    <th scope="col">Profile Image</th>
+                                    <th scope="col">Post</th>
                                     <th scope="col">IP Address</th>
+                                    <th scope="col">Country</th>
                                     <th scope="col">Browser Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" colspan="2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>7348023179899108</td>
                                     <td>Hridoy Jomadder</td>
+                                    <td>Image</td>
                                     <td>I am back.</td>
                                     <td>127.0.0.1</td>
+                                    <td>country</td>
                                     <td>I Phone</td>
                                     <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
                                     <td><a class="btn btn-sm btn-warning" href="">Delete</a></td>
                                 </tr>
-                                
-                                <!-- <tr>
-                                    <td>762276656392054</td>
-                                    <td>Tuba Islam</td>
-                                    <td>I am back.</td>
-                                    <td>17.172.224.48</td>
-                                    <td>Apple</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr> -->
                                
                             </tbody>
                         </table>
@@ -393,7 +385,7 @@ session_start();
             <!-- Star Account End -->
 
             <!-- Widgets Start -->
-            <div class="container-fluid pt-4 px-4">
+            <!-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-md-6 col-xl-4">
                         <div class="h-100 bg-light rounded p-4">
@@ -405,7 +397,7 @@ session_start();
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Widgets End -->
 
 
