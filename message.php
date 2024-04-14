@@ -4,6 +4,7 @@ session_start();
 include_once("classes/connect.php");
 include_once("classes/login.php");
 include_once("classes/database.php");
+include_once("classes/database2.php");
 include_once("classes/signup.php");
 
 // Check if the user is logged in, redirect to the login page if not
@@ -49,6 +50,23 @@ if ($user['role'] === 'star_member') {
     // Use the fetched data directly in the Star Member profile section
     $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
 }
+
+// Define updated sample messages array
+$messages = array(
+    array("sender_name" => "Hridoy Jomadder", "sender_role" => "CEO", "receiver_name" => "Star Islam", "receiver_role" => "Co-CEO", "time" => "15 minutes ago", "message" => "Short message goes here..."),
+    array("sender_name" => "Star Islam", "sender_role" => "Co-CEO", "receiver_name" => "Hridoy Jomadder", "receiver_role" => "CEO", "time" => "20 minutes ago", "message" => "Another short message..."),
+    array("sender_name" => "Masud Rana", "sender_role" => "Star Member", "receiver_name" => "Hridoy Jomadder", "receiver_role" => "CEO", "time" => "20 minutes ago", "message" => "Another short message..."),
+);
+
+
+// Function to check if sender and receiver can communicate freely
+function canCommunicateFreely($sender_role, $receiver_role) {
+    $allowed_roles = array("CEO", "Co-CEO", "Star Member");
+    return in_array($sender_role, $allowed_roles) && in_array($receiver_role, $allowed_roles);
+}
+
+
+
 ?>
 
 
@@ -88,11 +106,11 @@ if ($user['role'] === 'star_member') {
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div>
+        </div> -->
         <!-- Spinner End -->
 
 
@@ -226,72 +244,49 @@ if ($user['role'] === 'star_member') {
             </nav>
             <!-- Navbar End -->
 
-            <!-- Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-12">
-                    <div class="col-sm-12 col-md-6 col-xl-12">
-                        <div class="h-100 bg-light rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Messages</h6>
+<!-- Chart Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-12">
+        <div class="col-sm-12 col-md-6 col-xl-12">
+            <div class="h-100 bg-light rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h6 class="mb-0">Messages</h6>
+                </div>
+                <?php
+                // Loop through each message to generate HTML
+                foreach ($messages as $message) {
+                    $sender_role = $message["sender_role"];
+                    $receiver_role = $message["receiver_role"];
+                    // Check if sender and receiver can communicate freely
+                    if (canCommunicateFreely($sender_role, $receiver_role)) {
+                        echo '
+                        <a href="#" class="dropdown-item">
+                            <div class="ms-2">
+                                <div class="d-flex align-items-center border-bottom py-3">
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                            <div>
+                                                <h6 class="mb-0">' . $message["sender_name"] . '</h6>
+                                                <small>' . $sender_role . '</small>
+                                            </div>
+                                            <small>' . $message["time"] . '</small>
+                                        </div>
+                                        <span>' . $message["message"] . '</span>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="#" class="dropdown-item">
-                                <div class="ms-2">
-                                    <div class="d-flex align-items-center border-bottom py-3">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>15 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                <div class="ms-2">
-                                    <div class="d-flex align-items-center pt-3">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <small>15 minutes ago</small>
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                <div class="ms-2">
-                                    <div class="d-flex align-items-center border-bottom py-3">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <small>15 minutes ago</small>
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                <div class="ms-2">
-                                    <div class="d-flex align-items-center pt-3">
-                                        <div class="w-100 ms-3">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <small>15 minutes ago</small>
-                                                <h6 class="mb-0">Jhon Doe</h6>
-                                                <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                            </div>
-                                            <span>Short message goes here...</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                        </a>';
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chart End -->
+
+
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

@@ -162,5 +162,4 @@ public function fetchStarMemberDetails($userId) {
     }
 }
 
-
 }
