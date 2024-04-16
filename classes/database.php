@@ -162,4 +162,82 @@ public function fetchStarMemberDetails($userId) {
     }
 }
 
+public function fetchMessages($senderRole, $receiverRole) {
+    $query = "SELECT * FROM messages WHERE sender_role = ? AND receiver_role = ? ORDER BY sent_at ASC";
+    $params = [$senderRole, $receiverRole];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result;
+    } else {
+        return []; // Return an empty array if no messages are found
+    }
 }
+
+
+    /// Method to save a message to the database
+    public function saveMessage($id, $sender_name, $sender_role, $sender_picture, $receiver_name, $receiver_role, $receiver_picture, $message, $sent_at, $is_read) {
+        // Prepare the SQL query
+        $query = "INSERT INTO messages (id, sender_name, sender_role, sender_picture, receiver_name, receiver_role, receiver_picture, message, sent_at, is_read) 
+                VALUES ('$id', '$sender_name', '$sender_role', '$sender_picture', '$receiver_name', '$receiver_role', '$receiver_picture', '$message', '$sent_at', '$is_read')";
+    
+        // Execute the query
+        $result = $this->conn->query($query);
+    
+        if ($result === true) {
+            // Message saved successfully
+            return true;
+        } else {
+            // Failed to save the message
+            echo "Error: " . $this->conn->error;
+            return false;
+        }
+    }
+    
+public function fetchMessagesByRoles($senderRole, $receiverRole) {
+    $query = "SELECT * FROM messages WHERE sender_role = ? AND receiver_role = ?";
+    $params = [$senderRole, $receiverRole];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result;
+    } else {
+        // Handle the case where the query fails or no messages are found
+        echo "Failed to fetch messages.";
+        return [];
+    }
+}
+public function fetchMessagesByRolesWithPagination($senderRole, $receiverRole, $offset, $pageSize) {
+    $query = "SELECT * FROM messages WHERE sender_role = ? AND receiver_role = ? LIMIT ?, ?";
+    $params = [$senderRole, $receiverRole, $offset, $pageSize];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result;
+    } else {
+        // Handle the case where the query fails or no messages are found
+        echo "Failed to fetch messages: " . $this->conn->error;
+        return [];
+    }
+}
+
+public function countMessagesByRoles($senderRole, $receiverRole) {
+    $query = "SELECT COUNT(*) AS total FROM messages WHERE sender_role = ? AND receiver_role = ?";
+    $params = [$senderRole, $receiverRole];
+
+    $result = $this->readWithParams($query, $params);
+
+    if ($result !== false && !empty($result)) {
+        return $result[0]['total'];
+    } else {
+        // Handle the case where the query fails or no messages are found
+        return 0;
+    }
+}
+
+}
+
+

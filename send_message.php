@@ -33,35 +33,48 @@ $role = $user['role'];
 // Set a default profile image or use the user's profile image if available
 $profile_image = isset($user['profile_image']) && !empty($user['profile_image']) ? $user['profile_image'] : 'default_profile_image.jpg';
 
-// Determine the receiver role dynamically based on the user's role
-$receiverRole = ($role === 'CEO') ? 'Co-CEO' : 'CEO';
-
-// Pagination variables
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Get current page number
-$perPage = 10; // Number of messages per page
-
-// Fetch messages based on user role where the logged-in user is the receiver
-$messages = $DB->fetchMessagesByRolesWithPagination($role, $receiverRole, $page, $perPage);
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve and sanitize message content
     $message_content = htmlspecialchars($_POST["message_content"]);
+
+    // Assuming the receiver role is the opposite of the sender role
+    $receiverRole = ($user['role'] === 'CEO') ? 'Co-CEO' : 'CEO';
 
     // Insert the message into the database
     $result = $DB->saveMessage($id, $first_name . ' ' . $last_name, $user['role'], $profile_image, 'ReceiverNameHere', $receiverRole, 'ReceiverProfileImageHere', $message_content, date("Y-m-d H:i:s"), 0);
 
     // Check if the message is successfully saved
     if ($result) {
-        // Message saved successfully, redirect to the same page to avoid form resubmission
+        // Message saved successfully, you can redirect or display a success message here
+        // For now, let's redirect to the same page to avoid form resubmission
         header("Location: message.php");
         exit();
     } else {
-        // Failed to save the message, handle this accordingly
+        // Failed to save the message, you can handle this accordingly
         echo "<h3>Failed to send message. Please try again.</h3>";
     }
 }
+
+// Fetch messages from the 'messages' table based on sender and receiver roles
+$senderRole = 'CEO'; // Replace with the actual sender role
+$receiverRole = 'Co-CEO'; // Replace with the actual receiver role
+$page = isset($_GET['page']) ? $_GET['page'] : 1; // Get the current page number
+$pageSize = 5; // Number of messages per page
+
+$perPage = 10; // Change the value as per your pagination needs
+
+// Calculate the offset based on the page number and page size
+$offset = ($page - 1) * $pageSize;
+
+// Fetch messages with pagination
+$messages = $DB->fetchMessagesByRolesWithPagination($senderRole, $receiverRole, $offset, $pageSize);
+
+// Check if messages are retrieved successfully before looping through them
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -96,20 +109,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
+
 .message {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-.message p {
-    margin: 5px 0;
+.sender {
+    background-color: #cce5ff;
+    float: right;
 }
 
-.message img {
-    margin-right: 5px;
+.receiver {
+    background-color: floralwhite;
+    float: left;
 }
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination .page-item .page-link {
+    color: #007bff;
+    background-color: transparent;
+    border: 1px solid #007bff;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+    background-color: transparent;
+    border: 1px solid #dee2e6;
+}
+
 
         </style>
 
@@ -256,43 +300,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </nav>
             <!-- Navbar End -->
 
-<!-- Messages Start -->
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-12">
-        <div class="col-sm-12 col-md-6 col-xl-12">
-            <div class="h-100 bg-light rounded p-4">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <h6 class="mb-0">Messages</h6>
-                </div>
-<!-- Display the last message only -->
-<?php if (!empty($messages)) : ?>
-    <?php $lastMessage = end($messages); ?>
-    <form method="get" action="">
-        <a href="send_message.php">
-            <div class="message <?php echo $lastMessage['sender_role'] === $role ? 'sender' : 'receiver'; ?>">
-                <!-- Display sender's information -->
-                <p><?php echo $lastMessage['sender_name']; ?></p>
-                <img src="uploads/<?php echo $lastMessage['sender_picture']; ?>" alt="Sender Picture" style="width: 50px; height: 50px; border-radius: 50%;">
-                
-                <!-- Display receiver's information -->
-                <p><?php echo $lastMessage['receiver_name']; ?></p>
-                <img src="uploads/<?php echo $lastMessage['receiver_picture']; ?>" alt="Receiver Picture" style="width: 50px; height: 50px; border-radius: 50%;">
-                
-                <!-- Display message content -->
-                <p><?php echo $lastMessage['message']; ?></p>
-            </div>
-        </a>
-    </form>
-<?php else : ?>
-    <p>No messages found.</p>
-<?php endif; ?>
-
-            </div>
-        </div>
+ <!-- Messages Start -->
+ <div class="container-fluid pt-4 px-4">
+                <div class="row g-12">
+                    <div class="col-sm-12 col-md-6 col-xl-12">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">Messages</h6>
+                            </div>
+<!-- Display messages here -->
+<?php foreach ($messages as $message) : ?>
+    <div class="message <?php echo $message['sender_role'] === $role ? 'sender' : 'receiver'; ?>">
+        <?php if ($message['sender_role'] === $role) : ?>
+            <!-- Display sender's information -->
+            <p><?php echo $first_name . ' ' . $last_name; ?></p>
+        <?php else : ?>
+            <!-- Display receiver's information -->
+            <p><?php echo $message['receiver_name']; ?></p>
+        <?php endif; ?>
+        <!-- Display message content -->
+        <p><?php echo $message['message']; ?></p>
     </div>
-</div>
-<!-- Messages End -->
+<?php endforeach; ?>
 
+
+                            <!-- Pagination links -->
+                            <div class="container-fluid pt-4 px-4">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <?php
+                                        // Previous page link
+                                        if ($page > 1) {
+                                            echo "<li class='page-item'><a class='page-link' href='send_message.php?page=" . ($page - 1) . "'>Previous</a></li>";
+                                        }
+
+                                        // Next page link
+                                        if (count($messages) == $pageSize) {
+                                            echo "<li class='page-item'><a class='page-link' href='send_message.php?page=" . ($page + 1) . "'>Next</a></li>";
+                                        }
+                                        ?>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Messages End -->
+
+            <!-- Form for sending messages -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-12">
+                    <div class="col-sm-12 col-md-6 col-xl-12">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">Send a Message</h6>
+                            </div>
+                            <!-- Form for sending messages -->
+                            <form method="post" action="send_message.php">
+                                <div class="mb-3">
+                                    <!-- CEO's Picture -->
+                                    <img src="uploads/<?php echo $profile_image; ?>" width="40px" height="40px" class="rounded-circle">
+                                    <?php echo $first_name . ' ' . $last_name; ?>
+                                    <?php echo $role; ?>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message_content" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message_content" name="message_content" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
