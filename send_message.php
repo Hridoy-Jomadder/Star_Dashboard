@@ -114,6 +114,7 @@ $messages = $DB->fetchMessagesByRolesWithPagination($senderRole, $receiverRole, 
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
+    margin: 38px;
 }
 
 .sender {
@@ -308,21 +309,24 @@ $messages = $DB->fetchMessagesByRolesWithPagination($senderRole, $receiverRole, 
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Messages</h6>
                             </div>
-<!-- Display messages here -->
-<?php foreach ($messages as $message) : ?>
-    <div class="message <?php echo $message['sender_role'] === $role ? 'sender' : 'receiver'; ?>">
-        <?php if ($message['sender_role'] === $role) : ?>
-            <!-- Display sender's information -->
-            <p><?php echo $first_name . ' ' . $last_name; ?></p>
-        <?php else : ?>
-            <!-- Display receiver's information -->
-            <p><?php echo $message['receiver_name']; ?></p>
-        <?php endif; ?>
-        <!-- Display message content -->
-        <p><?php echo $message['message']; ?></p>
-    </div>
-<?php endforeach; ?>
-
+                            
+                            <!-- Display messages here -->
+                            <?php foreach ($messages as $message) : ?>
+                                <div class="message <?php echo $message['sender_role'] === $role ? 'sender' : 'receiver'; ?>">
+                                    <?php if ($message['sender_role'] === $role) : ?>
+                                        <!-- Display sender's information -->
+                                        <img src="uploads/<?php echo $profile_image; ?>" width="40px" height="40px" class="rounded-circle">
+                                        <p><?php echo $first_name . ' ' . $last_name; ?></p>
+                                    <?php else : ?>
+                                        <!-- Display receiver's information -->
+                                        <img src="uploads/<?php echo $profile_image; ?>" width="40px" height="40px" class="rounded-circle">
+                                        <p><?php echo $first_name . ' ' . $last_name; ?></p>
+                                        <p><?php echo $message['receiver_name']; ?></p>
+                                    <?php endif; ?>
+                                    <!-- Display message content -->
+                                    <p><?php echo $message['message']; ?></p>
+                                </div>
+                            <?php endforeach; ?>
 
                             <!-- Pagination links -->
                             <div class="container-fluid pt-4 px-4">
