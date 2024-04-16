@@ -162,6 +162,70 @@ public function fetchStarMemberDetails($userId) {
     }
 }
 
+// Function to fetch CEO data
+public function fetchCEOData() {
+    try {
+        $query = "SELECT profile_image, CONCAT(first_name, ' ', last_name) AS full_name, role AS user_role, email, join_date FROM users WHERE role = 'CEO' LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $ceo_data = $result->fetch_assoc();
+            return $ceo_data;
+        } else {
+            return false; // No CEO data found
+        }
+    } catch (Exception $e) {
+        echo "Error fetching CEO data: " . $e->getMessage();
+        exit();
+    }
+}
+
+// Function to fetch CO-CEO data
+public function fetchCO_CEOData() {
+    try {
+        $query = "SELECT profile_image, CONCAT(first_name, ' ', last_name) AS full_name, role AS user_role, email, join_date FROM users WHERE role = 'CO-CEO' LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $co_ceo_data = $result->fetch_assoc();
+            return $co_ceo_data;
+        } else {
+            return false; // No CO-CEO data found
+        }
+    } catch (Exception $e) {
+        echo "Error fetching CO-CEO data: " . $e->getMessage();
+        exit();
+    }
+}
+
+public function fetchStar_MemberData() {
+    try {
+        $query = "SELECT profile_image, CONCAT(first_name, ' ', last_name) AS full_name, role AS user_role, email, join_date FROM starmember_user WHERE role = 'Star Member' LIMIT 1";
+        $result = $this->execute($query); // Use the execute method
+
+        if ($result !== false && $result->num_rows > 0) {
+            $starmember_data = $result->fetch_assoc();
+            return $starmember_data;
+        } else {
+            return false; // No Star Member data found
+        }
+    } catch (Exception $e) {
+        echo "Error fetching Star Member data: " . $e->getMessage();
+        // exit(); Remove this line to display potential errors
+    }
+}
+
+
+
+
+
+
+//add to function
+
 public function fetchMessages($senderRole, $receiverRole) {
     $query = "SELECT * FROM messages WHERE sender_role = ? AND receiver_role = ? ORDER BY sent_at ASC";
     $params = [$senderRole, $receiverRole];

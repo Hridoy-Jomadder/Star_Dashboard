@@ -1,70 +1,39 @@
 <?php
 session_start();
 
-    include_once("classes/connect.php");
-    include_once("classes/login.php");
-    include_once("classes/database.php");
-    include_once("classes/signup.php");
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/database2.php");
+include_once("classes/signup.php");
 
-    // Function to get CO-CEO data
-    $co_ceo_data = getCoCEOData();
-    function getCoCEOData() {
-        // Replace this with your actual implementation to retrieve CO-CEO data from the database
-        // Example: You might have a Database method to fetch CO-CEO data, modify accordingly
-        $co_ceo_data = array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'title' => 'Co-CEO',
-            'email' => 'john.doe@example.com',
-            // Add other CO-CEO data fields as needed
-        );
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
 
-        return $co_ceo_data;
-    }
+// Create a Database instance
+$DB = new Database();
 
-    // Function to get Star Member data
-    function getStarMemberData() {
-        // Replace this with your actual implementation to retrieve Star Member data from the database
-        // Example: You might have a Database method to fetch Star Member data, modify accordingly
-        $star_member_data = array(
-            'first_name' => 'Reza',
-            'last_name' => 'Jomadder',
-            'title' => 'Star Member',
-            'email' => 'john.doe@example.com',
-            // Add other Star Member data fields as needed
-        );
+// Fetch CEO information from the database
+// Assuming you have a method like fetchCEOData in your Database class
+$ceo_data = $DB->fetchCEOData();
 
-        return $star_member_data;
-    }
+// Check if the CEO data is found
+if (!$ceo_data) {
+    // Handle the case where the CEO data is not found
+    echo "CEO data not found.";
+    exit();
+}
 
-    // Check if the user is logged in, redirect to the login page if not
-    if (!isset($_SESSION['das_userid'])) {
-        header("Location: login.php");
-        exit();
-    }
-
-    // Create a Database instance
-    $DB = new Database();
-
-    // Fetch user information based on the user ID stored in the session
-    $user = $DB->fetchUserById($_SESSION['das_userid']);
-
-    // Check if the user is found
-    if (!$user) {
-        // Handle the case where the user is not found
-        echo "User not found.";
-        exit();
-    }
-
-    // Now you can use $user to display user information in your dashboard
-    $first_name = $user['first_name'];
-    $last_name = $user['last_name'];
-    $role = $user['role'];
-
-    // Add these lines at the beginning of your code
-    $co_ceo_data = getCoCEOData(); // Replace this with your actual method to get CO-CEO data
-    $star_member_data = getStarMemberData(); // Replace this with your actual method to get Star Member data
-    ?>
+// Extract CEO information from the fetched data
+$profile_image = $ceo_data['profile_image'];
+$full_name = $ceo_data['full_name'];
+$user_role = $ceo_data['user_role'];
+$email = $ceo_data['email'];
+$join_date = $ceo_data['join_date'];
+?>
 
  <!DOCTYPE html>
 <html lang="en">
@@ -116,16 +85,7 @@ session_start();
                 <a href="" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                    <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                    <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
-                        <small><?php echo $role; ?></small>
-                    </div>
-                </div>
+                <!-- Image  -->
                 <div class="navbar-nav w-100">
                     <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
@@ -227,8 +187,7 @@ session_start();
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
-                        <?php echo $first_name . ' ' . $last_name; ?><br>
+<!-- Image -->
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
                             <a href="settings.php" class="dropdown-item">Settings</a>
@@ -239,98 +198,27 @@ session_start();
             </nav>
             <!-- Navbar End -->
 
-         <!-- Display CEO's profile information -->
-         <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-12">
-                            <div class="bg-light rounded h-50 p-4">
-                                <!-- Set the profile image -->
-                                <?php echo '<img src="' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                                  ?>
-                                <br><br>
-                                <h5 class="mb-0">Name: <?php echo $first_name . ' ' . $last_name; ?><br></h5>
-                                <h6 class="mb-2">Title: <?php echo $role; ?><br></h6>
-
-                                <!-- Additional CEO-specific content -->
-                                <p><strong>Email:</strong> <?php echo $user['email'] ?></p>
-                                
-                                <!-- Check if "join_date" key exists in the user array -->
-                                <?php if (isset($user['join_date'])): ?>
-                                    <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
+<!-- CEO Profile Section -->
+<div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light rounded h-50 p-4" style="text-align: justify;padding-top:-100px;">
+                    <!-- Display CEO's profile image -->
+                    <img src="<?php echo 'uploads/' . $profile_image . ''; ?>" width="300" height="300" class="rounded-circle">
+                    <br><br>
+                    <!-- CEO's Name and Title -->
+                    <h5 class="mb-0">Name: <?php echo $full_name; ?><br></h5>
+                    <h6 class="mb-2">Title: <?php echo $user_role; ?><br></h6>
+                    <!-- CEO's Email -->
+                    <p><strong>Email:</strong> <?php echo $email; ?></p>
+                    <!-- Joined Date -->
+                    <p><strong>Joined:</strong> <?php echo $join_date; ?></p>
                 </div>
             </div>
-            <!-- Additional CEO-specific content -->
+        </div>
+    </div>
+    <!-- CEO Profile Section End -->
 
-            <!-- CO-CEO Profile Section -->
-            <?php if(isset($co_ceo_data) && is_array($co_ceo_data)): ?>
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                        <div class="col-md-6 text-center">
-                            <div class="col-sm-12 col-xl-12">
-                                <div class="bg-light rounded h-100 p-4">
-                                    <!-- Display CO-CEO's profile information -->
-                                    <?php
-                                    echo '<img src="' . $co_ceo_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                    ?>
-                                    <br><br>
-                                    <h5 class="mb-0"><?php echo $co_ceo_data['first_name'] . " " . $co_ceo_data['last_name'] ?></h5>
-                                    <h6 class="mb-2"><?php echo $co_ceo_data['title'] ?></h6>
-
-                                    <!-- Additional CO-CEO-specific content -->
-                                    <p><strong>Email:</strong> <?php echo $co_ceo_data['email'] ?></p>
-
-                                    <!-- Check if "join_date" key exists in the user array -->
-                                    <?php if (isset($user['join_date'])): ?>
-                                        <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php else: ?>
-                <p>No CO-CEO data available.</p>
-            <?php endif; ?>
-            <!-- CO-CEO Profile Section End -->
-
-
-            <!-- Star Member Profile Section -->
-            <?php if(isset($star_member_data) && is_array($star_member_data)): ?>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-12">
-                            <div class="bg-light rounded h-100 p-4">
-                                <!-- Display Star Member's profile information -->
-                                <?php
-                                echo '<img src="' . $star_member_data['profile_image'] . '" width="300" height="300" class="rounded-circle">';
-                                ?>
-                                <br><br>
-                                <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                                <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
-
-                                <!-- Additional Star Member-specific content -->
-                                <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-
-                                <!-- Check if "join_date" key exists in the user array -->
-                                <?php if (isset($user['join_date'])): ?>
-                                <p><strong>Joined:</strong> <?php echo $user['join_date'] ?></p>
-                                <?php endif; ?>
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php else: ?>
-                <p>No Star Member data available.</p>
-            <?php endif; ?>
-            <!-- Star Member Profile Section End -->
 
 
              <!-- Footer Start -->

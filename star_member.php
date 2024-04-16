@@ -1,6 +1,41 @@
+<?php
+session_start();
+
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/database2.php");
+include_once("classes/signup.php");
+
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Create a Database instance
+$DB = new Database();
+
+// Fetch Star Member information from the database
+$starmember_data = $DB->fetchStar_MemberData(); // Corrected function name
+
+// Check if the Star Member data is found
+if (!$starmember_data) {
+    // Handle the case where the Star Member data is not found
+    echo "Star Member data not found.";
+    exit();
+}
+
+// Extract Star Member information from the fetched data
+$profile_image = $starmember_data['profile_image'];
+$full_name = $starmember_data['full_name'];
+$user_role = $starmember_data['user_role'];
+$email = $starmember_data['email'];
+$join_date = $starmember_data['join_date'];
+?>
 
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,23 +85,14 @@
                 <a href="" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                    <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                    <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
-                        <small><?php echo $role; ?></small>
-                    </div>
-                </div>
+                <!-- Image  -->
                 <div class="navbar-nav w-100">
-                    <a href="" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="ceo.php" class="dropdown-item">CEO</a>
-                            <a href="co-ceo.php" class="dropdown-item">Co-CEO</a>
+                            <a href="co-ceo.php" class="dropdown-item ">Co-CEO</a>
                             <a href="star_member.php" class="dropdown-item active">Star Member</a>
                         </div>
                     </div>
@@ -161,9 +187,7 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
-                        </a>
+<!-- Image -->
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
                             <a href="settings.php" class="dropdown-item">Settings</a>
@@ -174,39 +198,31 @@
             </nav>
             <!-- Navbar End -->
 
-
-            <!-- Star Member Profile Section -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        <div class="col-sm-12 col-xl-6">
-                            <div class="bg-light rounded h-100 p-4">
-                                <!-- Display Star Member's profile information -->
-                                <?php
-                                echo '<img src="' . $star_member_profile_image . '" width="300" height="300" class="rounded-circle">';
-                                ?>
-                                <br><br>
-                                <h5 class="mb-0"><?php echo $star_member_data['first_name'] . " " . $star_member_data['last_name'] ?></h5>
-                                <h6 class="mb-2"><?php echo $star_member_data['title'] ?></h6>
-
-                                <!-- Additional Star Member-specific content -->
-                                <p><strong>Email:</strong> <?php echo $star_member_data['email'] ?></p>
-                                <p><strong>Membership Type:</strong> Star Member</p>
-                                <p><strong>Joined:</strong> <?php echo $star_member_data['join_date'] ?></p>
-
-                                <!-- Add any other Star Member-specific content here -->
-                                <p>This is a sample Star Member profile. You can add more details and customize as needed.</p>
-                            </div>
-                        </div>
-                    </div>
+<!-- CEO Profile Section -->
+<div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light rounded h-50 p-4" style="text-align: justify;padding-top:-100px;">
+                    <!-- Display CEO's profile image -->
+                    <img src="<?php echo 'uploads/' . $profile_image . ''; ?>" width="300" height="300" class="rounded-circle">
+                    <br><br>
+                    <!-- CEO's Name and Title -->
+                    <h5 class="mb-0">Name: <?php echo $full_name; ?><br></h5>
+                    <h6 class="mb-2">Title: <?php echo $user_role; ?><br></h6>
+                    <!-- CEO's Email -->
+                    <p><strong>Email:</strong> <?php echo $email; ?></p>
+                    <!-- Joined Date -->
+                    <p><strong>Joined:</strong> <?php echo $join_date; ?></p>
                 </div>
             </div>
-            <!-- Star Member Profile Section End -->
+        </div>
+    </div>
+    <!-- CEO Profile Section End -->
 
 
 
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
+             <!-- Footer Start -->
+             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
