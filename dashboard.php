@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- Search form -->
     <form method="post" action="search.php">
         <input type="text" name="search_term" placeholder="Search by ID or Name">
-        <button type="submit">Search</button>
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
                 <span id="currentDateTime" style="padding: 5px;"></span>
