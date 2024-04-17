@@ -4,6 +4,7 @@ session_start();
 include_once("classes/connect.php");
 include_once("classes/login.php");
 include_once("classes/database.php");
+include_once("classes/database2.php");
 include_once("classes/signup.php");
 
 // Check if the user is logged in, redirect to the login page if not
@@ -15,15 +16,8 @@ if (!isset($_SESSION['das_userid'])) {
 // Create a Database instance
 $DB = new Database();
 
-// Fetch user information based on the user ID and role stored in the session
+// Fetch user information based on the user ID stored in the session
 $user = $DB->fetchUserById($_SESSION['das_userid']);
-
-// Fetch CEO data
-$ceo_data = $DB->fetchUserDataByRole('CEO');
-
-// Fetch CO-CEO data
-$co_ceo_data = $DB->fetchUserDataByRole(['Co-CEO', 'Star Member']);
-
 
 // Check if the user is found
 if (!$user) {
@@ -45,23 +39,30 @@ if (isset($user['profile_image']) && !empty($user['profile_image'])) {
     $profile_image = 'default_profile_image.jpg';
 }
 
-// Fetch CEO data
-$ceo_data = $DB->fetchUserData(array(1), array('ceo'));
+// Fetch CO-CEO data based on user ID if the user is a CO-CEO
+if ($user['role'] === 'co_ceo') {
+    // Use the fetched data directly in the CO-CEO profile section
+    $co_ceo_data = $DB->fetchCoCEODetails($_SESSION['das_userid']);
+}
 
-// Fetch CO-CEO data
-$co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
+// Fetch Star Member data based on user ID if the user is a Star Member
+if ($user['role'] === 'star_member') {
+    // Use the fetched data directly in the Star Member profile section
+    $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
+}
+
 
 ?>
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>DASHMIN - Star</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta content="Hridoy Jomadder" name="author">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -84,6 +85,11 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Replace HTTP with HTTPS in the CDN links -->
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -97,8 +103,8 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
         <!-- Spinner End -->
 
 
-         <!-- Sidebar Start -->
-         <div class="sidebar pe-4 pb-3">
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="dashboard.php" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
@@ -109,12 +115,12 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                    <h6 class="mb-0"><?php echo $first_name . ' ' . $last_name; ?></h6>
-                        <small><?php echo $role; ?></small>
+                    <?php echo $first_name . ' ' . $last_name; ?><br>
+                            <?php echo $role; ?>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="dashboard.php" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="dashboard.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -124,7 +130,7 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
                         </div>
                     </div>
                     <a href="message.php" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Message</a>
-                    <a href="group.php" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Group</a>
+                    <a href="group.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Group</a>
                     <a href="power.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Power</a>
                     <a href="worldwide.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Worldwide</a>
                     <a href="charts.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
@@ -146,8 +152,11 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
+                    <input class="form-control border-0" type="search" placeholder="Search ID or Name">
                 </form>
+
+                <span id="currentDateTime" style="padding: 5px;"></span>
+
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -215,7 +224,7 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo $first_name . ' ' . $last_name; ?></span>
+                        <?php echo $first_name . ' ' . $last_name; ?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
@@ -227,63 +236,66 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
             </nav>
             <!-- Navbar End -->
 
+    
+    
+                <!--  Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+                        <div class="col-md-6 text-center p-4">
+                            <!-- <i class="bi bi-exclamation-triangle display-1 text-primary"></i> -->
+                    <?php
+                    // Check if the user ID is provided in the URL
+                    if (isset($_GET['id'])) {
+                        // Get the user ID from the URL
+                        $userID = $_GET['id'];
 
-  <!-- Start -->
-  <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-<!-- Display CEO data -->
-<?php if (!empty($ceo_data)): ?>
-    <div class="col-sm-12 col-md-6 col-xl-6">
-        <div class="h-100 bg-light rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <h6 class="mb-0">CEO</h6>
-            </div>
-            <div class="d-flex align-items-center border-top py-3">
-                <img src="uploads/<?php echo isset($ceo_data[0]['profile_image']) ? $ceo_data[0]['profile_image'] : ''; ?>" width="40px" height="40px" class="rounded-circle">
-                <div class="w-100 ms-3">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-0"><?php echo isset($ceo_data[0]['full_name']) ? $ceo_data[0]['full_name'] : ''; ?></h6>
-                    </div>
-                    <span><?php echo isset($ceo_data[0]['short_message']) ? $ceo_data[0]['short_message'] : ''; ?></span>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
+                        // Create a new instance of Database2
+                        $database = new Database2("localhost", "root", "", "star_db1");
 
-<!-- Display CO-CEO data -->
-<?php if (!empty($co_ceo_data)): ?>
-    <div class="col-sm-12 col-md-6 col-xl-6">
-        <div class="h-100 bg-light rounded p-4">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <h6 class="mb-0">CO-CEO & Star Member</h6>
-            </div>
+                        // Get user details by ID
+                        $user = $database->getUserByID($userID);
 
-            <?php foreach ($co_ceo_data as $member): ?>
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img src="uploads/<?php echo isset($member['profile_image']) ? $member['profile_image'] : ''; ?>" width="40px" height="40px" class="rounded-circle">
-                    <div class="w-100 ms-3">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0"><?php echo isset($member['full_name']) ? $member['full_name'] : ''; ?></h6>
-                            <small><?php echo isset($member['join_date']) ? $member['join_date'] : ''; ?></small>
+                        if ($user !== false) {
+                            // Display user details
+                            echo"<div style='text-align: justify;color:#009cff;'>";
+                            echo "<h1>User Details</h1>";
+                            echo "<img src='" . $user['profile_image_url'] . "' style='width: 30%; height: auto;border-radius: 15px;'>"; 
+                            echo "<br/>";
+                            echo "<br/>";
+                            echo "<p>Full Name: ". $user['first_name'] . ' ' . $user['last_name']; "</p>";
+                            echo "<p>Title: " . $user['title'] . "</p>";
+                            echo "<p>Gender: " . $user['gender'] . "</p>";
+                            echo "<p>Email: " . $user['email'] . "</p>";
+                            echo "<p>Date: " . $user['date'] . "</p>";
+                            echo "<p>Country: " . $user['country'] . "</p>";
+                            echo "<p>Browser Name: " . $user['browser_name'] . "</p>";
+                            echo "<p>IP Address: " . $user['ip_address'] . "</p>";
+                            echo "<br/>";
+                            echo"</div>";
+
+                        } else {
+                            // User not found
+                            echo "User not found.";
+                        }
+                    } else {
+                        // User ID not provided in the URL
+                        echo "User ID not provided.";
+                    }
+
+                    ?>
+                            <!-- <h1 class="display-1 fw-bold">404</h1>
+                            <h1 class="mb-4">Page Not Found</h1>
+                            <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website!
+                                Maybe go to our home page or try to use a search?</p>
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="">Go Back To Home</a> -->
                         </div>
-                        <span><?php echo isset($member['short_message']) ? $member['short_message'] : ''; ?></span>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-<?php endif; ?>
-
-
-                </div>
-            </div>
-            <!-- End -->
-
-
-
-             <!-- Footer Start -->
-             <div class="container-fluid pt-4 px-4">
+                <!-- 404 End -->
+    
+    
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
@@ -297,6 +309,8 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
             </div>
             <!-- Footer End -->
         </div>
+        </div>
+         </div>
         <!-- Content End -->
 
 
@@ -315,8 +329,26 @@ $co_ceo_data = $DB->fetchUserData(array(2, 3), array('co_ceo', 'star_member'));
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    function updateDateTime() {
+      var currentDate = new Date();
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }; //, timeZoneName: 'short'
+      var formattedDateTime = currentDate.toLocaleDateString('en-US', options);
+      document.getElementById('currentDateTime').textContent = formattedDateTime;
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+
+    // Initial update
+    updateDateTime();
+  </script>
+
 </body>
 
 </html>

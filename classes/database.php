@@ -219,7 +219,59 @@ public function fetchStar_MemberData() {
     }
 }
 
+public function fetchUserData($userIds, $userRoles) {
+    // Initialize an empty array to store user data
+    $userData = array();
 
+    // Loop through each user ID and user role
+    for ($i = 0; $i < count($userIds); $i++) {
+        switch ($userRoles[$i]) {
+            case 'ceo':
+                $userData[$i] = $this->fetchCEOData($userIds[$i]);
+                break;
+            case 'co_ceo':
+                $userData[$i] = $this->fetchCo_CEOData($userIds[$i]);
+                break;
+            case 'star_member':
+                $userData[$i] = $this->fetchStar_MemberData($userIds[$i]);
+                break;
+            default:
+                $userData[$i] = false;
+        }
+    }
+
+    return $userData;
+}
+
+public function fetchUserDataByRole($roles) {
+    // Ensure $roles is an array
+    if (!is_array($roles)) {
+        $roles = array($roles);
+    }
+
+    // Escape each role to prevent SQL injection
+    $escapedRoles = array_map(array($this->conn, 'real_escape_string'), $roles);
+    $implodedRoles = implode("','", $escapedRoles);
+
+    // Construct the SQL query
+    $query = "SELECT * FROM users WHERE role IN ('$implodedRoles')";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query was successful
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch the data
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    } else {
+        // Return an empty array if no data is found
+        return array();
+    }
+}
 
 
 
