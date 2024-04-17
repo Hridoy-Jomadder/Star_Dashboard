@@ -50,6 +50,28 @@ session_start();
         // Use the fetched data directly in the Star Member profile section
         $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
     }
+    // Check if the search form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the search term from the form
+    $searchTerm = $_POST['search_term'];
+
+    // Perform the search in the database
+    // Assuming you have a method in your Database class to search by ID or name
+    $searchResults = $DB->searchUsers($searchTerm);
+
+    // Display the search results
+    if (!empty($searchResults)) {
+        // Display the search results here
+        foreach ($searchResults as $result) {
+            // Display each search result
+            echo "<p>User ID: " . $result['userid'] . "</p>";
+            echo "<p>Name: " . $result['first_name'] . " " . $result['last_name'] . "</p>";
+            // Display other relevant information
+        }
+    } else {
+        echo "No results found.";
+    }
+}
 
   
 ?>
@@ -152,9 +174,12 @@ session_start();
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search ID or Name">
-                </form>
+
+                <!-- Search form -->
+    <form method="post" action="search.php">
+        <input type="text" name="search_term" placeholder="Search by ID or Name">
+        <button type="submit">Search</button>
+    </form>
 
                 <span id="currentDateTime" style="padding: 5px;"></span>
 

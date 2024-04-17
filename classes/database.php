@@ -273,7 +273,57 @@ public function fetchUserDataByRole($roles) {
     }
 }
 
+public function searchUsers($searchTerm) {
+    // Initialize an empty array to store the search results
+    $results = array();
 
+    // Sanitize the search term to prevent SQL injection
+    $searchTerm = $this->sanitizeInput($searchTerm);
+
+    // Prepare the SQL query to search for users by name
+    $sql = "SELECT * FROM users WHERE first_name LIKE ? OR last_name LIKE ?";
+
+    // For searching by name, we need to add '%' wildcards to search for partial matches
+    $searchTermWithNameWildcard = "%$searchTerm%";
+
+    // Bind the search term to the query
+    $stmt = $this->conn->prepare($sql);
+
+    // Check if the statement was prepared successfully
+    if ($stmt) {
+        // Bind parameters with proper data types
+        $stmt->bind_param("ss", $searchTermWithNameWildcard, $searchTermWithNameWildcard);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get the result set
+        $result = $stmt->get_result();
+
+        // Fetch the rows and store them in the results array
+        while ($row = $result->fetch_assoc()) {
+            $results[] = $row;
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        // Handle the case where statement preparation fails
+        // You can log an error message or perform other actions as needed
+        error_log("Failed to prepare statement: " . $this->conn->error);
+    }
+
+    // Return the search results
+    return $results;
+}
+
+
+// Define the sanitizeInput method
+public function sanitizeInput($input) {
+    // Implement your input sanitization logic here
+    // For example, you could use PHP's built-in functions like htmlspecialchars
+    return htmlspecialchars($input);
+}
 
 
 //add to function

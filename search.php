@@ -51,6 +51,17 @@ if ($user['role'] === 'star_member') {
     $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
 }
 
+// Check if the search form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the search term from the form
+    $searchTerm = $_POST['search_term'];
+
+    // Perform the search in the database
+    // Assuming you have a method in your Database class to search by ID or name
+    $searchResults = $DB->searchUsers($searchTerm);
+    
+}
+
 
 ?>
  <!DOCTYPE html>
@@ -89,6 +100,26 @@ if ($user['role'] === 'star_member') {
     <!-- Replace HTTP with HTTPS in the CDN links -->
         <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+        <style>
+            /* Style for the container */
+.search-results {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+/* Style for individual search results */
+.search-result {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+            </style>
 
 </head>
 
@@ -151,10 +182,11 @@ if ($user['role'] === 'star_member') {
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search ID or Name">
-                </form>
-
+   <!-- Search form -->
+   <form method="post" action="search.php">
+        <input type="text" name="search_term" placeholder="Search by ID or Name">
+        <button type="submit">Search</button>
+    </form>
                 <span id="currentDateTime" style="padding: 5px;"></span>
 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -243,51 +275,27 @@ if ($user['role'] === 'star_member') {
                     <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
                         <div class="col-md-6 text-center p-4">
                             <!-- <i class="bi bi-exclamation-triangle display-1 text-primary"></i> -->
-                    <?php
-                    // Check if the user ID is provided in the URL
-                    if (isset($_GET['id'])) {
-                        // Get the user ID from the URL
-                        $userID = $_GET['id'];
+                            <?php
+                            // Display the search results
+                            if (!empty($searchResults)) {
+                                // Display the search results here
+                                foreach ($searchResults as $result) {
+                                    // Display each search result
+                                    echo "<p>Name: " . $result['first_name'] . " " . $result['last_name'] . "</p>";
+                                    echo "<p>User ID: " . $result['userid'] . "</p>";
 
-                        // Create a new instance of Database2
-                        $database = new Database2("localhost", "root", "", "star_db1");
-
-                        // Get user details by ID
-                        $user = $database->getUserByID($userID);
-
-                        if ($user !== false) {
-                            // Display user details
-                            echo"<div style='text-align: justify;color:#009cff;'>";
-                            echo "<h1>User Details</h1>";
-                            echo "<img src='" . $user['profile_image_url'] . "' style='width: 30%; height: auto;border-radius: 15px;'>"; 
-                            echo "<br/>";
-                            echo "<br/>";
-                            echo "<p>Full Name: ". $user['first_name'] . ' ' . $user['last_name']; "</p>";
-                            echo "<p>Title: " . $user['title'] . "</p>";
-                            echo "<p>Gender: " . $user['gender'] . "</p>";
-                            echo "<p>Email: " . $user['email'] . "</p>";
-                            echo "<p>Date: " . $user['date'] . "</p>";
-                            echo "<p>Country: " . $user['country'] . "</p>";
-                            echo "<p>Browser Name: " . $user['browser_name'] . "</p>";
-                            echo "<p>IP Address: " . $user['ip_address'] . "</p>";
-                            echo "<br/>";
-                            echo"</div>";
-
-                        } else {
-                            // User not found
-                            echo "User not found.";
-                        }
-                    } else {
-                        // User ID not provided in the URL
-                        echo "User ID not provided.";
-                    }
-
-                    ?>
+                                    // Display other relevant information
+                                }
+                            } else {
+                                echo "No results found.";
+                            }
+                            ?>
+                
                             <!-- <h1 class="display-1 fw-bold">404</h1>
                             <h1 class="mb-4">Page Not Found</h1>
                             <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website!
-                                Maybe go to our home page or try to use a search?</p>
-                            <a class="btn btn-primary rounded-pill py-3 px-5" href="">Go Back To Home</a> -->
+                                Maybe go to our home page or try to use a search?</p> -->
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="dashboard.php">Go Back To Home</a>
                         </div>
                     </div>
                 </div>
