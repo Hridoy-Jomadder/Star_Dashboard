@@ -1,21 +1,46 @@
 <?php
-
-function getprofile_image($userId) {
-    // Function implementation...
-}
-
 session_start();
 
-// Rest of your code...
+include_once("classes/connect.php");
+include_once("classes/login.php");
+include_once("classes/database.php");
+include_once("classes/database2.php");
+include_once("classes/signup.php");
+
+// Check if the user is logged in, redirect to the login page if not
+if (!isset($_SESSION['das_userid'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Create a Database instance
+$DB = new Database();
+
+// Fetch CEO information from the database
+// Assuming you have a method like fetchCEOData in your Database class
+$ceo_data = $DB->fetchCEOData();
+
+// Check if the CEO data is found
+if (!$ceo_data) {
+    // Handle the case where the CEO data is not found
+    echo "CEO data not found.";
+    exit();
+}
+
+// Extract CEO information from the fetched data
+$profile_image = $ceo_data['profile_image'];
+$full_name = $ceo_data['full_name'];
+$user_role = $ceo_data['user_role'];
+$email = $ceo_data['email'];
+$join_date = $ceo_data['join_date'];
 ?>
 
- 
  <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Star</title>
+    <title>DASHMIN - </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -60,22 +85,13 @@ session_start();
                 <a href="" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary"><i class="fa fa-star me-2"></i>DASHMIN</h3>
                 </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                    <?php echo '<img src="uploads/' . $profile_image . '" width="50px" height="50px" class="rounded-circle">'; ?>
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                        <small><?php echo $user_data['title'] ?></small>
-                    </div>
-                </div>
+                <!-- Image  -->
                 <div class="navbar-nav w-100">
-                    <a href="" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Star Dev</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="ceo.php" class="dropdown-item">CEO</a>
+                            <a href="ceo.php" class="dropdown-item ">CEO</a>
                             <a href="co-ceo.php" class="dropdown-item">Co-CEO</a>
                             <a href="star_member.php" class="dropdown-item">Star Member</a>
                         </div>
@@ -171,12 +187,10 @@ session_start();
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <?php echo '<img src="uploads/' . $profile_image . '" width="40px" height="40px" class="rounded-circle">'; ?>
-                            <span class="d-none d-lg-inline-flex"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></span>
-                        </a>
+<!-- Image -->
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="ceo.php" class="dropdown-item">My Profile</a>
-                            <a href="settings.php" class="dropdown-item">Settings</a>
+                            <a href="settings.php" class="dropdown-item active">Settings</a>
                             <a href="logout.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
@@ -184,37 +198,32 @@ session_start();
             </nav>
             <!-- Navbar End -->
 
-
-            <!-- Blank Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-light rounded h-100 p-4">
-                            <?php
-                            // Display the user's profile photo
-                            echo '<img src="uploads/' . $profile_image . '" width="300" height="300" class="rounded-circle">';
-                            ?>
-
-                            <h5 class="mb-0"><?php echo $user_data['first_name'] . " " . $user_data['last_name']?></h6>
-                            <h6 class="mb-4"><?php echo $user_data['title'] ?></h5>
-                            <!--  -->
-                            <div class="position-relative">
-                                <?php echo '<img src="uploads/' . $user_data['profile_image'] . '" width="50px" height="50px" class="rounded-circle">'; ?>
-                                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                            </div>
-
-                            <form action="upload.php" method="post" enctype="multipart/form-data">
+<!-- CEO Profile Section -->
+<div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+        <div class="col-md-6 text-center">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light rounded h-50 p-4" style="text-align: justify;padding-top:-100px;">
+                    <!-- Display CEO's profile image -->
+                    <img src="<?php echo 'uploads/' . $profile_image . ''; ?>" width="300" height="300" class="rounded-circle">
+                    <br><br>
+                    <!-- CEO's Name and Title -->
+                    <h5 class="mb-0">Name: <?php echo $full_name; ?><br></h5>
+                    <h6 class="mb-2">Title: <?php echo $user_role; ?><br></h6>
+                    <!-- CEO's Email -->
+                    <p><strong>Email:</strong> <?php echo $email; ?></p>
+                    <!-- Joined Date -->
+                    <p><strong>Joined:</strong> <?php echo $join_date; ?></p>
+                </div>
+            </div>
+                             <form action="upload.php" method="post" enctype="multipart/form-data">
                                 <label for="file">Choose a new profile photo:</label>
                                 <input type="file" name="file" id="file" accept="image/*">
                                 <input type="submit" value="Upload">
                             </form>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Blank End -->
+        </div>
+    </div>
+    <!-- CEO Profile Section End -->
+
 
 
              <!-- Footer Start -->
@@ -255,3 +264,5 @@ session_start();
 </body>
 
 </html>
+                       
+                    
