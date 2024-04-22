@@ -155,6 +155,30 @@ private function constructImageUrl($imageName) {
     return "http://" . $baseUrl . $uploadsFolder . $imageName;
 }
 
+// Method to fetch video details by ID
+public function fetchVideoByID($videoID) {
+    // Sanitize the video ID to prevent SQL injection
+    $videoID = $this->conn->real_escape_string($videoID);
+
+    // Define your SQL query to fetch video details by ID
+    $query = "SELECT * FROM videos WHERE id = '$videoID'";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query executed successfully and if there are any results
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch video details and return as an associative array
+        $video = $result->fetch_assoc();
+
+        return $video;
+    } else {
+        // Return false if the video is not found or an error occurred
+        return false;
+    }
+}
+
+
 
 
 

@@ -51,8 +51,17 @@ if ($user['role'] === 'star_member') {
     $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
 }
 
-                // Fetch posts from the database
+// Fetch posts from the database
 $posts = $database->fetchAllPosts();
+
+// Check if video ID is provided in the URL
+if(isset($_GET['id'])) {
+    // Get the video ID from the URL
+    $videoID = $_GET['id'];
+
+    // Fetch video details by ID
+    $video = $database->fetchVideoByID($videoID);
+}
 ?>
 
 
@@ -343,7 +352,6 @@ $posts = $database->fetchAllPosts();
 <!-- Star post End -->
 
 
-
 <!-- Star Video Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light text-center rounded p-4">
@@ -367,26 +375,24 @@ $posts = $database->fetchAllPosts();
                 </thead>
                 <tbody>
                     <?php 
-                    // Check if $users is defined and not null
-                    if (isset($users) && $users !== false) {
-                        foreach ($users as $user): ?>
+                    if (isset($videos) && $videos !== false) {
+                        foreach ($videos as $video): ?>
                             <tr>
-                                <td><?php echo $user['id']; ?></td>
-                                <td><?php echo $user['userid']; ?></td>
-                                <td><?php echo $user['video']; ?></td>
-                                <td><?php echo $user['title']; ?></td>
-                                <td><?php echo $user['description']; ?></td>
-                                <td><?php echo $user['tag']; ?></td>
-                                <td><?php echo $user['url']; ?></td>
-                                <td><?php echo $user['upload_date']; ?></td>
-                                <td><a class="btn btn-sm btn-info" href="videoid_detail.php?id=<?php echo $user['videoid']; ?>">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $user['videoid']; ?>">Delete</a></td>
-
+                                <td><?php echo $video['id']; ?></td>
+                                <td><?php echo $video['userid']; ?></td>
+                                <td><?php echo $video['video']; ?></td>
+                                <td><?php echo $video['title']; ?></td>
+                                <td><?php echo $video['description']; ?></td>
+                                <td><?php echo $video['tag']; ?></td>
+                                <td><?php echo $video['url']; ?></td>
+                                <td><?php echo $video['upload_date']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="videoid_detail.php?id=<?php echo $video['id']; ?>">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $video['id']; ?>">Delete</a></td>
                             </tr>
                     <?php endforeach; 
                     } else {
-                        // Handle the case where no users were fetched or $users is not defined
-                        echo "<tr><td colspan='11'>No users found.</td></tr>";
+                        // Handle the case where no videos were fetched or $videos is not defined
+                        echo "<tr><td colspan='9'>No videos found.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -395,6 +401,7 @@ $posts = $database->fetchAllPosts();
     </div>
 </div>
 <!-- Star Video End -->
+
 
 
             <!-- Footer Start -->

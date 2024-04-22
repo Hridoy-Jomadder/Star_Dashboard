@@ -37,4 +37,3 @@ if(isset($_GET['id'])) {
     // Post ID not provided
     echo "Post ID not provided.";
 }
-?>
