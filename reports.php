@@ -232,7 +232,7 @@ if ($user['role'] === 'star_member') {
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Star Account</h6>
+            <h6 class="mb-0">Star Accounts</h6>
             <!-- <a href="reports.php">Show All</a> -->
         </div>
         <div class="table-responsive">
@@ -299,7 +299,11 @@ if ($user['role'] === 'star_member') {
                         <th scope="col">ID</th>
                         <th scope="col">Post ID</th>
                         <th scope="col">Post</th>
-                        <th scope="col">Profile Image</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">UserID</th>
+                        <th scope="col">Stars</th>
+                        <th scope="col">Comments</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -309,19 +313,17 @@ if ($user['role'] === 'star_member') {
                     if (isset($users) && $users !== false) {
                         foreach ($users as $user): ?>
                             <tr>
-                                <td><?php echo $user['id']; ?></td>
+                                <!-- <td><?php echo $user['id']; ?></td>
                                 <td><?php echo $user['Postid']; ?></td>
                                 <td><?php echo $user['Post']; ?></td>
-                                <td><img src="<?php echo $user['profile_image_url']; ?>" alt="Profile Image" width="50" height="50"></td>
-
-                                <td><?php echo $user['gender']; ?></td>
-                                <!-- <td><?php echo $user['date']; ?></td> -->
-                                <td><?php echo $user['email']; ?></td>
-                                <td><?php echo $user['ip_address']; ?></td>
-                                <td><?php echo $user['country']; ?></td>
-                                <td><?php echo $user['browser_name']; ?></td>
-                                <td><a class="btn btn-sm btn-info" href="detail.php?id=<?php echo $user['id']; ?>">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="delete.php?id=<?php echo $user['id']; ?>">Delete</a></td>
+                                <td><img src="<?php echo $user['image_url']; ?>" alt="Image" width="50" height="50"></td>
+                                <td><?php echo $user['Date']; ?></td>
+                                <td><?php echo $user['date']; ?></td>
+                                <td><?php echo $user['UserID']; ?></td>
+                                <td><?php echo $user['Stars']; ?></td>
+                                <td><?php echo $user['Comments']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="postid_detail.php?id=<?php echo $user['postid']; ?>">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="postid_delete.php?id=<?php echo $user['postid']; ?>">Delete</a></td> -->
 
                             </tr>
                     <?php endforeach; 
@@ -336,6 +338,59 @@ if ($user['role'] === 'star_member') {
     </div>
 </div>
 <!-- Star post End -->
+
+<!-- Star Video Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Star Videos</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">
+                        <th scope="col">ID</th>
+                        <th scope="col">UserID</th>
+                        <th scope="col">Video</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Tag</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Upload Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    // Check if $users is defined and not null
+                    if (isset($users) && $users !== false) {
+                        foreach ($users as $user): ?>
+                            <tr>
+                                <!-- <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['userid']; ?></td>
+                                <td><?php echo $user['video']; ?></td>
+                                <td><?php echo $user['title']; ?></td>
+                                <td><?php echo $user['description']; ?></td>
+                                <td><?php echo $user['tag']; ?></td>
+                                <td><?php echo $user['url']; ?></td>
+                                <td><?php echo $user['upload_date']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="videoid_detail.php?id=<?php echo $user['videoid']; ?>">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $user['videoid']; ?>">Delete</a></td> -->
+
+                            </tr>
+                    <?php endforeach; 
+                    } else {
+                        // Handle the case where no users were fetched or $users is not defined
+                        echo "<tr><td colspan='11'>No users found.</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Star Video End -->
+
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
