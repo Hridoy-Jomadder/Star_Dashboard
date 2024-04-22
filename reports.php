@@ -50,6 +50,9 @@ if ($user['role'] === 'star_member') {
     // Use the fetched data directly in the Star Member profile section
     $star_member_data = $DB->fetchStarMemberDetails($_SESSION['das_userid']);
 }
+
+                // Fetch posts from the database
+$posts = $database->fetchAllPosts();
 ?>
 
 
@@ -304,32 +307,32 @@ if ($user['role'] === 'star_member') {
                         <th scope="col">UserID</th>
                         <th scope="col">Stars</th>
                         <th scope="col">Comments</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    // Check if $users is defined and not null
-                    if (isset($users) && $users !== false) {
-                        foreach ($users as $user): ?>
-                            <tr>
-                                <!-- <td><?php echo $user['id']; ?></td>
-                                <td><?php echo $user['Postid']; ?></td>
-                                <td><?php echo $user['Post']; ?></td>
-                                <td><img src="<?php echo $user['image_url']; ?>" alt="Image" width="50" height="50"></td>
-                                <td><?php echo $user['Date']; ?></td>
-                                <td><?php echo $user['date']; ?></td>
-                                <td><?php echo $user['UserID']; ?></td>
-                                <td><?php echo $user['Stars']; ?></td>
-                                <td><?php echo $user['Comments']; ?></td>
-                                <td><a class="btn btn-sm btn-info" href="postid_detail.php?id=<?php echo $user['postid']; ?>">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="postid_delete.php?id=<?php echo $user['postid']; ?>">Delete</a></td> -->
 
+                    <?php 
+                    // Check if $posts is defined and not null
+                    if (isset($posts) && !empty($posts)) {
+                        foreach ($posts as $post): ?>
+                            <tr>
+                                <td><?php echo $post['id']; ?></td>
+                                <td><?php echo $post['postid']; ?></td>
+                                <td><?php echo $post['post']; ?></td>
+                                <td><img src="<?php echo $post['image']; ?>" alt="Image" width="50" height="50"></td>
+                                <td><?php echo $post['date']; ?></td>
+                                <td><?php echo $post['userid']; ?></td>
+                                <td><?php echo $post['stars']; ?></td>
+                                <td><?php echo $post['comments']; ?></td>
+                                <td><a class="btn btn-sm btn-info" href="postid_detail.php?id=<?php echo $post['postid']; ?>">Detail</a></td>
+                                <td><a class="btn btn-sm btn-warning" href="postid_delete.php?id=<?php echo $post['postid']; ?>">Delete</a></td>
                             </tr>
-                    <?php endforeach; 
+                    <?php 
+                        endforeach; 
                     } else {
-                        // Handle the case where no users were fetched or $users is not defined
-                        echo "<tr><td colspan='11'>No users found.</td></tr>";
+                        // Handle the case where no posts were fetched or $posts is not defined
+                        echo "<tr><td colspan='9'>No posts found.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -338,6 +341,8 @@ if ($user['role'] === 'star_member') {
     </div>
 </div>
 <!-- Star post End -->
+
+
 
 <!-- Star Video Start -->
 <div class="container-fluid pt-4 px-4">
@@ -366,7 +371,7 @@ if ($user['role'] === 'star_member') {
                     if (isset($users) && $users !== false) {
                         foreach ($users as $user): ?>
                             <tr>
-                                <!-- <td><?php echo $user['id']; ?></td>
+                                <td><?php echo $user['id']; ?></td>
                                 <td><?php echo $user['userid']; ?></td>
                                 <td><?php echo $user['video']; ?></td>
                                 <td><?php echo $user['title']; ?></td>
@@ -375,7 +380,7 @@ if ($user['role'] === 'star_member') {
                                 <td><?php echo $user['url']; ?></td>
                                 <td><?php echo $user['upload_date']; ?></td>
                                 <td><a class="btn btn-sm btn-info" href="videoid_detail.php?id=<?php echo $user['videoid']; ?>">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $user['videoid']; ?>">Delete</a></td> -->
+                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $user['videoid']; ?>">Delete</a></td>
 
                             </tr>
                     <?php endforeach; 

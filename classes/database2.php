@@ -123,6 +123,39 @@ public function deleteByID($userID) {
     }
 }
 
+// Method to fetch all posts from the database
+public function fetchAllPosts() {
+    // Define your SQL query to fetch all posts
+    $query = "SELECT * FROM posts";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query executed successfully and if there are any results
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch all posts and return them as an associative array
+        $posts = $result->fetch_all(MYSQLI_ASSOC);
+
+        // Append the image URL to each post
+        foreach ($posts as &$post) {
+            $post['image_url'] = $this->constructImageUrl($post['image']);
+        }
+
+        return $posts;
+    } else {
+        // Return false if no posts are found or an error occurred
+        return false;
+    }
+}
+// Method to construct the URL for images
+private function constructImageUrl($imageName) {
+    // Assuming "Upload Files" folder is in the root directory accessible from the web
+    $baseUrl = $_SERVER['HTTP_HOST']; // Use HTTP_HOST for domain name
+    $uploadsFolder = "/Star/"; // Change this to your actual folder path
+    return "http://" . $baseUrl . $uploadsFolder . $imageName;
+}
+
+
 
 
     public function __destruct() {
@@ -161,3 +194,21 @@ $users = $database->fetchAllUsers();
 //     // Handle the case where no users are found or an error occurred
 //     echo "Failed to fetch users.";
 // }
+
+
+// Fetch posts from the database
+$posts = $database->fetchAllPosts();
+
+// Display posts data in the HTML table
+if ($posts !== false) {
+    foreach ($posts as $post) {
+        echo "<tr>";
+        echo "<td><img src=\"{$post['image_url']}\" alt=\"Image\" width=\"50\" height=\"50\"></td>";
+        echo "<td><a class=\"btn btn-sm btn-info\" href=\"postid_detail.php?id={$post['postid']}\">Detail</a></td>";
+        echo "<td><a class=\"btn btn-sm btn-warning\" href=\"postid_delete.php?id={$post['postid']}\">Delete</a></td>";
+        echo "</tr>";
+    }
+} else {
+    // Handle the case where no posts are found or an error occurred
+    echo "<tr><td colspan='9'>No posts found.</td></tr>";
+}
