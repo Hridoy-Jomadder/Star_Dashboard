@@ -177,9 +177,48 @@ public function fetchVideoByID($videoID) {
         return false;
     }
 }
+// In the Database class
 
+public function fetchAllVideos() {
+    // Define your SQL query to fetch all videos
+    $query = "SELECT * FROM videos";
 
+    // Execute the query
+    $result = $this->conn->query($query);
 
+    // Check if the query executed successfully and if there are any results
+    if ($result !== false && $result->num_rows > 0) {
+        // Fetch all video details and return as an array of associative arrays
+        $videos = $result->fetch_all(MYSQLI_ASSOC);
+
+        return $videos;
+    } else {
+        // Return false if no videos are found or an error occurred
+        return false;
+    }
+}
+
+// In the Database class
+// Method to delete a video by ID
+public function deleteVideoByID($videoID) {
+    // Sanitize the video ID to prevent SQL injection
+    $videoID = $this->conn->real_escape_string($videoID);
+
+    // Define your SQL query to delete the video by ID
+    $query = "DELETE FROM videos WHERE id = '$videoID'";
+
+    // Execute the query
+    $result = $this->conn->query($query);
+
+    // Check if the query executed successfully and if any rows were affected
+    if ($result !== false && $this->conn->affected_rows > 0) {
+        // Video successfully deleted
+        return true;
+    } else {
+        // Failed to delete the video or no video found with the given ID
+        return false;
+    }
+}
 
 
     public function __destruct() {
@@ -224,15 +263,17 @@ $users = $database->fetchAllUsers();
 $posts = $database->fetchAllPosts();
 
 // Display posts data in the HTML table
-if ($posts !== false) {
-    foreach ($posts as $post) {
-        echo "<tr>";
-        echo "<td><img src=\"{$post['image_url']}\" alt=\"Image\" width=\"50\" height=\"50\"></td>";
-        echo "<td><a class=\"btn btn-sm btn-info\" href=\"postid_detail.php?id={$post['postid']}\">Detail</a></td>";
-        echo "<td><a class=\"btn btn-sm btn-warning\" href=\"postid_delete.php?id={$post['postid']}\">Delete</a></td>";
-        echo "</tr>";
-    }
-} else {
-    // Handle the case where no posts are found or an error occurred
-    echo "<tr><td colspan='9'>No posts found.</td></tr>";
-}
+// if ($posts !== false) {
+//     foreach ($posts as $post) {
+//         echo "<tr>";
+//         echo "<td><img src=\"{$post['image_url']}\" alt=\"Image\" width=\"50\" height=\"50\"></td>";
+//         echo "<td><a class=\"btn btn-sm btn-info\" href=\"postid_detail.php?id={$post['postid']}\">Detail</a></td>";
+//         echo "<td><a class=\"btn btn-sm btn-warning\" href=\"postid_delete.php?id={$post['postid']}\">Delete</a></td>";
+//         echo "</tr>";
+//     }
+// } else {
+//     // Handle the case where no posts are found or an error occurred
+//     echo "<tr><td colspan='9'>No posts found.</td></tr>";
+// }
+
+$videos = $database->fetchAllVideos();

@@ -64,7 +64,6 @@ if(isset($_GET['id'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -329,7 +328,7 @@ if(isset($_GET['id'])) {
                                 <td><?php echo $post['id']; ?></td>
                                 <td><?php echo $post['postid']; ?></td>
                                 <td><?php echo $post['post']; ?></td>
-                                <td><img src="<?php echo $post['image']; ?>" alt="Image" width="50" height="50"></td>
+                                <td><img src="<?php echo $post['image_url']; ?>" alt="Image" width="50" height="50"></td>
                                 <td><?php echo $post['date']; ?></td>
                                 <td><?php echo $post['userid']; ?></td>
                                 <td><?php echo $post['stars']; ?></td>
@@ -370,31 +369,38 @@ if(isset($_GET['id'])) {
                         <th scope="col">Tag</th>
                         <th scope="col">URL</th>
                         <th scope="col">Upload Date</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" colspan="3">Google Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    if (isset($videos) && $videos !== false) {
-                        foreach ($videos as $video): ?>
-                            <tr>
-                                <td><?php echo $video['id']; ?></td>
-                                <td><?php echo $video['userid']; ?></td>
-                                <td><?php echo $video['video']; ?></td>
-                                <td><?php echo $video['title']; ?></td>
-                                <td><?php echo $video['description']; ?></td>
-                                <td><?php echo $video['tag']; ?></td>
-                                <td><?php echo $video['url']; ?></td>
-                                <td><?php echo $video['upload_date']; ?></td>
-                                <td><a class="btn btn-sm btn-info" href="videoid_detail.php?id=<?php echo $video['id']; ?>">Detail</a></td>
-                                <td><a class="btn btn-sm btn-warning" href="videoid_delete.php?id=<?php echo $video['id']; ?>">Delete</a></td>
-                            </tr>
-                    <?php endforeach; 
-                    } else {
-                        // Handle the case where no videos were fetched or $videos is not defined
-                        echo "<tr><td colspan='9'>No videos found.</td></tr>";
-                    }
-                    ?>
+                    
+                <?php 
+
+
+// Check if $videos is not empty
+if (!empty($videos)) {
+    // Display videos in the HTML table
+    foreach ($videos as $video) {
+        echo "<tr>";
+        echo "<td>{$video['id']}</td>";
+        echo "<td>{$video['userid']}</td>";
+        echo "<td>{$video['video']}</td>";
+        echo "<td>{$video['title']}</td>";
+        echo "<td>{$video['description']}</td>";
+        echo "<td>{$video['tag']}</td>";
+        echo "<td>{$video['url']}</td>";
+        echo "<td>{$video['upload_date']}</td>";
+        echo "<td><a class='btn btn-sm btn-info' href='videoid_detail.php?id={$video['id']}'>Video Detail</a></td>";
+        echo "<td><button class='btn btn-sm btn-info' onclick='copyUrl(\"{$video['url']}\")'>URL Copy</button></td>";
+                echo "<td><a class='btn btn-sm btn-warning' href='videoid_delete.php?id={$video['id']}'>Delete</a></td>";
+        echo "</tr>";
+    }
+} else {
+    // Display a message if no videos are found
+    echo "<tr><td colspan='9'>No videos found.</td></tr>";
+}
+?>
+
                 </tbody>
             </table>
         </div>
@@ -565,6 +571,30 @@ if(isset($_GET['id'])) {
         });
     });
 </script>
+
+<!-- Add this JavaScript code at the end of your HTML -->
+<script>
+function copyUrl(url) {
+    // Create a temporary input element
+    var input = document.createElement('input');
+    input.setAttribute('value', url);
+    document.body.appendChild(input);
+
+    // Select the input text
+    input.select();
+    input.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+
+    // Remove the temporary input
+    document.body.removeChild(input);
+
+    // Provide a visual indication to the user
+    alert("URL copied to clipboard: " + url);
+}
+</script>
+
 
 </body>
 
